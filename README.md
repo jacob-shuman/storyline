@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Deploying
+
+First install the angular github pages npm package globally.
+
+`npm i -g angularcli-ghpages`
+
+Rebuild the project for production.
+
+`ng build --prod --base-href https://jacob-shuman.github.io/storyline/`
+
+Deploy to github pages
+
+`ngh --dir dist/storyline`
