@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 #### Please note that the `build-prod` script will take longer but will produce the production ready version of the app.
 
-- Run `npm run build` or `npm run build-prod` to build the app. The built app can be found in the "dist" directory.
+- Run `npm run build` or `npm run build-prod` to build the app. The built app can be found in the `dist` directory.
 
 ## Development
 
