@@ -12,12 +12,14 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ValidateService } from './services/validate.service';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
+    ResetPasswordComponent,
     TopBarComponent,
     LandingComponent,
     RegisterComponent,

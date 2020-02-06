@@ -5,6 +5,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     component: HomeComponent,
     path: 'home'
+  },
+  {
+    component: ResetPasswordComponent,
+    path: 'reset'
   },
   {
     component: LandingComponent,
