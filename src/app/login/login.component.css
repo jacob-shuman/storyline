@@ -1,0 +1,26 @@
+.container {
+  align-items: center;
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  margin-top: 15%;
+  border: 2px solid grey;
+  border-radius: 10px;
+}
+
+input[type=email] {
+margin-bottom: 20px;
+}
+
+input[type=password] {
+  margin-bottom: 20px;
+}
+
+.signin {
+  margin: auto;
+  max-width: 330px;
+  width: 100%;
+  padding: 15px;
+}
+

@@ -3,25 +3,35 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LandingComponent } from './landing/landing.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'landing',
+    redirectTo: 'home',
+  },
+  {
+    component: HomeComponent,
+    path: 'home'
   },
   {
     component: LandingComponent,
-    path: '/landing'
+    path: 'landing'
   },
   {
     component: LoginComponent,
-    path: '/login'
+    path: 'login'
+  },
+  {
+    component: RegisterComponent,
+    path: 'register'
   },
   {
     component: RegistrationComponent,
-    path: '/registration'
+    path: 'registration'
   }
 ];
 

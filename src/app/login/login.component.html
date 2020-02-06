@@ -1,45 +1,17 @@
-<!-- 
-Email: {type:String, unique:true},
-     Nickname:String,
-     Password:String,
-     Color:String,
-     Hashed_password:String,
-     Project: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
-     SignUpDate: Date,
-     SecurityQuestion: Number,
-     SecurityAnswer: String,
- -->
 
-<div class="container m-3">
-  <h2>Login</h2>
+<div class="container">
+  <form class="signin" (submit)="onLoginSubmit()">
 
-  <div class="card border-primary">
-    <div class="card-body">
-      <div class="card-title"><h4>Credentials</h4></div>
+      <input type="email" [(ngModel)]="email" name="email" class="form-control" id="email" placeholder="Email address">
 
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="email">Email</span>
-        </div>
-        <input
-          type="email"
-          class="form-control"
-          aria-label="Email"
-          aria-describedby="email"
-        />
-      </div>
+      <input type="password" [(ngModel)]="password" name="password" class="form-control" id="password" placeholder="Password">
 
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="password">Password</span>
-        </div>
-        <input
-          type="password"
-          class="form-control"
-          aria-label="Password"
-          aria-describedby="password"
-        />
-      </div>
-    </div>
-  </div>
-</div>
+      <button class="btn btn-lg btn-primary btn-block">
+        Login
+      </button>
+
+      <a class="nav-link"
+        [routerLink]="['/reset']">Reset Password</a>
+
+  </form>
+<div>
