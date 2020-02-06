@@ -13,15 +13,15 @@ const routes: Routes = [
   },
   {
     component: LandingComponent,
-    path: 'landing'
+    path: '/landing'
   },
   {
     component: LoginComponent,
-    path: 'login'
+    path: '/login'
   },
   {
     component: RegistrationComponent,
-    path: 'registration'
+    path: '/registration'
   }
 ];
 
