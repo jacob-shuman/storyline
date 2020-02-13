@@ -23,7 +23,7 @@ export class RegisterComponent {
     const user = {
       email: this.email,
       password: this.password,
-      repeatPassword: this.password,
+      repeatPassword: this.repeatPassword,
       nickName: this.nickName,
       securityQuestion: this.securityQuestion,
       securityAnswer: this.securityAnswer,

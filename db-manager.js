@@ -38,6 +38,25 @@ module.exports.init = function() {
   });
 };
 
+module.exports.loginUser = async function(email, password) {
+  try {
+    const user = await User.findOne({ Email: email }).exec();
+    if (!user) {
+      throw "Invalid Email/Password combination";
+    }
+
+    if (await bcrypt.compare(password, user.Password)) {
+      return true;
+    } else {
+        // TODO: update user's Last_Failed_Login field
+
+      throw "Invalid Email/Password combination";
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports.registerUser = function(
   nickName,
   email,
@@ -60,15 +79,13 @@ module.exports.registerUser = function(
         User_Settings: "1,1,1,1,1",
         Authenticated: false
       });
-      console.log("wtf");
 
       newUser.save(function(err, user) {
-        console.log("asdfasdf");
         if (err) {
           console.log("Error: ", err);
           reject("Mongo Save Error: " + err);
         } else {
-          resolve();
+          resolve(true);
         }
       });
     });

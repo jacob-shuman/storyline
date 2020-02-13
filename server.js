@@ -28,24 +28,30 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "storyline", "index.html"));
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   try {
-    await dbManager.loginUser(req.body.email, req.body.password);
+    const result = await dbManager.loginUser(req.body.email, req.body.password);
 
-    res.json({ success: true });
+    res.json({ success: result });
   } catch (err) {
-    console.log("Login Error: ", err)
+    console.log("Login Error: ", err);
     res.json({ success: false, error: err });
   }
 });
 
 app.post("/register", async (req, res) => {
   try {
-    await dbManager.registerUser(req.body.nickname, req.body.email, req.body.password, req.body.securityQuestion, req.body.securityAnswer);
+    const result = await dbManager.registerUser(
+      req.body.nickname,
+      req.body.email,
+      req.body.password,
+      req.body.securityQuestion,
+      req.body.securityAnswer
+    );
 
-    res.json({ success: true });
+    res.json({ success: result });
   } catch (err) {
-    console.log("Registration Error: ", err)
+    console.log("Registration Error: ", err);
     res.json({ success: false, error: err });
   }
 });

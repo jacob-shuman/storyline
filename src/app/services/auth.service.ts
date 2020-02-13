@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-interface LoginResult {
+export interface LoginResult {
   success: boolean;
   error?: any;
 }
 
-interface RegisterResult {
+export interface RegisterResult {
   success: boolean;
   error?: any;
 }
@@ -35,13 +35,13 @@ export class AuthService {
    * 
    * @returns Whether login was successful
    */
-  async login(email: string, password: string): Promise<boolean> {
+  async login(email: string, password: string): Promise<LoginResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { email, password, };
       const result: LoginResult = await this.http.post(`${this.root}/login`, body, { headers }).toPromise() as LoginResult;
 
-      return result.success;
+      return result;
     } catch (err) {
       throw err;
     }
@@ -56,17 +56,13 @@ export class AuthService {
    * 
    * @returns Whether registration was successful
    */
-  async register(nickname: string, email: string, password: string, securityQuestion: string, securityAnswer: string): Promise<boolean> {
+  async register(nickname: string, email: string, password: string, securityQuestion: string, securityAnswer: string): Promise<RegisterResult> {
     try {
-      console.log("Attempting register");
-
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { nickname, email, password, securityQuestion, securityAnswer };
       const result: RegisterResult = await this.http.post(`${this.root}/register`, body, { headers }).toPromise() as RegisterResult;
 
-      console.log("Result: ", result)
-
-      return result.success;
+      return result;
     } catch (err) {
       throw err;
     }

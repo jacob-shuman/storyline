@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../services/auth.service';
+import { AuthService, LoginResult } from '../services/auth.service';
 import { ValidateService } from '../services/validate.service';
 
 
@@ -51,11 +51,16 @@ export class LoginComponent {
     this.errors = { all: '', email: '', password: '' };
     if (this.validateFields()) {
       try {
-        if (await this.authService.login(this.email, this.password)) {
+        const result: LoginResult = await this.authService.login(this.email, this.password);
+
+        if (result.success) {
           this.router.navigate(['projects']);
+        } else if (result.error) {
+          throw result.error;
         }
       } catch (error) {
-        this.errors.all = error.message;
+        console.log("here lol");
+        this.errors.all = error;
       }
     }
   }
