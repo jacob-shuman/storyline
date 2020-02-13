@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
-const mongoUrl = "mongodb://myvmlab.senecacollege.ca:6912/Storyline";
+// const mongoUrl = "mongodb://myvmlab.senecacollege.ca:6912/Storyline"; // Use this when running locally
+const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running on the VM
 const db = mongoose.connection;
 
 let User;
