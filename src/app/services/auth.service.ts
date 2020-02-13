@@ -26,6 +26,9 @@ export class AuthService {
     this.host = "https://prj666.mystudentlab.ca";
     this.port = 6914;
 
+    // this.host = "http://localhost";
+    // this.port = 10034;
+
     this.root = `${this.host}:${this.port}`;
   }
 

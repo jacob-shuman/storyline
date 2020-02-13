@@ -48,7 +48,7 @@ module.exports.loginUser = async function(email, password) {
     if (await bcrypt.compare(password, user.Password)) {
       return true;
     } else {
-        // TODO: update user's Last_Failed_Login field
+      // TODO: update user's Last_Failed_Login field
 
       throw "Invalid Email/Password combination";
     }
@@ -80,14 +80,22 @@ module.exports.registerUser = function(
         Authenticated: false
       });
 
-      newUser.save(function(err, user) {
-        if (err) {
-          console.log("Error: ", err);
-          reject("Mongo Save Error: " + err);
-        } else {
-          resolve(true);
-        }
-      });
+      User.findOne({ Email: email })
+        .exec()
+        .then(user => {
+          if (!user) {
+            newUser.save(function(err, user) {
+              if (err) {
+                console.log("Error: ", err);
+                reject("Mongo Save Error: " + err);
+              } else {
+                resolve(true);
+              }
+            });
+          } else {
+            reject("User with that email already exists");
+          }
+        });
     });
   });
 };
