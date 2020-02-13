@@ -2,18 +2,34 @@
   <form (submit)="onRegisterSubmit()" class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
 
-    <label for="inputName" class="sr-only">Name</label>
-    <input type="text" [(ngModel)]="name" name="name" id="inputName" class="form-control" placeholder="Name" required autofocus  >
-
-    <label for="inputUserName" class="sr-only">User Name</label>
-    <input type="text" [(ngModel)]="username" name="username"id="inputUserName" class="form-control" placeholder="Username" required autofocus>
+    <label for="inputNickName" class="sr-only">Nickname</label>
+    <input type="text" [(ngModel)]="nickName" name="Nickname"id="inputNickName" class="form-control" placeholder="Nickname" required autofocus>
 
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" [(ngModel)]="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" [(ngModel)]="email" name="Email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
 
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" [(ngModel)]="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="password" [(ngModel)]="password" name="Password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+    <label for="inputPasswordRepeat" class="sr-only">Repeat Password</label>
+    <input type="password" [(ngModel)]="repeatPassword" name="RepeatPassword" id="inputPasswordRepeat" class="form-control" placeholder="Repeat Password" required>
+
+
+    <label for="securityQuestion" class="sr-only">Example select</label>
+    <select class="form-control" [(ngModel)]="securityQuestion" name="Security_Question" required>
+      <option selected>Please select a question</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+
+    <label for="securityAnswer" class="sr-only">Security Answer</label>
+    <input type="text" [(ngModel)]="securityAnswer" name="Security_Answer" id="securityAnswer" class="form-control" placeholder="securityAnswer" required>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Submit</button>
   </form>
 </div>
+
+

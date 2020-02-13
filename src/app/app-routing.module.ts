@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
 import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 
 const routes: Routes = [
@@ -35,9 +35,9 @@ const routes: Routes = [
     path: 'register'
   },
   {
-    component: RegistrationComponent,
-    path: 'registration'
-  }
+    component: ProjectsComponent,
+    path: 'projects'
+  },
 ];
 
 @NgModule({

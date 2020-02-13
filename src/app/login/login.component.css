@@ -9,11 +9,23 @@
   border-radius: 10px;
 }
 
-input[type=email] {
-margin-bottom: 20px;
+.errorTextLarge {
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(255, 90, 90);
 }
 
-input[type=password] {
+.errorText {
+  font-weight: bold;
+  font-size: 15px;
+  color: rgb(255, 90, 90);
+}
+
+input[type="email"] {
+  margin-bottom: 20px;
+}
+
+input[type="password"] {
   margin-bottom: 20px;
 }
 
@@ -23,4 +35,3 @@ input[type=password] {
   width: 100%;
   padding: 15px;
 }
-

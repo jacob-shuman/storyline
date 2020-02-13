@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../services/auth.service';
+import { ValidateService } from '../services/validate.service';
 
 
 @Component({
@@ -7,21 +10,54 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent {
   email: string;
   password: string;
 
-  url = 'http://echo.jsontest.com/key/value/one/two';
-  constructor(private http: HttpClient) {}
+  errors: {
+    all: string, // Errors regarding login in general
+    email: string, // Errors regarding entered email
+    password: string // Errors regarding entered password
+  };
 
-  ngOnInit() {
+  constructor(private validateService: ValidateService, private authService: AuthService, private router: Router) {
+    this.errors = {
+      all: '',
+      email: '',
+      password: ''
+    };
   }
 
-  onLoginSubmit() {
-    this.http.get(this.url).toPromise().then(data => {
-      console.log(data);
-    });
+  /**
+   * @returns Whether email/password fields are valid
+   */
+  private validateFields(): boolean {
+    let valid = true;
+
+    if (!this.validateService.validateEmail(this.email)) {
+      this.errors.email = 'Invalid Email';
+      valid = false;
+    }
+
+    if (!this.password) {
+      this.errors.password = 'Invalid Password';
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  private async onLoginSubmit(): Promise<void> {
+    this.errors = { all: '', email: '', password: '' };
+    if (this.validateFields()) {
+      try {
+        if (await this.authService.login(this.email, this.password)) {
+          this.router.navigate(['projects']);
+        }
+      } catch (error) {
+        this.errors.all = error.message;
+      }
+    }
   }
 
 }

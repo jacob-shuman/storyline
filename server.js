@@ -4,11 +4,11 @@ const path = require("path");
 const cors = require("cors");
 const express = require("express");
 const app = express();
-// const hostname = '10.102.112.181';
 const PORT = 10034;
 
+const dbManager = require("./db-manager");
+
 let credentials;
-let secure = true;
 
 try {
   credentials = {
@@ -17,7 +17,7 @@ try {
   };
 } catch (err) {
   // SSL Certificate/Key was not found so https is not possible
-  if (err.code === "ENOENT") secure = false;
+  console.error("SSL Cert/Key Error: ", err);
 }
 
 app.use(require("body-parser").json());
@@ -29,26 +29,47 @@ app.get("/", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  // Compare against database
+  try {
+    await dbManager.loginUser(req.body.email, req.body.password);
 
-  console.log(req.body);
+    res.json({ success: true });
+  } catch (err) {
+    console.log("Login Error: ", err)
+    res.json({ success: false, error: err });
+  }
+});
 
-  res.json({success: true});
+app.post("/register", async (req, res) => {
+  try {
+    await dbManager.registerUser(req.body.nickname, req.body.email, req.body.password, req.body.securityQuestion, req.body.securityAnswer);
+
+    res.json({ success: true });
+  } catch (err) {
+    console.log("Registration Error: ", err)
+    res.json({ success: false, error: err });
+  }
 });
 
 app.get("/ping", (req, res) => {
   res.status(200).send("Working!");
 });
 
-if (secure)
-  require("https")
-    .createServer(credentials, app)
-    .listen(PORT, () => {
-      console.log(`Server running on port ${PORT} using https`);
-    });
-else
-  require("http")
-    .createServer(app)
-    .listen(PORT, () => {
-      console.log(`Server running on port ${PORT} using http`);
-    });
+dbManager
+  .init()
+  .then(() => {
+    if (credentials)
+      require("https")
+        .createServer(credentials, app)
+        .listen(PORT, () => {
+          console.log(`Server running on port ${PORT} using https`);
+        });
+    else
+      require("http")
+        .createServer(app)
+        .listen(PORT, () => {
+          console.log(`Server running on port ${PORT} using http`);
+        });
+  })
+  .catch(err => {
+    console.log(err);
+  });
