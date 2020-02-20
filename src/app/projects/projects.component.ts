@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
-import { ProjectService } from '../services/project/project.service';
+import { ProjectService, SLProject } from '../services/project/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -8,10 +8,16 @@ import { ProjectService } from '../services/project/project.service';
   styleUrls: ['./projects.component.sass']
 })
 export class ProjectsComponent implements OnInit {
+  private projects: SLProject[];
 
-  constructor(private authService: AuthService, private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.projects = await this.projectService.getAllProjects();
+  }
+
+  private showCreateModal() {
+
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ValidateService } from '../services/validate/validate.service';
-import { AuthService, RegisterResult } from '../services/auth/auth.service';
+import { AuthService, SLRegisterResult } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 
@@ -100,7 +100,7 @@ export class RegisterComponent {
 
     if (this.validateFields()) {
       try {
-        const result: RegisterResult = await this.authService.register(this.nickName, this.email, this.password, this.securityQuestion, this.securityAnswer);
+        const result: SLRegisterResult = await this.authService.register(this.nickName, this.email, this.password, this.securityQuestion, this.securityAnswer);
 
         if (result.success) {
           this.router.navigate(['login']);

@@ -14,6 +14,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ProjectsComponent } from './projects/projects.component';
 import { SectionComponent } from './home/section/section.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CreateProjectComponent } from './projects/create-project/create-project.component';
+import { NoContentComponent } from './no-content/no-content.component';
+import { CharactersComponent } from './projects/characters/characters.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HomeComponent,
     ProjectsComponent,
     SectionComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CreateProjectComponent,
+    NoContentComponent,
+    CharactersComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService, LoginResult } from '../services/auth/auth.service';
+import { AuthService, SLLoginResult } from '../services/auth/auth.service';
 import { ValidateService } from '../services/validate/validate.service';
 
 
@@ -51,7 +51,7 @@ export class LoginComponent {
     this.errors = { all: '', email: '', password: '' };
     if (this.validateFields()) {
       try {
-        const result: LoginResult = await this.authService.login(this.email, this.password);
+        const result: SLLoginResult = await this.authService.login(this.email, this.password);
 
         if (result.success) {
           this.router.navigate(['projects']);

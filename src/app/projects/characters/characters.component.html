@@ -1,11 +1,11 @@
 <div class="container">
   <app-no-content
-    *ngIf="!projects || projects.length < 1"
+    *ngIf="!characters || characters.length < 1"
     style="align-items: center; height: 100vh; display: flex;"
-    title="Projects"
-    subtitle="We can't find any of your projects."
-    createButtonText="Create Project"
-    createButtonLink="/projects/create"
+    title="Characters"
+    subtitle="We can't find characters on this project."
+    createButtonText="Create Character"
+    createButtonLink="/characters/create"
     altButtonText="Sign out"
     altButtonLink="/logout"
     imagePath="/assets/img/empty.svg"
@@ -13,7 +13,7 @@
     imageAlt="empty"
   ></app-no-content>
 
-  <div *ngIf="projects && projects.length > 0" class="row">
+  <div *ngIf="characters && characters.length > 0" class="row">
     <div class="card">
       <div class="card-body">
         <table class="table">

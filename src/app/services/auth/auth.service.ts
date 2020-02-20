@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { API_ENDPOINT } from 'src/app/constants';
 
-export interface LoginResult {
+export interface SLLoginResult {
   success: boolean;
   error?: any;
 }
 
-export interface RegisterResult {
+export interface SLRegisterResult {
   success: boolean;
   error?: any;
 }
@@ -17,19 +18,7 @@ export interface RegisterResult {
 export class AuthService {
   private user: any; // The logged in user (if any)
 
-  private host: string;
-  private port: number;
-
-  private root: string;
-
   constructor(private http: HttpClient) {
-    this.host = "https://prj666.mystudentlab.ca";
-    this.port = 6914;
-
-    // this.host = "http://localhost";
-    // this.port = 10034;
-
-    this.root = `${this.host}:${this.port}`;
   }
 
   /**
@@ -38,11 +27,11 @@ export class AuthService {
    * 
    * @returns Whether login was successful
    */
-  async login(email: string, password: string): Promise<LoginResult> {
+  async login(email: string, password: string): Promise<SLLoginResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { email, password, };
-      const result: LoginResult = await this.http.post(`${this.root}/login`, body, { headers }).toPromise() as LoginResult;
+      const result: SLLoginResult = await this.http.post(`${API_ENDPOINT}/login`, body, { headers }).toPromise() as SLLoginResult;
 
       return result;
     } catch (err) {
@@ -59,11 +48,11 @@ export class AuthService {
    * 
    * @returns Whether registration was successful
    */
-  async register(nickname: string, email: string, password: string, securityQuestion: string, securityAnswer: string): Promise<RegisterResult> {
+  async register(nickname: string, email: string, password: string, securityQuestion: string, securityAnswer: string): Promise<SLRegisterResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { nickname, email, password, securityQuestion, securityAnswer };
-      const result: RegisterResult = await this.http.post(`${this.root}/register`, body, { headers }).toPromise() as RegisterResult;
+      const result: SLRegisterResult = await this.http.post(`${API_ENDPOINT}/register`, body, { headers }).toPromise() as SLRegisterResult;
 
       return result;
     } catch (err) {

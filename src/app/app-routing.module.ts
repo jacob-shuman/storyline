@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CreateProjectComponent } from './projects/create-project/create-project.component';
+import { CharactersComponent } from './projects/characters/characters.component';
 
 
 const routes: Routes = [
@@ -29,6 +31,14 @@ const routes: Routes = [
   {
     component: ProjectsComponent,
     path: 'projects'
+  },
+  {
+    component: CreateProjectComponent,
+    path: 'projects/create'
+  },
+  {
+    component: CharactersComponent,
+    path: 'characters'
   },
   {
     path: '**',
