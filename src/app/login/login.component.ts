@@ -47,7 +47,7 @@ export class LoginComponent {
     return valid;
   }
 
-  private async onLoginSubmit(): Promise<void> {
+  async onLoginSubmit(): Promise<void> {
     this.errors = { all: '', email: '', password: '' };
     if (this.validateFields()) {
       try {
