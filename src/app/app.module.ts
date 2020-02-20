@@ -9,21 +9,23 @@ import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { NavComponent } from "./nav/nav.component";
 import { ValidateService } from './services/validate.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { SectionComponent } from './home/section/section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ResetPasswordComponent,
-    TopBarComponent,
+    NavComponent,
     LandingComponent,
     RegisterComponent,
     HomeComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    SectionComponent
   ],
   imports: [
     BrowserModule,

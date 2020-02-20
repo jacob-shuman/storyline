@@ -1,3 +1,14 @@
 .container {
-    max-width: 80%;
+    max-width: 90%;
+    padding: 2.5%;
 }
+
+/* .Typewriter__wrapper, #typewriter {
+    color: red;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+} */

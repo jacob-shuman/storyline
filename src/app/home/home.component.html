@@ -1,32 +1,75 @@
 <div class="container">
-  <div class="jumbotron text-center">
-    <h1 class="text-primary">Story Line</h1>
-    <p class="lead">Welcome to Story Line</p>
+  <div class="row">
+    <div class="col-md-5">
+      <h1 class="text-primary" style="font-size: 10vw; font-weight: bold;">
+        Storyline
+      </h1>
+      <h1 id="typewriter" style="font-size: 4vw; font-weight: bold;"></h1>
+      <hr />
+
+      <h5 class="font-italic text-secondary mb-5" style="font-size: 2vw;">
+        A web app to structure complex narratives in a digestible layout.
+      </h5>
+
+      <button
+        type="button"
+        class="shadow rounded-pill btn btn-lg btn-primary pl-5 pr-5 pt-3 pb-3 "
+        routerLink="/register"
+      >
+        <span style="font-size: 1.75vw;">Get Started</span>
+      </button>
+
+      <button
+        type="button"
+        class="shadow rounded-pill btn btn-lg btn-secondary ml-3 pl-4 pr-4 pt-3 pb-3 ml-3"
+        routerLink="/login"
+      >
+        <span style="font-size: 1.5vw;">Login</span>
+      </button>
+    </div>
+
+    <div class="col-md-6 offset-md-1 mt-5">
+      <img
+        class="img-fluid"
+        src="/assets/img/typewriter.svg"
+        alt=""
+        width="1024vw"
+        height="1024vw"
+        title="typewriter"
+      />
+    </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <h3 class="text-primary">Timeline</h3>
-      <p>
-        Utilize our application's timeline functionality to dynamically display
-        your story's events, and changes to your elements!
-      </p>
-    </div>
-    <div class="col-md-4">
-      <h3 class="text-primary">Elements</h3>
-      <p>
-        The building blocks of your project. They hold information on all of
-        your story's events, character, locations and more!
-      </p>
-      <p></p>
-    </div>
-    <div class="col-md-4">
-      <h3 class="text-primary">Events</h3>
-      <p>
-        A special type of element that can reference other elements on your
-        timeline!
-      </p>
-      <p></p>
+  <div class="row pt-5 pb-5"></div>
+
+  <!-- <div class="row mt-5 mb-5">
+    <div class="col-md-12">
+      <app-home-section></app-home-section>
     </div>
   </div>
+
+  <div class="row mt-5 mb-5">
+    <div class="col-md-12">
+      <app-home-section [imgSideRight]="true"></app-home-section>
+    </div>
+  </div>
+
+  <div class="row mt-5 mb-5">
+    <div class="col-md-12">
+      <app-home-section></app-home-section>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <img
+        src="/assets/icons/icons/pencil.svg"
+        alt=""
+        width="32"
+        height="32"
+        title="pencil"
+      />
+      This is some text within a card body.
+    </div>
+  </div> -->
 </div>

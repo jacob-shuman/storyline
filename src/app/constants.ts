@@ -1,0 +1,2 @@
+export const HOME_TYPEWRITER_VERBS = ["structure", "organize", "arrange", "architect", "develop", "imagine", "plan", "write", "create", "author"];
+export const HOME_TYPEWRITER_NOUNS = ["plots", "stories", "ideas", "books", "novels"];
