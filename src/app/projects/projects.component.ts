@@ -8,7 +8,7 @@ import { ProjectService, SLProject } from '../services/project/project.service';
   styleUrls: ['./projects.component.sass']
 })
 export class ProjectsComponent implements OnInit {
-  private projects: SLProject[];
+  projects: SLProject[];
 
   constructor(private projectService: ProjectService) { }
 

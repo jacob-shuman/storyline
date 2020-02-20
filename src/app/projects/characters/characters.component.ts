@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./characters.component.sass']
 })
 export class CharactersComponent implements OnInit {
+  characters: [];
 
   constructor() { }
 
