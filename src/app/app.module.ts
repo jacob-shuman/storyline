@@ -5,15 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NavComponent } from "./nav/nav.component";
-import { ValidateService } from './services/validate.service';
+import { NavComponent } from './nav/nav.component';
+import { ValidateService } from './services/validate/validate.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { SectionComponent } from './home/section/section.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +21,11 @@ import { SectionComponent } from './home/section/section.component';
     LoginComponent,
     ResetPasswordComponent,
     NavComponent,
-    LandingComponent,
     RegisterComponent,
     HomeComponent,
     ProjectsComponent,
-    SectionComponent
+    SectionComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

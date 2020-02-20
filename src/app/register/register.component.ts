@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ValidateService } from '../services/validate.service';
-import { AuthService, RegisterResult } from '../services/auth.service';
+import { ValidateService } from '../services/validate/validate.service';
+import { AuthService, RegisterResult } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 

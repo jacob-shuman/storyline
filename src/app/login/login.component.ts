@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService, LoginResult } from '../services/auth.service';
-import { ValidateService } from '../services/validate.service';
+import { AuthService, LoginResult } from '../services/auth/auth.service';
+import { ValidateService } from '../services/validate/validate.service';
 
 
 @Component({
