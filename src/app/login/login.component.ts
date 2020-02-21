@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { CookieService } from 'ngx-cookie-service';
+
+import { SESSION_NAME, SESSION_EXPIRY_DAYS, SESSION_SECURE } from '../constants';
 import { AuthService, SLLoginResult, SLUser } from '../services/auth/auth.service';
 import { ValidateService } from '../services/validate/validate.service';
-
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,7 @@ export class LoginComponent {
     password: string // Errors regarding entered password
   };
 
-  constructor(private validateService: ValidateService, private authService: AuthService, private router: Router) {
+  constructor(private validateService: ValidateService, private authService: AuthService, private cookieService: CookieService, private router: Router) {
     this.errors = {
       all: '',
       email: '',
@@ -52,7 +54,7 @@ export class LoginComponent {
     if (this.validateFields()) {
       try {
         const result: SLLoginResult = await this.authService.login(this.email, this.password);
-        
+
         if (result.success) {
           this.authService.user = {
             id: result.user._id,
@@ -66,6 +68,8 @@ export class LoginComponent {
             userSettings: result.user.User_Settings,
             authenticated: result.user.Authenticated
           };
+
+          this.cookieService.set(SESSION_NAME, JSON.stringify(this.authService.user), SESSION_EXPIRY_DAYS, undefined, undefined, SESSION_SECURE);
 
           this.router.navigate(['projects']);
         } else if (result.error) {

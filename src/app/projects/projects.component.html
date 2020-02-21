@@ -1,27 +1,31 @@
 <div style="align-items: center; height: 95vh; display: flex;">
-  <div class="container">
-    <app-no-content
-      *ngIf="!projects || projects.length < 1"
-      title="Projects"
-      subtitle="We can't find any of your projects."
-      createButtonText="Create Project"
-      createButtonLink="/projects/create"
-      altButtonText="Sign out"
-      altButtonLink="/logout"
-      imagePath="/assets/img/empty.svg"
-      imageTitle="empty"
-      imageAlt="empty"
-    ></app-no-content>
+  <div class="container" style="text-align: center;">
+    <div
+      *ngIf="loadingProjects"
+      class="spinner-grow text-primary"
+      style="width: 5rem; height: 5rem;"
+      role="status"
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
 
-    <div *ngIf="projects && projects.length > 0" class="row">
-      <div *ngFor="let project of projects" class="card">
-        <div class="card-body">
-          <table class="table">
-            <tr>
-              <th>Name</th>
-            </tr>
-          </table>
-        </div>
+    <div *ngIf="!loadingProjects">
+      <app-no-content
+        *ngIf="!projects || projects.length < 1"
+        title="Projects"
+        subtitle="We can't find any of your projects."
+        createButtonText="Create Project"
+        createButtonLink="/projects/create"
+        altButtonText="Sign out"
+        altButtonLink="/logout"
+        imagePath="/assets/img/empty.svg"
+        imageTitle="empty"
+        imageAlt="empty"
+      ></app-no-content>
+
+      <div *ngIf="projects && projects.length > 0" class="row">
+        <app-project-card *ngFor="let project of projects" [project]="project">
+        </app-project-card>
       </div>
     </div>
   </div>

@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -18,6 +20,7 @@ import { CreateProjectComponent } from './projects/create-project/create-project
 import { NoContentComponent } from './no-content/no-content.component';
 import { CharactersComponent } from './projects/characters/characters.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ProjectCardComponent } from './projects/project-card/project-card.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { SettingsComponent } from './settings/settings.component';
     CreateProjectComponent,
     NoContentComponent,
     CharactersComponent,
-    SettingsComponent
+    SettingsComponent,
+    ProjectCardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,7 @@ import { SettingsComponent } from './settings/settings.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ValidateService],
+  providers: [ValidateService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

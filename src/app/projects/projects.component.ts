@@ -9,6 +9,7 @@ import { ProjectService, SLProject } from '../services/project/project.service';
 })
 export class ProjectsComponent implements OnInit {
   projects: SLProject[] = [];
+  loadingProjects = true;
 
   constructor(private projectService: ProjectService) { }
 
@@ -18,6 +19,8 @@ export class ProjectsComponent implements OnInit {
     } catch (err) {
       console.error(err);
     }
+
+    this.loadingProjects = false;
   }
 
 }
