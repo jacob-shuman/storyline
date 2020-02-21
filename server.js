@@ -4,7 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const express = require("express");
 const app = express();
-const PORT = 10034;
+const PORT = 10040;
 
 const dbManager = require("./db-manager");
 
@@ -23,10 +23,6 @@ try {
 app.use(require("body-parser").json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "dist", "storyline")));
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "storyline", "index.html"));
-});
 
 app.post("/api/login", async (req, res) => {
   try {
@@ -93,7 +89,9 @@ app.get("/api/ping", (req, res) => {
   res.status(200).send("Working!");
 });
 
-// app.use(express.static(__dirname + '/src/app'));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "storyline", "index.html"));
+});
 
 dbManager
   .init()

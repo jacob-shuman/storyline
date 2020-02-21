@@ -3,7 +3,7 @@ export const HOME_TYPEWRITER_NOUNS = ["plots", "stories", "ideas", "books", "nov
 
 // Real
 export const API_HOST = "https://prj666.mystudentlab.ca";
-export const API_PORT = 6914;
+export const API_PORT = 6915;
 
 // Local
 // export const API_HOST =  "http://localhost";
