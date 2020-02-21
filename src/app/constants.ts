@@ -3,7 +3,7 @@ export const HOME_TYPEWRITER_NOUNS = ['universes', 'multiverses', 'plots', 'stor
 
 // NOTE This is an override for all other constants!
 // Please make sure to always leave this value as true when pushing to git!
-export const PRODUCTION = false;
+export const PRODUCTION = true;
 
 // Cookies
 export const SESSION_NAME = 'user';
