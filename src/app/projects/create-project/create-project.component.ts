@@ -15,13 +15,8 @@ export class CreateProjectComponent {
   constructor(private projectService: ProjectService, private router: Router) { }
 
   async onCreateProjectSubmit() {
-    const project: SLProject = {
-      name: this.name,
-      description: this.description
-    };
-
     try {
-      const result: SLCreateProjectResult = await this.projectService.createProject(project);
+      const result: SLCreateProjectResult = await this.projectService.createProject(this.name, this.description);
 
       if (result.success) {
         this.router.navigate(['projects']);

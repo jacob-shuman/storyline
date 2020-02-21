@@ -1,22 +1,28 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-12">
       <h1 class="text-primary" style="font-size: 14rem; font-weight: bold;">
         Storyline
       </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      
       <h1 id="typewriter" style="font-size: 3rem; font-weight: bold;"></h1>
       <hr />
 
-      <h5 class="font-italic text-secondary mb-5" style="font-size: 2vw;">
+      <h5 class="font-italic text-secondary mb-5" style="font-size: 2rem;">
         A web app to structure complex narratives in a digestible layout.
       </h5>
 
       <button
         type="button"
         class="shadow-sm rounded-pill btn btn-lg btn-primary pl-5 pr-5 pt-3 pb-3 "
-        routerLink="/register"
+        [routerLink]="authService.user ? '/projects' : '/register'"
       >
-        <span style="font-size: 1.5vw;">Get Started</span>
+        <span *ngIf="!authService.user" style="font-size: 1.5rem;">Get Started</span>
+        <span *ngIf="authService.user" style="font-size: 1.5rem;">Go to Projects</span>
       </button>
     </div>
 
@@ -25,8 +31,8 @@
         class="img-fluid"
         src="/assets/img/typewriter.svg"
         alt=""
-        width="1024vw"
-        height="1024vw"
+        width="1024rem"
+        height="1024rem"
         title="typewriter"
       />
     </div>

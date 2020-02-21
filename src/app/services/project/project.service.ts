@@ -6,6 +6,19 @@ import { AuthService } from '../auth/auth.service';
 export interface SLProject {
   name: string;
   description?: string;
+  timeFormat: string;
+  archived: string;
+  countdown: string;
+  email: string;
+}
+
+export interface SLMongoProject {
+  Name: string;
+  Description: string;
+  Time_Format: string;
+  Archived: string;
+  Countdown: string;
+  User_email: string;
 }
 
 export interface SLCreateProjectResult {
@@ -14,7 +27,7 @@ export interface SLCreateProjectResult {
 }
 
 export interface SLGetAllProjectsResult {
-  projects: any[];
+  projects: SLMongoProject[];
   success: boolean;
   error?: any;
 }
@@ -31,11 +44,11 @@ export class ProjectService {
    * 
    * @returns Whether project creation was successful
    */
-  async createProject(project: SLProject): Promise<SLCreateProjectResult> {
+  async createProject(name: string, description: string): Promise<SLCreateProjectResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-      const body = { email: this.authService.user.email, name: project.name, description: project.description };
-      const result: SLCreateProjectResult = await this.http.post(`${API_ENDPOINT}/create/project`, body, { headers }).toPromise() as SLCreateProjectResult;
+      const body = { email: this.authService.user.email, name, description };
+      const result: SLCreateProjectResult = await this.http.post(`${API_ENDPOINT}/project/create`, body, { headers }).toPromise() as SLCreateProjectResult;
 
       return result;
     } catch (err) {
@@ -43,10 +56,8 @@ export class ProjectService {
     }
   }
 
-  async getProjects() {
+  async getProjects(): Promise<SLGetAllProjectsResult> {
     try {
-      const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-      const body = { id: this.authService.user.id };
       const result: SLGetAllProjectsResult = await this.http.get(`${API_ENDPOINT}/projects/${this.authService.user.id}`).toPromise() as SLGetAllProjectsResult;
 
       return result;

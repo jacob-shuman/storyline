@@ -9,24 +9,33 @@
       <span class="sr-only">Loading...</span>
     </div>
 
-    <div *ngIf="!loadingProjects">
-      <app-no-content
-        *ngIf="!projects || projects.length < 1"
-        title="Projects"
-        subtitle="We can't find any of your projects."
-        createButtonText="Create Project"
-        createButtonLink="/projects/create"
-        altButtonText="Sign out"
-        altButtonLink="/logout"
-        imagePath="/assets/img/empty.svg"
-        imageTitle="empty"
-        imageAlt="empty"
-      ></app-no-content>
+    <app-no-content
+      *ngIf="loadingProjects && (!projects || projects.length < 1)"
+      title="Projects"
+      subtitle="We can't find any of your projects."
+      createButtonText="Create Project"
+      createButtonLink="/projects/create"
+      altButtonText="Sign out"
+      altButtonLink="/logout"
+      imagePath="/assets/img/empty.svg"
+      imageTitle="empty"
+      imageAlt="empty"
+    ></app-no-content>
 
-      <div *ngIf="projects && projects.length > 0" class="row">
-        <app-project-card *ngFor="let project of projects" [project]="project">
-        </app-project-card>
-      </div>
+    <div
+      *ngIf="!loadingProjects && projects && projects.length > 0"
+      class="row"
+      style="text-align: start;"
+    >
+      <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
+        All Projects
+      </h1>
+      <app-project-card
+        class="col-md-12 card"
+        *ngFor="let project of projects"
+        [project]="project"
+      >
+      </app-project-card>
     </div>
   </div>
 </div>

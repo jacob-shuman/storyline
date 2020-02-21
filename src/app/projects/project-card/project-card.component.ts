@@ -11,7 +11,8 @@ export class ProjectCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { 
+    console.table(this.project);
   }
 
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import Typewriter from 'typewriter-effect/dist/core';
 
 import { HOME_TYPEWRITER_VERBS, HOME_TYPEWRITER_NOUNS } from "../constants"
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   private typewriter: Typewriter;
   private typewriterStrings: string[];
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
 

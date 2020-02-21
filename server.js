@@ -57,28 +57,31 @@ app.post("/api/register", async (req, res) => {
 
 app.get("/api/projects/:id", async (req, res) => {
   try {
-    const projects = await dbManager.getProjects(req.params.id);
-    let success;
+    // TODO: check that this user is the same user signed in...
+    const user = await dbManager.getUser(req.params.id);
 
-    if (projects) {
-      success = projects
-    }
+    // if (!user) {
+    //   throw `Couldn't find a user with an id of ${req.params.id}`;
+    // }
 
-    res.json({ projects, success });
+    const projects = await dbManager.getProjectsByEmail(user.Email);
+
+    res.json({ projects, success: Boolean(projects) });
   } catch (err) {
-    console.log("Create Project Error: ", err);
+    console.log("Get Projects Error: ", err);
     res.json({ success: false, error: err });
   }
 });
 
-app.post("/api//project/create", async (req, res) => {
+app.post("/api/project/create", async (req, res) => {
   try {
-    const result = await dbManager.createProject(
+    const project = await dbManager.createProject(
+      req.body.email,
       req.body.name,
       req.body.description
     );
 
-    res.json({ success: result });
+    res.json({ project, success: Boolean(project) });
   } catch (err) {
     console.log("Create Project Error: ", err);
     res.json({ success: false, error: err });

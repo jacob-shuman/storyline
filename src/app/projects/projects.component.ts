@@ -15,7 +15,16 @@ export class ProjectsComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.projects = (await this.projectService.getProjects()).projects;
+      this.projects = (await this.projectService.getProjects()).projects.map((project) => {
+        return {
+          name: project.Name,
+          description: project.Description,
+          timeFormat: project.Time_Format,
+          archived: project.Archived,
+          countdown: project.Countdown,
+          email: project.User_email
+        } as SLProject;
+      });
     } catch (err) {
       console.error(err);
     }
