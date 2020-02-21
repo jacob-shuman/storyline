@@ -8,6 +8,8 @@ import { ProjectsComponent } from './projects/projects.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CreateProjectComponent } from './projects/create-project/create-project.component';
 import { CharactersComponent } from './projects/characters/characters.component';
+import { SettingsComponent } from './settings/settings.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
@@ -30,15 +32,23 @@ const routes: Routes = [
   },
   {
     component: ProjectsComponent,
-    path: 'projects'
+    path: 'projects',
+    canActivate: [AuthGuard]
   },
   {
     component: CreateProjectComponent,
-    path: 'projects/create'
+    path: 'projects/create',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: SettingsComponent,
+    path: 'settings',
+    canActivate: [AuthGuard]
   },
   {
     component: CharactersComponent,
-    path: 'characters'
+    path: 'project/:id/characters',
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

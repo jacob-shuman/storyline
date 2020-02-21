@@ -1,28 +1,20 @@
 <div class="row">
   <div class="col-md-4 offset-md-2">
-    <h1 class="text-primary" style="font-size: 4vw; font-weight: bold;">
+    <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
       {{ title }}
     </h1>
 
-    <h5 class="font-italic text-secondary" style="font-size: 1.5vw;">
+    <h5 class="font-italic text-secondary" style="font-size: 2rem;">
       {{ subtitle }}
     </h5>
     <hr>
 
     <button
       type="button"
-      class="shadow rounded-pill btn btn-primary mt-2 mr-1 pl-4 pr-4 pt-3 pb-3"
+      class="shadow-sm rounded-pill btn btn-primary mt-2 mr-1 pl-4 pr-4 pt-3 pb-3"
       [routerLink]="createButtonLink"
     >
-      <span style="font-size: 1.25vw;">{{ createButtonText }}</span>
-    </button>
-
-    <button
-      type="button"
-      class="shadow rounded-pill btn btn-secondary mt-2 ml-1 pl-4 pr-4 pt-3 pb-3"
-      [routerLink]="altButtonLink"
-    >
-      <span style="font-size: 1.25vw;">{{ altButtonText }}</span>
+      <span style="font-size: 1.25rem;">{{ createButtonText }}</span>
     </button>
   </div>
   <div class="col-md-5 offset-md-1">

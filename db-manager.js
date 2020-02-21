@@ -47,7 +47,7 @@ module.exports.loginUser = async function(email, password) {
     }
 
     if (await bcrypt.compare(password, user.Password)) {
-      return true;
+      return user;
     } else {
       // TODO: update user's Last_Failed_Login field
 
@@ -99,4 +99,18 @@ module.exports.registerUser = function(
         });
     });
   });
+};
+
+module.exports.getProjects = async function(_id) {
+  try {
+    const projects = await User.find({ _id }).exec();
+
+    if (!projects) {
+      throw "Invalid ID";
+    }
+
+    return projects;
+  } catch (err) {
+    throw err;
+  }
 };

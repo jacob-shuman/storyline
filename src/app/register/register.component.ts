@@ -27,8 +27,17 @@ export class RegisterComponent {
   securityQuestion: string;
   securityAnswer: string;
 
-  constructor(private validateService: ValidateService, private authService: AuthService, private router: Router) { }
-
+  constructor(private validateService: ValidateService, private authService: AuthService, private router: Router) {
+    this.errors = {
+      all: '',
+      email: '',
+      password: '',
+      repeatPassword: '',
+      nickName: '',
+      securityQuestion: '',
+      securityAnswer: ''
+    };
+  }
 
   /**
    * @returns Whether all registration fields are valid

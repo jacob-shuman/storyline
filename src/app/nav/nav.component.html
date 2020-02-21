@@ -1,18 +1,43 @@
-<!-- <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-  <h3 class="navbar-brand my-0 mr-md-auto font-weight-bold"><a [routerLink]="['/']">Storyline</a></h3>
-
-  <a class="not btn btn-outline-primary" [routerLink]="['/login']">Login</a>
-  <a class="last btn btn-outline-primary" [routerLink]="['/register']">Register</a>
-</div> -->
-<!-- <nav class="navbar navbar-light sticky-top">
-  <h1 class="navbar-brand mb-0 h1 font-weight-bold text-primary">
-    <a routerLink="/">
-      Storyline
-    </a>
-  </h1>
-
-  <a class="not btn btn-outline-primary" [routerLink]="['/login']">Login</a>
-  <a class="last btn btn-outline-primary" [routerLink]="['/register']">
-    Register
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <a class="navbar-brand text-primary font-weight-bold" routerLink="/">
+    <img src="/assets/img/storyline-logo.svg" width="30" height="30" alt="Storline S logo">
   </a>
-</nav> -->
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul *ngIf="authService.user" class="navbar-nav">
+      <li [class]="(router.url == '/projects' ? 'active' : '') + ' nav-item'">
+        <a class="nav-link" routerLink="/projects"
+          >Projects
+          <span *ngIf="router.url == '/projects'" class="sr-only">
+            (current)
+          </span>
+        </a>
+      </li>
+      <li [class]="(router.url == '/settings' ? 'active' : '') + ' nav-item'">
+        <a class="nav-link" routerLink="/settings"
+          >Settings
+          <span *ngIf="router.url == '/settings'" class="sr-only">
+            (current)
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <button
+    *ngIf="!authService.user"
+    type="button"
+    class="shadow-sm rounded-pill btn btn-secondary px-3 py-2"
+    routerLink="/login"
+  >
+    <span style="font-size: 1rem;">Login</span>
+  </button>
+
+  <button
+    *ngIf="authService.user"
+    type="button"
+    class="shadow-sm rounded-pill btn btn-danger px-3 py-2"
+    (Click)="signout()"
+  >
+    <span style="font-size: 1rem;">Sign Out</span>
+  </button>
+</nav>

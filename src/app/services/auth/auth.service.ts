@@ -1,9 +1,37 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { API_ENDPOINT } from 'src/app/constants';
+
+export interface SLUser {
+  id: string;
+  email: string;
+  password: string;
+  nickName: string;
+  securityQuestion: number;
+  securityAnswer: string;
+  lastFailedLogin: string;
+  lastFeedback: string;
+  userSettings: string;
+  authenticated: string;
+}
+
+export interface SLMongoUser {
+  _id: string;
+  Email: string;
+  Password: string;
+  NickName: string;
+  Security_Question: number;
+  Security_Answer: string;
+  Last_Failed_Login: string;
+  Last_Feedback: string;
+  User_Settings: string;
+  Authenticated: string;
+}
 
 export interface SLLoginResult {
   success: boolean;
+  user: SLMongoUser;
   error?: any;
 }
 
@@ -16,10 +44,9 @@ export interface SLRegisterResult {
   providedIn: 'root'
 })
 export class AuthService {
-  private user: any; // The logged in user (if any)
+  user?: SLUser; // The logged in user (if any)
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   /**
    * @param email User's email

@@ -17,6 +17,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CreateProjectComponent } from './projects/create-project/create-project.component';
 import { NoContentComponent } from './no-content/no-content.component';
 import { CharactersComponent } from './projects/characters/characters.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CharactersComponent } from './projects/characters/characters.component'
     NotFoundComponent,
     CreateProjectComponent,
     NoContentComponent,
-    CharactersComponent
+    CharactersComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

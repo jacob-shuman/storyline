@@ -8,16 +8,16 @@ import { ProjectService, SLProject } from '../services/project/project.service';
   styleUrls: ['./projects.component.sass']
 })
 export class ProjectsComponent implements OnInit {
-  projects: SLProject[];
+  projects: SLProject[] = [];
 
   constructor(private projectService: ProjectService) { }
 
   async ngOnInit() {
-    this.projects = await this.projectService.getAllProjects();
-  }
-
-  private showCreateModal() {
-
+    try {
+      this.projects = (await this.projectService.getProjects()).projects;
+    } catch (err) {
+      console.error(err);
+    }
   }
 
 }
