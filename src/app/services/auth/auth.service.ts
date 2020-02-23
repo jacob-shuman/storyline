@@ -13,7 +13,7 @@ export interface SLUser {
   lastFailedLogin: string;
   lastFeedback: string;
   userSettings: string;
-  authenticated: string;
+  authenticated: boolean;
 }
 
 export interface SLMongoUser {
@@ -26,7 +26,7 @@ export interface SLMongoUser {
   Last_Failed_Login: string;
   Last_Feedback: string;
   User_Settings: string;
-  Authenticated: string;
+  Authenticated: {type:boolean, default:'false'}
 }
 
 export interface SLLoginResult {
