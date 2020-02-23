@@ -57,7 +57,7 @@ module.exports.loginUser = async function(email, password) {
   try {
     const user = await User.findOne({ Email: email }).exec();
     if (!user) {
-      throw "Invalid Email/Password combination";
+      throw "1 Email/Password combination";
     }
 
     if (await bcrypt.compare(password, user.Password)) {
@@ -65,7 +65,7 @@ module.exports.loginUser = async function(email, password) {
     } else {
       // TODO: update user's Last_Failed_Login field
 
-      throw "Invalid Email/Password combination";
+      throw "1 Email/Password combination";
     }
   } catch (err) {
     throw err;
