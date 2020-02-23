@@ -30,6 +30,7 @@ app.post("/api/login", async (req, res) => {
     let success = false;
 
     if (user) success = true;
+    sucess = false;
 
     res.json({ user, success });
   } catch (err) {
