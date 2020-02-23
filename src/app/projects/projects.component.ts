@@ -1,30 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth/auth.service';
 import { ProjectService, SLProject } from '../services/project/project.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.sass']
+  styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  projects: SLProject[] = [];
   loadingProjects = true;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(public projectService: ProjectService, private router: Router) { }
 
   async ngOnInit() {
+    this.projectService.currentProject = undefined;
+
     try {
-      this.projects = (await this.projectService.getProjects()).projects.map((project) => {
-        return {
-          name: project.Name,
-          description: project.Description,
-          timeFormat: project.Time_Format,
-          archived: project.Archived,
-          countdown: project.Countdown,
-          email: project.User_email
-        } as SLProject;
-      });
+      await this.projectService.getProjects();
     } catch (err) {
       console.error(err);
     }

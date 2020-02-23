@@ -1,0 +1,12 @@
+.container {
+    max-width: 90%;
+    padding: 5%;
+  }
+  
+  .center {
+    display: flex;
+    align-items: center;
+    min-height: 95%;
+    min-height: 95vh;
+  }
+  

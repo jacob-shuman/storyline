@@ -60,7 +60,7 @@ export class LoginComponent {
             id: result.user._id,
             email: result.user.Email,
             password: result.user.Password,
-            nickName: result.user.NickName,
+            nickname: result.user.Nickname,
             securityQuestion: result.user.Security_Question,
             securityAnswer: result.user.Security_Answer,
             lastFailedLogin: result.user.Last_Failed_Login,

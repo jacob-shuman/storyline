@@ -21,6 +21,12 @@ import { NoContentComponent } from './no-content/no-content.component';
 import { CharactersComponent } from './projects/characters/characters.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProjectCardComponent } from './projects/project-card/project-card.component';
+import { FooterComponent } from './footer/footer.component';
+import { PlacesComponent } from './places/places.component';
+import { GroupsComponent } from './groups/groups.component';
+import { ObjectsComponent } from './objects/objects.component';
+import { EventsComponent } from './events/events.component';
+import { CreateCharacterComponent } from './projects/characters/create-character/create-character.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +43,13 @@ import { ProjectCardComponent } from './projects/project-card/project-card.compo
     NoContentComponent,
     CharactersComponent,
     SettingsComponent,
-    ProjectCardComponent
+    ProjectCardComponent,
+    FooterComponent,
+    PlacesComponent,
+    GroupsComponent,
+    ObjectsComponent,
+    EventsComponent,
+    CreateCharacterComponent
   ],
   imports: [
     BrowserModule,

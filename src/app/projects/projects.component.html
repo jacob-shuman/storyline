@@ -1,4 +1,4 @@
-<div style="align-items: center; height: 95vh; display: flex;">
+<div class="center">
   <div class="container" style="text-align: center;">
     <div
       *ngIf="loadingProjects"
@@ -10,8 +10,9 @@
     </div>
 
     <app-no-content
-      *ngIf="loadingProjects && (!projects || projects.length < 1)"
+      *ngIf="!loadingProjects && (!projectService.projects || projectService.projects.length < 1)"
       title="Projects"
+      style="text-align: start;"
       subtitle="We can't find any of your projects."
       createButtonText="Create Project"
       createButtonLink="/projects/create"
@@ -23,7 +24,7 @@
     ></app-no-content>
 
     <div
-      *ngIf="!loadingProjects && projects && projects.length > 0"
+      *ngIf="!loadingProjects && projectService.projects && projectService.projects.length > 0"
       class="row"
       style="text-align: start;"
     >
@@ -31,8 +32,8 @@
         All Projects
       </h1>
       <app-project-card
-        class="col-md-12 card"
-        *ngFor="let project of projects"
+        class="col-md-12"
+        *ngFor="let project of projectService.projects"
         [project]="project"
       >
       </app-project-card>

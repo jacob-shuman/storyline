@@ -5,6 +5,7 @@ const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running
 const db = mongoose.connection;
 
 let User;
+let Project;
 
 module.exports.init = function() {
   return new Promise((resolve, reject) => {
@@ -32,6 +33,19 @@ module.exports.init = function() {
           Authenticated: Boolean
         }),
         "users"
+      );
+
+      Project = mongoose.model(
+        "Project",
+        new mongoose.Schema({
+          Name: String,
+          Description: String,
+          Time_Format: String,
+          Archived: Number,
+          Countdown: String,
+          User_email: String
+        }),
+        "projects"
       );
 
       resolve();
@@ -87,7 +101,6 @@ module.exports.registerUser = function(
           if (!user) {
             newUser.save(function(err, user) {
               if (err) {
-                console.log("Error: ", err);
                 reject("Mongo Save Error: " + err);
               } else {
                 resolve(true);
@@ -101,15 +114,66 @@ module.exports.registerUser = function(
   });
 };
 
-module.exports.getProjects = async function(_id) {
+module.exports.getUser = async function(_id) {
   try {
-    const projects = await User.find({ _id }).exec();
+    const user = await User.findOne({ _id }).exec();
 
-    if (!projects) {
+    if (!user) {
       throw "Invalid ID";
     }
 
+    return user;
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports.createProject = async function(User_email, Name, Description) {
+  try {
+    const projects = await Project.find({ Name }).exec();
+
+    if (projects && projects.length > 0) {
+      throw "Project name already exists";
+    }
+
+    const project = await new Project({
+      Name,
+      Description,
+      Time_Format: "normal",
+      Archived: false,
+      Countdown: "30",
+      User_email
+    }).save();
+
+    return project;
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports.getProjectsByEmail = async function(User_email) {
+  try {
+    const projects = await Project.find({ User_email }).exec();
+
+    if (!projects) {
+      throw "Invalid Email";
+    }
+
     return projects;
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports.deleteProject = async function(_id) {
+  try {
+    const result = await Project.deleteOne({ _id }).exec();
+
+    if (!result > 0) {
+      throw "Invalid ID";
+    }
+
+    return true;
   } catch (err) {
     throw err;
   }

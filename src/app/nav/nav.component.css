@@ -1,3 +1,11 @@
+.circle {
+  text-align: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  padding: 0;
+}
+
 .not {
   margin-right: 10px;
 }

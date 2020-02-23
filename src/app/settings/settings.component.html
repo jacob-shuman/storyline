@@ -1,3 +1,194 @@
-<h1 class="text-primary" style="font-size: 4vw; font-weight: bold;">
-  Settings
-</h1>
+<div class="vcenter">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
+          Settings
+        </h1>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-md-12">
+              <h3 class="text-dark" style="font-weight: bold;">
+                Account
+              </h3>
+              <form>
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Nickname</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="nickname"
+                    [(ngModel)]="authService.user.nickname"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Email</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="email"
+                    [(ngModel)]="authService.user.email"
+                    class="form-control"
+                    disabled
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="col-md-12">
+              <form action="" class="mt-5">
+                <h3 class="text-dark" style="font-weight: bold;">
+                  Send Feedback
+                </h3>
+                <textarea
+                  class="form-control"
+                  name="feedback"
+                  id="feedback"
+                  cols="30"
+                  rows="10"
+                  placeholder="Enter Feedback"
+                ></textarea>
+                <button
+                  *ngIf="authService.user"
+                  type="button"
+                  class="shadow-sm rounded-pill btn btn-success mt-3 px-3 py-2"
+                  [disabled]="disableConfirmButton"
+                >
+                  <span style="font-size: 1rem;">Send</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-md-12">
+              <h3 class="text-dark" style="font-weight: bold;">
+                Update Password
+              </h3>
+              <form>
+                <div class="input-group mt-3 mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Current Password</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="currentPassword"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">New Password</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="newPassword"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Confirm New Password</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="newPassword"
+                    class="form-control"
+                  />
+                </div>
+
+                <button
+                  *ngIf="authService.user"
+                  type="button"
+                  class="shadow-sm rounded-pill btn btn-success px-3 py-2"
+                  [disabled]="disableConfirmButton"
+                >
+                  <span style="font-size: 1rem;">Confirm</span>
+                </button>
+              </form>
+            </div>
+            <div class="col-md-12">
+              <h3 class="text-dark mt-5" style="font-weight: bold;">
+                Update Security Question
+              </h3>
+              <form>
+                <h5
+                  class="text-secondary mt-3"
+                  style="font-style: italic; font-weight: bold;"
+                >
+                  {{ securityQuestions[authService.user.securityQuestion] }}
+                </h5>
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Current Answer</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="currentPassword"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">New Question</span>
+                  </div>
+                  <select
+                    class="custom-select"
+                    name="Security_Question"
+                    required
+                  >
+                    <!-- <option selected>Please select a question?</option> -->
+                    <option value="0"
+                      >What was your favourite pets name?</option
+                    >
+                    <option value="1">How many fingers am I holding up?</option>
+                    <option value="2"
+                      >What is your mother's maiden name?</option
+                    >
+                    <option value="3"
+                      >In what year was your favourite movie filmed?</option
+                    >
+                    <option value="4"
+                      >What was the model of your first car?</option
+                    >
+                  </select>
+                </div>
+
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">New Answer</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="newPassword"
+                    class="form-control"
+                  />
+                </div>
+
+                <button
+                  *ngIf="authService.user"
+                  type="button"
+                  class="shadow-sm rounded-pill btn btn-success px-3 py-2"
+                  [disabled]="disableConfirmButton"
+                >
+                  <span style="font-size: 1rem;">Confirm</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

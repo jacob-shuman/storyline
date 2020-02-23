@@ -4,6 +4,7 @@ import { API_ENDPOINT } from 'src/app/constants';
 import { AuthService } from '../auth/auth.service';
 
 export interface SLProject {
+  id: string;
   name: string;
   description?: string;
   timeFormat: string;
@@ -13,6 +14,7 @@ export interface SLProject {
 }
 
 export interface SLMongoProject {
+  _id: string;
   Name: string;
   Description: string;
   Time_Format: string;
@@ -21,7 +23,26 @@ export interface SLMongoProject {
   User_email: string;
 }
 
+export interface SLCharacter {
+  id: string;
+  name: string;
+  description?: string;
+  projectId: string
+}
+
+export interface SLMongoCharacter {
+  _id: string;
+  Name: string;
+  Description: string;
+  Project_ID: string
+}
+
 export interface SLCreateProjectResult {
+  success: boolean;
+  error?: any;
+}
+
+export interface SLGetProjectByIdResult {
   success: boolean;
   error?: any;
 }
@@ -32,12 +53,38 @@ export interface SLGetAllProjectsResult {
   error?: any;
 }
 
+export interface SLDeleteProjectResult {
+  success: boolean;
+  error?: any;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
+  projects: SLProject[];
+  currentProject?: SLProject;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
+
+  /**
+   * @param projects list of projects directly from mongo
+   * 
+   * @returns list of projects in a consistent format
+   */
+  private parseMongoProjects(projects: SLMongoProject[]): SLProject[] {
+    return projects.map((project) => {
+      return {
+        id: project._id,
+        name: project.Name,
+        description: project.Description,
+        timeFormat: project.Time_Format,
+        archived: project.Archived,
+        countdown: project.Countdown,
+        email: project.User_email
+      } as SLProject;
+    });
+  }
 
   /**
    * @param project The project details
@@ -56,10 +103,40 @@ export class ProjectService {
     }
   }
 
-  async getProjects(): Promise<SLGetAllProjectsResult> {
-    try {
-      const result: SLGetAllProjectsResult = await this.http.get(`${API_ENDPOINT}/projects/${this.authService.user.id}`).toPromise() as SLGetAllProjectsResult;
+  async getProjectsById(id: string): Promise<SLProject> {
+    if (!this.projects || this.projects.length < 1) {
+      await this.getProjects();
+    }
 
+    const project = this.projects.find(prj => prj.id === id);
+
+    if (!project) {
+      throw Error(`No project with ID of ${id}`);
+    }
+
+    return project;
+  }
+
+  async getProjects(forceUpdate: boolean = false): Promise<SLProject[]> {
+    if (!this.projects || forceUpdate) {
+      try {
+        const result: SLGetAllProjectsResult = await this.http.get(`${API_ENDPOINT}/projects/${this.authService.user.id}`).toPromise() as SLGetAllProjectsResult;
+
+        this.projects = this.parseMongoProjects(result.projects);
+      } catch (err) {
+        throw err;
+      }
+    }
+
+    return this.projects;
+  }
+
+  async deleteProject(id: string): Promise<SLDeleteProjectResult> {
+    try {
+      const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+      const result: SLDeleteProjectResult = await this.http.post(`${API_ENDPOINT}/project/${id}/delete`, {}, { headers }).toPromise() as SLDeleteProjectResult;
+      console.log("OK?????????");
+      console.log(result);
       return result;
     } catch (err) {
       throw err;
