@@ -60,9 +60,9 @@ app.get("/api/projects/:id", async (req, res) => {
     // TODO: check that this user is the same user signed in...
     const user = await dbManager.getUser(req.params.id);
 
-    // if (!user) {
-    //   throw `Couldn't find a user with an id of ${req.params.id}`;
-    // }
+    if (!user) {
+      throw `Couldn't find a user with an id of ${req.params.id}`;
+    }
 
     const projects = await dbManager.getProjectsByEmail(user.Email);
 
@@ -84,6 +84,17 @@ app.post("/api/project/create", async (req, res) => {
     res.json({ project, success: Boolean(project) });
   } catch (err) {
     console.log("Create Project Error: ", err);
+    res.json({ success: false, error: err });
+  }
+});
+
+app.post("/api/project/:id/delete", async (req, res) => {
+  try {
+    const success = await dbManager.deleteProject(req.params.id);
+
+    res.json({ success });
+  } catch (err) {
+    console.log("Delete Project Error: ", err);
     res.json({ success: false, error: err });
   }
 });

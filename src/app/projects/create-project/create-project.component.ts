@@ -19,6 +19,7 @@ export class CreateProjectComponent {
       const result: SLCreateProjectResult = await this.projectService.createProject(this.name, this.description);
 
       if (result.success) {
+        await this.projectService.getProjects(true);
         this.router.navigate(['projects']);
       } else if (result.error) {
         throw result.error;

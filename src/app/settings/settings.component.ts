@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { SESSION_NAME, SECURITY_QUESTIONS } from '../constants';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.sass']
+  styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
+  disableConfirmButton = true;
+  securityQuestions = SECURITY_QUESTIONS;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  constructor(private authService: AuthService) { }
 
 }

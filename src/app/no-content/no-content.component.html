@@ -7,23 +7,35 @@
     <h5 class="font-italic text-secondary" style="font-size: 2rem;">
       {{ subtitle }}
     </h5>
-    <hr>
+    <hr />
 
-    <button
-      type="button"
-      class="shadow-sm rounded-pill btn btn-primary mt-2 mr-1 pl-4 pr-4 pt-3 pb-3"
-      [routerLink]="createButtonLink"
-    >
-      <span style="font-size: 1.25rem;">{{ createButtonText }}</span>
-    </button>
+    <div class="col-md-6">
+      <button
+        type="button"
+        class="shadow-sm rounded-pill btn btn-primary mt-2 mr-1 px-4 py-3"
+        [routerLink]="createButtonLink"
+        [disabled]="disableCreateButton"
+      >
+        <span style="font-size: 1.5rem;">{{ createButtonText }}</span>
+      </button>
+
+      <button
+        *ngIf="projectsButton"
+        type="button"
+        class="shadow-sm rounded-pill btn btn-secondary mt-2 mr-1 px-4 py-3"
+        (click)="quitProjectButton()"
+      >
+        <span style="font-size: 1.5rem;">Back to Projects</span>
+      </button>
+    </div>
   </div>
   <div class="col-md-5 offset-md-1">
     <img
       class="img-fluid"
       [src]="imagePath"
       [alt]="imageAlt"
-      width="1024vw"
-      height="1024vw"
+      width="512rem"
+      height="512rem"
       [title]="imageTitle"
     />
   </div>

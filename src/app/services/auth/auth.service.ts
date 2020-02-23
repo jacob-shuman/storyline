@@ -7,7 +7,7 @@ export interface SLUser {
   id: string;
   email: string;
   password: string;
-  nickName: string;
+  nickname: string;
   securityQuestion: number;
   securityAnswer: string;
   lastFailedLogin: string;
@@ -20,7 +20,7 @@ export interface SLMongoUser {
   _id: string;
   Email: string;
   Password: string;
-  NickName: string;
+  Nickname: string;
   Security_Question: number;
   Security_Answer: string;
   Last_Failed_Login: string;

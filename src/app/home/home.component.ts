@@ -4,6 +4,7 @@ import Typewriter from 'typewriter-effect/dist/core';
 
 import { HOME_TYPEWRITER_VERBS, HOME_TYPEWRITER_NOUNS } from "../constants"
 import { AuthService } from '../services/auth/auth.service';
+import { ProjectService } from '../services/project/project.service';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +15,10 @@ export class HomeComponent implements OnInit {
   private typewriter: Typewriter;
   private typewriterStrings: string[];
 
-  constructor(public authService: AuthService) { }
+  constructor(private projectService: ProjectService, public authService: AuthService) { }
 
   ngOnInit() {
-
+    this.projectService.currentProject = undefined;
     this.typewriterStrings = [];
 
     const typewriterVariations = Math.floor(Math.random() * 200)
