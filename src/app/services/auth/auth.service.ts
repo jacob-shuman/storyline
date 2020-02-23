@@ -26,7 +26,7 @@ export interface SLMongoUser {
   Last_Failed_Login: string;
   Last_Feedback: string;
   User_Settings: string;
-  Authenticated: {type:boolean, default:'false'}
+  Authenticated: boolean;
 }
 
 export interface SLLoginResult {
