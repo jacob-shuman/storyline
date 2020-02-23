@@ -62,7 +62,7 @@ export interface SLDeleteProjectResult {
   providedIn: 'root'
 })
 export class ProjectService {
-  private projects: SLProject[];
+  projects: SLProject[];
   currentProject?: SLProject;
 
   constructor(private authService: AuthService, private http: HttpClient) { }

@@ -12,6 +12,6 @@ export class SettingsComponent {
   disableConfirmButton = true;
   securityQuestions = SECURITY_QUESTIONS;
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
 }

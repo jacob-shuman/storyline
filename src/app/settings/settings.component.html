@@ -39,12 +39,8 @@
                   />
                 </div>
               </form>
-              <!-- </div>
-        </div> -->
             </div>
             <div class="col-md-12">
-              <!-- <div class="card">
-          <div class="card-body"> -->
               <form action="" class="mt-5">
                 <h3 class="text-dark" style="font-weight: bold;">
                   Send Feedback
@@ -61,7 +57,6 @@
                   *ngIf="authService.user"
                   type="button"
                   class="shadow-sm rounded-pill btn btn-success mt-3 px-3 py-2"
-                  (click)="updatePassword()"
                   [disabled]="disableConfirmButton"
                 >
                   <span style="font-size: 1rem;">Send</span>
@@ -75,8 +70,6 @@
         <div class="card">
           <div class="card-body">
             <div class="col-md-12">
-              <!-- <div class="card">
-          <div class="card-body"> -->
               <h3 class="text-dark" style="font-weight: bold;">
                 Update Password
               </h3>
@@ -88,7 +81,6 @@
                   <input
                     type="text"
                     name="currentPassword"
-                    [(ngModel)]="currentPassword"
                     class="form-control"
                   />
                 </div>
@@ -100,7 +92,6 @@
                   <input
                     type="text"
                     name="newPassword"
-                    [(ngModel)]="newPassword"
                     class="form-control"
                   />
                 </div>
@@ -112,7 +103,6 @@
                   <input
                     type="text"
                     name="newPassword"
-                    [(ngModel)]="newPassword"
                     class="form-control"
                   />
                 </div>
@@ -121,18 +111,13 @@
                   *ngIf="authService.user"
                   type="button"
                   class="shadow-sm rounded-pill btn btn-success px-3 py-2"
-                  (click)="updatePassword()"
                   [disabled]="disableConfirmButton"
                 >
                   <span style="font-size: 1rem;">Confirm</span>
                 </button>
               </form>
-              <!-- </div>
-        </div> -->
             </div>
             <div class="col-md-12">
-              <!-- <div class="card">
-          <div class="card-body"> -->
               <h3 class="text-dark mt-5" style="font-weight: bold;">
                 Update Security Question
               </h3>
@@ -150,7 +135,6 @@
                   <input
                     type="text"
                     name="currentPassword"
-                    [(ngModel)]="currentPassword"
                     class="form-control"
                   />
                 </div>
@@ -161,7 +145,6 @@
                   </div>
                   <select
                     class="custom-select"
-                    [(ngModel)]="securityQuestion"
                     name="Security_Question"
                     required
                   >
@@ -189,7 +172,6 @@
                   <input
                     type="text"
                     name="newPassword"
-                    [(ngModel)]="newPassword"
                     class="form-control"
                   />
                 </div>
@@ -198,14 +180,11 @@
                   *ngIf="authService.user"
                   type="button"
                   class="shadow-sm rounded-pill btn btn-success px-3 py-2"
-                  (click)="updatePassword()"
                   [disabled]="disableConfirmButton"
                 >
                   <span style="font-size: 1rem;">Confirm</span>
                 </button>
               </form>
-              <!-- </div>
-        </div> -->
             </div>
           </div>
         </div>
