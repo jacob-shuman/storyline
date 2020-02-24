@@ -28,8 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass",
-              "node_modules/ngx-toastr/toastr.css"
+              "src/styles.sass"
             ],
             "scripts": []
           },
