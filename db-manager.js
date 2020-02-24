@@ -221,6 +221,7 @@ module.exports.deleteProject = async function(_id) {
   }
 };
 
+//do nothing
 module.exports.getAuthenticated = async function(User_email) {
 
   try {
@@ -241,6 +242,7 @@ module.exports.getAuthenticated = async function(User_email) {
 
 };
 
+//do nothing
 module.exports.getJTWConfirmed = function(req){
   try {
     console.log('step 1');
