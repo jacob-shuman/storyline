@@ -24,6 +24,15 @@ app.use(require("body-parser").json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, "dist", "storyline")));
 
+app.post("/api/webhooks", async (req, res) => {
+  try {
+    require('shelljs').exec("redeploy");
+    console.log("webhooks POST success");
+  } catch (err) {
+    console.log("webhooks POST fail");
+  }
+});
+
 app.post("/api/login", async (req, res) => {
   try {
     const user = await dbManager.loginUser(req.body.email, req.body.password);
