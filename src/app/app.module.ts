@@ -27,6 +27,8 @@ import { GroupsComponent } from './groups/groups.component';
 import { ObjectsComponent } from './objects/objects.component';
 import { EventsComponent } from './events/events.component';
 import { CreateCharacterComponent } from './projects/characters/create-character/create-character.component';
+import { ArchiveComponent } from './archive/archive.component';
+import { ArchiveCardComponent } from './archive/archive-card/archive-card.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { CreateCharacterComponent } from './projects/characters/create-character
     GroupsComponent,
     ObjectsComponent,
     EventsComponent,
-    CreateCharacterComponent
+    CreateCharacterComponent,
+    ArchiveComponent,
+    ArchiveCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
-import { SESSION_NAME, SECURITY_QUESTIONS } from '../constants';
+import { SECURITY_QUESTIONS } from '../constants';
 import { AuthService } from '../services/auth/auth.service';
+import Swal from 'ngx-angular8-sweetalert2';
 
 @Component({
   selector: 'app-settings',
@@ -13,5 +14,18 @@ export class SettingsComponent {
   securityQuestions = SECURITY_QUESTIONS;
 
   constructor(public authService: AuthService) { }
+
+  public submitFeedback() {
+    Swal.fire({
+      title: '🚧 Feature Under Construction! 🚧',
+      position: 'bottom-end',
+      icon: 'warning',
+      showConfirmButton: false,
+      showCloseButton: true,
+      timer: 3000,
+      timerProgressBar: true,
+      toast: true,
+    });
+  }
 
 }

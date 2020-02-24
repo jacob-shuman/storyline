@@ -10,6 +10,7 @@ import { CreateProjectComponent } from './projects/create-project/create-project
 import { CharactersComponent } from './projects/characters/characters.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ArchiveComponent } from './archive/archive.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,11 @@ const routes: Routes = [
   {
     component: CreateProjectComponent,
     path: 'projects/create',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: ArchiveComponent,
+    path: 'archive',
     canActivate: [AuthGuard]
   },
   {

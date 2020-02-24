@@ -165,6 +165,23 @@ module.exports.getProjectsByEmail = async function(User_email) {
   }
 };
 
+module.exports.archiveProject = async function(_id, archived) {
+  try {
+    const project = await Project.findOne({ _id }).exec();
+
+    if (!project) {
+      throw "Invalid ID";
+    }
+
+    project.Archived = archived;
+    await project.save();
+
+    return true;
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports.deleteProject = async function(_id) {
   try {
     const result = await Project.deleteOne({ _id }).exec();

@@ -10,7 +10,10 @@
     </div>
 
     <app-no-content
-      *ngIf="!loadingProjects && (!projectService.projects || projectService.projects.length < 1)"
+      *ngIf="
+        !loadingProjects &&
+        (!projectService.projects || projectService.projects.length < 1)
+      "
       title="Projects"
       style="text-align: start;"
       subtitle="We can't find any of your projects."
@@ -24,19 +27,43 @@
     ></app-no-content>
 
     <div
-      *ngIf="!loadingProjects && projectService.projects && projectService.projects.length > 0"
+      *ngIf="
+        !loadingProjects &&
+        projectService.projects &&
+        projectService.projects.length > 0
+      "
       class="row"
-      style="text-align: start;"
     >
       <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
         All Projects
       </h1>
-      <app-project-card
-        class="col-md-12"
-        *ngFor="let project of projectService.projects"
-        [project]="project"
-      >
+    </div>
+
+    <div
+      class="row my-3"
+      style="text-align: start;"
+      *ngFor="let project of projectService.projects"
+    >
+      <app-project-card class="col-md-12" [project]="project">
       </app-project-card>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 my-2" style="text-align: start;">
+        <button
+          *ngIf="
+            !loadingProjects &&
+            projectService.projects &&
+            projectService.projects.length < 10 &&
+            projectService.projects.length > 0
+          "
+          type="button"
+          class="shadow-sm rounded-pill btn btn-primary mx-2 "
+          routerLink="/projects/create"
+        >
+          <span style="font-size: 1;">New Project +</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>

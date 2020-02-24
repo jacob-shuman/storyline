@@ -97,6 +97,28 @@ app.post("/api/project/create", async (req, res) => {
   }
 });
 
+app.post("/api/project/:id/archive", async (req, res) => {
+  try {
+    const success = await dbManager.archiveProject(req.params.id, true);
+
+    res.json({ success });
+  } catch (err) {
+    console.log("Archive Project Error: ", err);
+    res.json({ success: false, error: err });
+  }
+});
+
+app.post("/api/project/:id/unarchive", async (req, res) => {
+  try {
+    const success = await dbManager.archiveProject(req.params.id, false);
+
+    res.json({ success });
+  } catch (err) {
+    console.log("Unarchive Project Error: ", err);
+    res.json({ success: false, error: err });
+  }
+});
+
 app.post("/api/project/:id/delete", async (req, res) => {
   try {
     const success = await dbManager.deleteProject(req.params.id);

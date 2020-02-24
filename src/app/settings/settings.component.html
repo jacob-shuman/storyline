@@ -57,7 +57,7 @@
                   *ngIf="authService.user"
                   type="button"
                   class="shadow-sm rounded-pill btn btn-success mt-3 px-3 py-2"
-                  [disabled]="disableConfirmButton"
+                  (click)="submitFeedback()"
                 >
                   <span style="font-size: 1rem;">Send</span>
                 </button>

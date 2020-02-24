@@ -1,0 +1,49 @@
+<div class="center">
+  <div class="container" style="text-align: center;">
+    <div
+      *ngIf="loadingArchive"
+      class="spinner-grow text-primary"
+      style="width: 5rem; height: 5rem;"
+      role="status"
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <app-no-content
+      *ngIf="
+        !loadingArchive &&
+        (!projectService.archivedProjects || projectService.archivedProjects.length < 1)
+      "
+      title="Project Archive"
+      style="text-align: start;"
+      subtitle="You don't have any archived projects!"
+      createButtonText="Go to Project"
+      createButtonLink="/projects"
+      imagePath="/assets/img/empty.svg"
+      imageTitle="empty"
+      imageAlt="empty"
+    ></app-no-content>
+
+    <div
+      *ngIf="
+        !loadingArchive &&
+        projectService.archivedProjects &&
+        projectService.archivedProjects.length > 0
+      "
+      class="row"
+    >
+      <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
+        Project Archive
+      </h1>
+    </div>
+
+    <div
+      class="row my-3"
+      style="text-align: start;"
+      *ngFor="let project of projectService.archivedProjects"
+    >
+      <app-archive-card class="col-md-12" [project]="project">
+      </app-archive-card>
+    </div>
+  </div>
+</div>

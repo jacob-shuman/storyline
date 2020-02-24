@@ -53,6 +53,16 @@ export interface SLGetAllProjectsResult {
   error?: any;
 }
 
+export interface SLArchiveProjectResult {
+  success: boolean;
+  error?: any;
+}
+
+export interface SLUnarchiveProjectResult {
+  success: boolean;
+  error?: any;
+}
+
 export interface SLDeleteProjectResult {
   success: boolean;
   error?: any;
@@ -62,7 +72,9 @@ export interface SLDeleteProjectResult {
   providedIn: 'root'
 })
 export class ProjectService {
+  allProjects: SLProject[];
   projects: SLProject[];
+  archivedProjects: SLProject[];
   currentProject?: SLProject;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
@@ -122,7 +134,9 @@ export class ProjectService {
       try {
         const result: SLGetAllProjectsResult = await this.http.get(`${API_ENDPOINT}/projects/${this.authService.user.id}`).toPromise() as SLGetAllProjectsResult;
 
-        this.projects = this.parseMongoProjects(result.projects);
+        this.allProjects = this.parseMongoProjects(result.projects);
+        this.projects = this.allProjects.filter((project) => !project.archived);
+        this.archivedProjects = this.allProjects.filter((project) => project.archived);
       } catch (err) {
         throw err;
       }
@@ -131,12 +145,33 @@ export class ProjectService {
     return this.projects;
   }
 
+  async unarchiveProject(id: string): Promise<SLUnarchiveProjectResult> {
+    try {
+      const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+      const result: SLUnarchiveProjectResult = await this.http.post(`${API_ENDPOINT}/project/${id}/unarchive`, {}, { headers }).toPromise() as SLUnarchiveProjectResult;
+      
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async archiveProject(id: string): Promise<SLArchiveProjectResult> {
+    try {
+      const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+      const result: SLArchiveProjectResult = await this.http.post(`${API_ENDPOINT}/project/${id}/archive`, {}, { headers }).toPromise() as SLArchiveProjectResult;
+      
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
+
   async deleteProject(id: string): Promise<SLDeleteProjectResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const result: SLDeleteProjectResult = await this.http.post(`${API_ENDPOINT}/project/${id}/delete`, {}, { headers }).toPromise() as SLDeleteProjectResult;
-      console.log("OK?????????");
-      console.log(result);
+      
       return result;
     } catch (err) {
       throw err;

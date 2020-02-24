@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
+import Swal from 'ngx-angular8-sweetalert2';
 
 import { SESSION_NAME, SESSION_EXPIRY_DAYS, SESSION_SECURE } from '../constants';
 import { AuthService, SLLoginResult, SLUser } from '../services/auth/auth.service';
@@ -71,6 +72,16 @@ export class LoginComponent {
 
           this.cookieService.set(SESSION_NAME, JSON.stringify(this.authService.user), SESSION_EXPIRY_DAYS, undefined, undefined, SESSION_SECURE);
 
+          Swal.fire({
+            icon: 'success',
+            title: 'Login Successful!',
+            position: 'bottom-end',
+            showConfirmButton: false,
+            showCloseButton: true,
+            timer: 3000,
+            timerProgressBar: true,
+            toast: true,
+          });
           this.router.navigate(['projects']);
         } else if (result.error) {
           throw result.error;
