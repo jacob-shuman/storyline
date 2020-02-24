@@ -1,11 +1,14 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
-// const mongoUrl = "mongodb://myvmlab.senecacollege.ca:6912/Storyline"; // Use this when running locally
-const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running on the VM
+const mongoUrl = "mongodb://myvmlab.senecacollege.ca:6912/Storyline"; // Use this when running locally
+// const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running on the VM
 const db = mongoose.connection;
+const nodemailer = require("nodemailer");
+const jwt = require('jsonwebtoken')
 
 let User;
 let Project;
+const EMAIL_SECRET = 'TBhYcCcYvDZq9iP8lxwHsdu09123nlasdasdf';
 
 module.exports.init = function() {
   return new Promise((resolve, reject) => {
@@ -57,15 +60,15 @@ module.exports.loginUser = async function(email, password) {
   try {
     const user = await User.findOne({ Email: email }).exec();
     if (!user) {
-      throw "1 Email/Password combination";
+      throw "Invalid Email/Password combination";
     }
 
     if (await bcrypt.compare(password, user.Password)) {
-      return user;
+      if(user.Authenticated) {return user;} else {throw "Account is not authenticated";}
     } else {
       // TODO: update user's Last_Failed_Login field
 
-      throw "1 Email/Password combination";
+      throw "Invalid Email/Password combination";
     }
   } catch (err) {
     throw err;
@@ -103,6 +106,45 @@ module.exports.registerUser = function(
               if (err) {
                 reject("Mongo Save Error: " + err);
               } else {
+
+                //send email
+                // create reusable transporter object using the default SMTP transport
+                let transporter = nodemailer.createTransport({
+                  host: "smtp.office365.com",
+                  port: 587,
+                  secure: false, // true for 465, false for other ports
+                  auth: {
+                    user: 'prj666_201a10@myseneca.ca',
+                    pass: 'BNhh2%3&4bj6' 
+                  }
+                });
+
+                try {
+                  //using jwt to generate a unique link
+                  const emailToken = jwt.sign(
+                    {User: newUser._id},
+                    EMAIL_SECRET,
+                    {expiresIn: '2d',}
+                  );
+
+                  console.log('emailToken: ' + emailToken);
+
+                  const url = `https://prj666.mystudentlab.ca:6914/confirmation/${emailToken}`;
+                  const local_url = `http://localhost:10040/confirmation/${emailToken}`;
+
+                  // send mail with defined transport object
+                  transporter.sendMail({
+                    from: '"Storyline👻" <prj666_201a10@myseneca.ca>', // sender address
+                    to: email, // list of receivers
+                    subject: "Welcome to Storyline", // Subject line
+                    text: `Welcome to Storyline, please click on the following link to activate your account: <a href="${local_url}">${local_url}</a>`, // plain text body
+                    html: `<b>Welcome to Storyline, please click on the following link to activate your account: <a href="${local_url}">${local_url}</a>` // html body
+                    });
+
+                } catch (e) {
+                    reject("Email Error: " + e);
+                  }
+
                 resolve(true);
               }
             });
@@ -178,3 +220,36 @@ module.exports.deleteProject = async function(_id) {
     throw err;
   }
 };
+
+module.exports.getAuthenticated = async function(User_email) {
+
+  try {
+    const user = await User.findOne({ Email: User_email }).exec();
+
+    if (!user) {
+      throw "User does not exist!";
+    }
+
+    if (user.Authenticated){
+      throw "User does not exist!";
+    }
+
+    user.Authenticated = true;
+  } catch (err) {
+    throw err;
+  }
+
+};
+
+module.exports.getJTWConfirmed = function(req){
+  try {
+    console.log('step 1');
+    //const {_id: user._id} = jwt.verify(req.params.token, EMAIL_SECRET);
+    console.log('step 2');
+    //await models.User.update();
+    console.log('step 3');
+  } catch (e) {
+      console.log('step 4');
+      res.send('error: ' + e);
+    }
+}

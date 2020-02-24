@@ -8,6 +8,8 @@ const PORT = 10040;
 
 const dbManager = require("./db-manager");
 
+const EMAIL_SECRET = 'TBhYcCcYvDZq9iP8lxwHsdu09123nlasdasdf';
+
 let credentials;
 
 try {
@@ -29,7 +31,7 @@ app.post("/api/login", async (req, res) => {
     const user = await dbManager.loginUser(req.body.email, req.body.password);
     let success = false;
 
-    if (user) success = true;
+    if (user) success = false;
     sucess = false;
 
     res.json({ user, success });
@@ -127,3 +129,18 @@ dbManager
   .catch(err => {
     console.log(err);
   });
+
+app.get("api/confirmation/:token", async (req, res)=> {
+  
+  //dbManager.getJTWConfirmed(req);
+
+  const jwt = require('njwt')
+  const { token } = req.params
+  jwt.verify(token, 'top-secret-phrase', (err, verifiedJwt) => {
+    if(err){
+      res.send(err.message)
+    }else{
+      res.send(verifiedJwt)
+    }
+  })
+})
