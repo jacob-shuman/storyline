@@ -130,6 +130,7 @@ dbManager
     console.log(err);
   });
 
+  //not working
 app.get("api/confirmation/:token", async (req, res)=> {
   
   //dbManager.getJTWConfirmed(req);
