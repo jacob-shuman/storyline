@@ -134,9 +134,8 @@ app.get("api/confirmation/:token", async (req, res)=> {
   
   //dbManager.getJTWConfirmed(req);
 
-  const jwt = require('njwt')
   const { token } = req.params
-  jwt.verify(token, 'top-secret-phrase', (err, verifiedJwt) => {
+  jwt.verify(token, EMAIL_SECRET, (err, verifiedJwt) => {
     if(err){
       res.send(err.message)
     }else{
