@@ -3,6 +3,7 @@ const path = require("path");
 
 const cors = require("cors");
 const express = require("express");
+const request = require("request");
 const app = express();
 const PORT = 10040;
 
@@ -136,6 +137,33 @@ app.get("/api/ping", (req, res) => {
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "storyline", "index.html"));
+});
+
+//CAPTCHA
+app.post('/api/captcha', async (req,res) => {
+  if (
+    req.body.captcha === undefined ||
+    req.body.captcha === '' ||
+    req.body.captcha === null
+  ) {
+    return res.json({"success": false, "msg":"Please select captcha"});
+  }
+
+  // Secret Key
+  const secretKey = '6Lcj5tsUAAAAAPht5SfGI38LL9E0biqTteuNzimH';
+
+  // Verify URL
+  const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body.captcha}&remoteip${req.connection.remoteAddress}`;
+
+  request(verifyUrl, (err, response, body) => {
+    body = JSON.parse(body);
+
+    // on fail
+    if (body.success !== undefined && !body.success) {
+      return res.json({"success": false, "msg":"Failed"});
+    }
+    return res.json({"success": true, "msg":"Success"});
+  })
 });
 
 dbManager

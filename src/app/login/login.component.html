@@ -28,6 +28,8 @@
               placeholder="Password"
             />
             <p class="errorText">{{ errors.password }}</p>
+            <!-- CAPTCHA -->
+            <re-captcha (resolved)="resolved($event)" siteKey="6Lcj5tsUAAAAAMQvCio4kLVCed4KmvcbkhSCOfp1"></re-captcha>
 
             <button class="btn btn-lg btn-primary btn-block">Login</button>
 
