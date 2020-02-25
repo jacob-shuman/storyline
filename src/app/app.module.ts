@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 import { CookieService } from 'ngx-cookie-service';
 
@@ -59,7 +60,8 @@ import { ArchiveCardComponent } from './archive/archive-card/archive-card.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RecaptchaModule
   ],
   providers: [ValidateService, CookieService],
   bootstrap: [AppComponent]

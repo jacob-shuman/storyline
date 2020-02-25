@@ -40,6 +40,11 @@ export interface SLRegisterResult {
   error?: any;
 }
 
+export interface SLCaptchaResult {
+  success: boolean;
+  msg: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -82,6 +87,17 @@ export class AuthService {
       const result: SLRegisterResult = await this.http.post(`${API_ENDPOINT}/register`, body, { headers }).toPromise() as SLRegisterResult;
 
       return result;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async captcha(captcha: string): Promise<SLCaptchaResult> {
+    try {
+      const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+      const body = { captcha };
+      const result: SLCaptchaResult = await this.http.post(`http://localhost:10040/api/captcha`, body, { headers }).toPromise() as SLCaptchaResult;
+      return result
     } catch (err) {
       throw err;
     }

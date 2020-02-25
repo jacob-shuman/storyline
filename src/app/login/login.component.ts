@@ -5,7 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import Swal from 'ngx-angular8-sweetalert2';
 
 import { SESSION_NAME, SESSION_EXPIRY_DAYS, SESSION_SECURE } from '../constants';
-import { AuthService, SLLoginResult, SLUser } from '../services/auth/auth.service';
+import { AuthService, SLLoginResult, SLUser, SLCaptchaResult } from '../services/auth/auth.service';
 import { ValidateService } from '../services/validate/validate.service';
 
 @Component({
@@ -16,12 +16,19 @@ import { ValidateService } from '../services/validate/validate.service';
 export class LoginComponent {
   email: string;
   password: string;
+  captcha: string;
 
   errors: {
     all: string, // Errors regarding login in general
     email: string, // Errors regarding entered email
     password: string // Errors regarding entered password
   };
+
+  // CAPTCHA
+  resolved(captchaResponse: string) {
+    this.captcha = captchaResponse;
+    //console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
 
   constructor(private validateService: ValidateService, private authService: AuthService, private cookieService: CookieService, private router: Router) {
     this.errors = {
@@ -55,8 +62,9 @@ export class LoginComponent {
     if (this.validateFields()) {
       try {
         const result: SLLoginResult = await this.authService.login(this.email, this.password);
+        const captchaResult: SLCaptchaResult = await this.authService.captcha(this.captcha);
 
-        if (result.success) {
+        if (result.success && captchaResult.success) {
           this.authService.user = {
             id: result.user._id,
             email: result.user.Email,
