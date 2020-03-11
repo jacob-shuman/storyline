@@ -1,18 +1,10 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const mongoUrl = "mongodb://myvmlab.senecacollege.ca:6912/Storyline"; // Use this when running locally
-<<<<<<< Updated upstream
 // const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running on the VM
 const db = mongoose.connection;
 const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken')
-=======
-//const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running on the VM
-const db = mongoose.connection;
-const EMAIL_SECRET = 'randomstringyo';
-const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
->>>>>>> Stashed changes
 
 let User;
 let Project;
@@ -113,61 +105,8 @@ module.exports.registerUser = function(
             newUser.save(function(err, user) {
               if (err) {
                 reject("Mongo Save Error: " + err);
-              } else {
-<<<<<<< Updated upstream
-
-                //send email
-                // create reusable transporter object using the default SMTP transport
-                let transporter = nodemailer.createTransport({
-                  host: "smtp.office365.com",
-                  port: 587,
-                  secure: false, // true for 465, false for other ports
-                  auth: {
-                    user: 'prj666_201a10@myseneca.ca',
-                    pass: 'BNhh2%3&4bj6' 
-                  }
-                });
-
-                try {
-                  //using jwt to generate a unique link
-                  const emailToken = jwt.sign(
-                    {User: newUser._id},
-                    EMAIL_SECRET,
-                    {expiresIn: '2d',}
-                  );
-
-                  console.log('emailToken: ' + emailToken);
-
-                  const url = `https://prj666.mystudentlab.ca:6914/confirmation/${emailToken}`;
-                  const local_url = `http://localhost:10040/confirmation/${emailToken}`;
-
-                  // send mail with defined transport object
-                  transporter.sendMail({
-                    from: '"Storyline👻" <prj666_201a10@myseneca.ca>', // sender address
-                    to: email, // list of receivers
-                    subject: "Welcome to Storyline", // Subject line
-                    text: `Welcome to Storyline, please click on the following link to activate your account: <a href="${local_url}">${local_url}</a>`, // plain text body
-                    html: `<b>Welcome to Storyline, please click on the following link to activate your account: <a href="${local_url}">${local_url}</a>` // html body
-                    });
-
-                } catch (e) {
-                    reject("Email Error: " + e);
-                  }
-=======
-                
-                try {
-                  const emailToken = jwt.sign(
-                    {
-                      newUser,
-                    },
-                    EMAIL_SECRET,
-                    {
-                      expiresIn: '2d',
-                    },
-                  );
-           
-                  const url = `http://localhost:3000/confirmation/${emailToken}`;
-           
+              } else 
+                {
                   let transporter = nodemailer.createTransport({
                     host: "smtp.gmail.com",
                     port: 587,
@@ -178,18 +117,35 @@ module.exports.registerUser = function(
                     }
                   });
 
-                  transporter.sendMail({
-                    to: newUser.Email,
-                    subject: 'Storyline 👻',
-                    html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`,
-                  });
-                } catch (e) {
-                  console.log(e);
-                }
->>>>>>> Stashed changes
+                  try {
+                    //using jwt to generate a unique link
+                    const emailToken = jwt.sign(
+                      {User: newUser._id},
+                      EMAIL_SECRET,
+                      {expiresIn: '2d',}
+                    );
 
-                resolve(true);
-              }
+                    //for debugging
+                    //console.log('emailToken: ' + emailToken);
+  
+                    //use one of the following links depending on the enviornment
+                    //const url = `https://prj666.mystudentlab.ca:6914/confirmation/${emailToken}`;
+                    const url = `http://localhost:10040/confirmation/${emailToken}`;
+  
+                    // send mail with defined transport object
+                    transporter.sendMail({
+                      from: "Storyline", // sender address
+                      to: email, // list of receivers
+                      subject: "Welcome to Storyline 📚🖊️", // Subject line
+                      text: `Welcome to Storyline, please click on the following link to activate your account: <a href="${url}">${url}</a>`, // plain text body
+                      html: `<b>Welcome to Storyline, please click on the following link to activate your account: <a href="${url}">${url}</a>` // html body
+                      });
+  
+                      } catch (e) {
+                      reject("Email Error: " + e);
+                    }
+                  resolve(true);
+                }
             });
           } else {
             reject("User with that email already exists");
