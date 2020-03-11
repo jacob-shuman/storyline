@@ -29,7 +29,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.12",
     "ngx-cookie-service": "^2.3.0",
+<<<<<<< Updated upstream
     "nodemailer": "^6.4.3",
+=======
+    "nodemailer": "^6.4.5",
+>>>>>>> Stashed changes
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "typewriter-effect": "^2.12.2",

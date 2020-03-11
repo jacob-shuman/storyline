@@ -1,10 +1,18 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const mongoUrl = "mongodb://myvmlab.senecacollege.ca:6912/Storyline"; // Use this when running locally
+<<<<<<< Updated upstream
 // const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running on the VM
 const db = mongoose.connection;
 const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken')
+=======
+//const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running on the VM
+const db = mongoose.connection;
+const EMAIL_SECRET = 'randomstringyo';
+const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
+>>>>>>> Stashed changes
 
 let User;
 let Project;
@@ -106,6 +114,7 @@ module.exports.registerUser = function(
               if (err) {
                 reject("Mongo Save Error: " + err);
               } else {
+<<<<<<< Updated upstream
 
                 //send email
                 // create reusable transporter object using the default SMTP transport
@@ -144,6 +153,40 @@ module.exports.registerUser = function(
                 } catch (e) {
                     reject("Email Error: " + e);
                   }
+=======
+                
+                try {
+                  const emailToken = jwt.sign(
+                    {
+                      newUser,
+                    },
+                    EMAIL_SECRET,
+                    {
+                      expiresIn: '2d',
+                    },
+                  );
+           
+                  const url = `http://localhost:3000/confirmation/${emailToken}`;
+           
+                  let transporter = nodemailer.createTransport({
+                    host: "smtp.gmail.com",
+                    port: 587,
+                    secure: false, // true for 465, false for other ports
+                    auth: {
+                      user: "weslieistesting@gmail.com",
+                      pass: "Some1234"
+                    }
+                  });
+
+                  transporter.sendMail({
+                    to: newUser.Email,
+                    subject: 'Storyline 👻',
+                    html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`,
+                  });
+                } catch (e) {
+                  console.log(e);
+                }
+>>>>>>> Stashed changes
 
                 resolve(true);
               }
