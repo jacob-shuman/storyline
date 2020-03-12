@@ -291,8 +291,8 @@ module.exports.sendFeedback = function(_id, body){
         from: "Storyline Feedback", // sender address
         to: email,                                      // list of receivers
         subject: "Feedback 📚🖊️",                      // Subject line
-        text: "Feedback from" + body,                                     // plain text body
-        html: <b>${body}</b>                            // html body
+        text: user.email + body,                                     // plain text body
+        html: '<b>{body}</b>'                            // html body
       });
 
     } catch (e) {
