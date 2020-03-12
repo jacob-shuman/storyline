@@ -220,7 +220,7 @@ module.exports.deleteProject = async function(_id) {
   }
 };
 
-//do nothing
+//does nothing
 module.exports.getAuthenticated = async function(User_email) {
 
   try {
@@ -241,7 +241,7 @@ module.exports.getAuthenticated = async function(User_email) {
 
 };
 
-//do nothing
+//does nothing
 module.exports.getJTWConfirmed = function(req){
   try {
     console.log('step 1');
@@ -253,4 +253,51 @@ module.exports.getJTWConfirmed = function(req){
       console.log('step 4');
       res.send('error: ' + e);
     }
+}
+
+//Takes in a user id, and a body of text and sends the devs(us) an email containing the user's email and their feedback
+//Per Business rules, users are only allowed to send a feeback once a day (24 hours), and that is kept track by one of our user's attributes
+module.exports.sendFeedback = function(_id, body){
+  const user;
+  try {
+    user = await User.findOne({ _id }).exec();
+    if (!user) {
+      throw "User cannot be found";
+    }
+  } catch (err) {
+    throw err;
+  }
+  //getting the dates
+  var now = new Date();
+  now.getTime();
+  var then = new Date(user.Last_Feedback);
+  //calculating the difference in days, as getTime() returns milliseconds, a division of multiplications is applied 
+  var difference = (now.getTime() - then.getTime()/(1000 * 60 * 60 * 24));
+
+  if (user.Last_Feedback == null || difference >= 1)
+  {
+    try{
+      let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: "weslieistesting@gmail.com",
+          pass: "Some1234"
+        }
+      });
+      // send mail with defined transport object
+      transporter.sendMail({
+        from: "Storyline Feedback", // sender address
+        to: email,                                      // list of receivers
+        subject: "Feedback 📚🖊️",                      // Subject line
+        text: "Feedback from" + body,                                     // plain text body
+        html: <b>${body}</b>                            // html body
+      });
+
+    } catch (e) {
+      reject("Feedback Email Error: " + e);
+    }
+  }
+  //todo update user's last feedback attempt
 }
