@@ -23,11 +23,40 @@ export interface SLMongoProject {
   User_email: string;
 }
 
+export interface SLEvent {
+  id: string;
+  name: string;
+  timeIndex: number;
+  description?: string;
+  projectId: string;
+}
+
 export interface SLCharacter {
   id: string;
   name: string;
   description?: string;
-  projectId: string
+  projectId: string;
+}
+
+export interface SLPlace {
+  id: string;
+  name: string;
+  description?: string;
+  projectId: string;
+}
+
+export interface SLObject {
+  id: string;
+  name: string;
+  description?: string;
+  projectId: string;
+}
+
+export interface SLGroup {
+  id: string;
+  name: string;
+  description?: string;
+  projectId: string;
 }
 
 export interface SLMongoCharacter {
@@ -44,6 +73,12 @@ export interface SLCreateProjectResult {
 
 export interface SLGetProjectByIdResult {
   success: boolean;
+  error?: any;
+}
+
+export interface SLUpdateProjectResult {
+  success: boolean;
+  project: SLMongoProject;
   error?: any;
 }
 
@@ -132,7 +167,8 @@ export class ProjectService {
   async getProjects(forceUpdate: boolean = false): Promise<SLProject[]> {
     if (!this.projects || forceUpdate) {
       try {
-        const result: SLGetAllProjectsResult = await this.http.get(`${API_ENDPOINT}/projects/${this.authService.user.id}`).toPromise() as SLGetAllProjectsResult;
+        const params = { password: this.authService.user.password };
+        const result = await this.http.get(`${API_ENDPOINT}/projects/${this.authService.user.id}`, { params }).toPromise() as SLGetAllProjectsResult;
 
         this.allProjects = this.parseMongoProjects(result.projects);
         this.projects = this.allProjects.filter((project) => !project.archived);
@@ -145,10 +181,32 @@ export class ProjectService {
     return this.projects;
   }
 
+  async updateProject(id: string, name: string, description: string): Promise<SLProject> {
+    try {
+      const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+      const body = { name, description };
+      const result = await this.http.post(`${API_ENDPOINT}/update/project/${id}`, body, { headers }).toPromise() as SLUpdateProjectResult;
+
+      const project = {
+        id: result.project._id,
+        name: result.project.Name,
+        description: result.project.Description,
+        timeFormat: result.project.Time_Format,
+        archived: result.project.Archived,
+        countdown: result.project.Countdown,
+        email: result.project.User_email
+      };
+      
+      return project;
+    } catch (err) {
+      throw err;
+    }
+  }
+
   async unarchiveProject(id: string): Promise<SLUnarchiveProjectResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-      const result: SLUnarchiveProjectResult = await this.http.post(`${API_ENDPOINT}/project/${id}/unarchive`, {}, { headers }).toPromise() as SLUnarchiveProjectResult;
+      const result = await this.http.post(`${API_ENDPOINT}/project/${id}/unarchive`, {}, { headers }).toPromise() as SLUnarchiveProjectResult;
       
       return result;
     } catch (err) {
@@ -159,7 +217,7 @@ export class ProjectService {
   async archiveProject(id: string): Promise<SLArchiveProjectResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-      const result: SLArchiveProjectResult = await this.http.post(`${API_ENDPOINT}/project/${id}/archive`, {}, { headers }).toPromise() as SLArchiveProjectResult;
+      const result = await this.http.post(`${API_ENDPOINT}/project/${id}/archive`, {}, { headers }).toPromise() as SLArchiveProjectResult;
       
       return result;
     } catch (err) {
@@ -170,7 +228,7 @@ export class ProjectService {
   async deleteProject(id: string): Promise<SLDeleteProjectResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-      const result: SLDeleteProjectResult = await this.http.post(`${API_ENDPOINT}/project/${id}/delete`, {}, { headers }).toPromise() as SLDeleteProjectResult;
+      const result = await this.http.post(`${API_ENDPOINT}/project/${id}/delete`, {}, { headers }).toPromise() as SLDeleteProjectResult;
       
       return result;
     } catch (err) {

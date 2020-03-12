@@ -7,6 +7,9 @@
       alt="Storline S logo"
     />
   </a>
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul
       *ngIf="authService.user && !projectService.currentProject"
@@ -46,6 +49,84 @@
       <li
         [class]="
           (router.url ==
+          '/project/' + projectService.currentProject.id
+            ? 'active'
+            : '') + ' nav-item'
+        "
+      >
+        <a
+          class="nav-link"
+          [routerLink]="
+            '/project/' + projectService.currentProject.id
+          "
+          >Overview
+          <span
+            *ngIf="
+              router.url ===
+              '/project/' + projectService.currentProject.id
+            "
+            class="sr-only"
+          >
+            (current)
+          </span>
+        </a>
+      </li>
+
+      <li
+        [class]="
+          (router.url ===
+          '/project/' + projectService.currentProject.id + '/timeline'
+            ? 'active'
+            : '') + ' nav-item'
+        "
+      >
+        <a
+          class="nav-link"
+          [routerLink]="
+            '/project/' + projectService.currentProject.id + '/timeline'
+          "
+          >Timeline
+          <span
+            *ngIf="
+              router.url ==
+              '/project/' + projectService.currentProject.id + '/timeline'
+            "
+            class="sr-only"
+          >
+            (current)
+          </span>
+        </a>
+      </li>
+
+      <li
+        [class]="
+          (router.url ===
+          '/project/' + projectService.currentProject.id + '/events'
+            ? 'active'
+            : '') + ' nav-item'
+        "
+      >
+        <a
+          class="nav-link"
+          [routerLink]="
+            '/project/' + projectService.currentProject.id + '/events'
+          "
+          >Events
+          <span
+            *ngIf="
+              router.url ==
+              '/project/' + projectService.currentProject.id + '/events'
+            "
+            class="sr-only"
+          >
+            (current)
+          </span>
+        </a>
+      </li>
+
+      <li
+        [class]="
+          (router.url ===
           '/project/' + projectService.currentProject.id + '/characters'
             ? 'active'
             : '') + ' nav-item'
@@ -69,6 +150,84 @@
         </a>
       </li>
 
+      <li
+        [class]="
+          (router.url ===
+          '/project/' + projectService.currentProject.id + '/places'
+            ? 'active'
+            : '') + ' nav-item'
+        "
+      >
+        <a
+          class="nav-link"
+          [routerLink]="
+            '/project/' + projectService.currentProject.id + '/places'
+          "
+          >Places
+          <span
+            *ngIf="
+              router.url ==
+              '/project/' + projectService.currentProject.id + '/places'
+            "
+            class="sr-only"
+          >
+            (current)
+          </span>
+        </a>
+      </li>
+
+      <li
+        [class]="
+          (router.url ===
+          '/project/' + projectService.currentProject.id + '/objects'
+            ? 'active'
+            : '') + ' nav-item'
+        "
+      >
+        <a
+          class="nav-link"
+          [routerLink]="
+            '/project/' + projectService.currentProject.id + '/objects'
+          "
+          >Objects
+          <span
+            *ngIf="
+              router.url ==
+              '/project/' + projectService.currentProject.id + '/objects'
+            "
+            class="sr-only"
+          >
+            (current)
+          </span>
+        </a>
+      </li>
+
+      <li
+        [class]="
+          (router.url ===
+          '/project/' + projectService.currentProject.id + '/groups'
+            ? 'active'
+            : '') + ' nav-item'
+        "
+      >
+        <a
+          class="nav-link"
+          [routerLink]="
+            '/project/' + projectService.currentProject.id + '/groups'
+          "
+          >Groups
+          <span
+            *ngIf="
+              router.url ==
+              '/project/' + projectService.currentProject.id + '/groups'
+            "
+            class="sr-only"
+          >
+            (current)
+          </span>
+        </a>
+      </li>
+
       <li [class]="(router.url == '/settings' ? 'active' : '') + ' nav-item'">
         <a class="nav-link" routerLink="/settings"
           >Settings
@@ -79,6 +238,15 @@
       </li>
     </ul>
   </div>
+
+  <button
+    *ngIf="!authService.user"
+    type="button"
+    class="shadow-sm rounded-pill btn btn-secondary px-3 py-2 mr-2"
+    routerLink="/register"
+  >
+    <span style="font-size: 1rem;">Register</span>
+  </button>
 
   <button
     *ngIf="!authService.user"

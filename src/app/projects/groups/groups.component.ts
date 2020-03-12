@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-
-import { SLCharacter, ProjectService } from 'src/app/services/project/project.service';
+import { SLGroup, ProjectService } from 'src/app/services/project/project.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-characters',
-  templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.css']
+  selector: 'app-groups',
+  templateUrl: './groups.component.html',
+  styleUrls: ['./groups.component.css']
 })
-export class CharactersComponent implements OnInit {
-  characters: SLCharacter[];
-  loadingCharacters = true;
+export class GroupsComponent implements OnInit {
+  groups: SLGroup[];
+  loadingGroups = true;
 
-  constructor(private router: Router, public projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private router: Router) { }
 
   ngOnInit() {
     this.loadProject();
@@ -29,7 +28,7 @@ export class CharactersComponent implements OnInit {
       }
     }
 
-    this.loadingCharacters = false;
+    this.loadingGroups = false;
   }
 
 }

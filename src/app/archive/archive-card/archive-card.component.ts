@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import Swal from 'ngx-angular8-sweetalert2';
+
 import { SLProject, ProjectService } from 'src/app/services/project/project.service';
-import { Router } from '@angular/router';
+import { TOAST } from 'src/app/constants';
 
 @Component({
   selector: 'app-archive-card',
@@ -26,24 +28,11 @@ export class ArchiveCardComponent {
   }
 
   async deleteProject() {
-    Swal.fire({
-      title: 'Woah, are you sure about this?',
-      text: "You can't undo this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'BE GONE PROJECT!'
-    }).then(async (result) => {
+    Swal.fire(TOAST.CONFIRM_DELETE_PROJECT).then(async (result) => {
       if (result.value) {
         await this.projectService.deleteProject(this.project.id);
         await this.projectService.getProjects(true);
-        Swal.fire({
-          title: 'Its Gone...',
-          text: 'Your project has been deleted :(',
-          icon: 'success',
-          confirmButtonColor: '#3085d6',
-        });
+        Swal.fire(TOAST.PROJECT_DELETED);
       }
     });
   }

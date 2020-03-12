@@ -1,0 +1,53 @@
+<div class="center">
+    <div class="container" style="text-align: center;">
+      <div
+        *ngIf="loadingPlaces"
+        class="spinner-grow text-primary"
+        style="width: 5rem; height: 5rem;"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+  
+      <app-no-content
+        *ngIf="!loadingPlaces && (!places || places.length < 1)"
+        title="Places"
+        style="text-align: start;"
+        subtitle="We can't find places on this project."
+        createButtonText="Create Place"
+        createButtonLink="/places/create"
+        disableCreateButton="true"
+        projectsButton="true"
+        altButtonText="Sign out"
+        altButtonLink="/logout"
+        imagePath="/assets/img/empty.svg"
+        imageTitle="empty"
+        imageAlt="empty"
+      ></app-no-content>
+  
+      <div
+        *ngIf="!loadingPlaces && places && places.length > 0"
+        class="row"
+        style="text-align: start;"
+      >
+        <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
+          All Places
+        </h1>
+  
+        <div class="container">
+          <div *ngIf="places && places.length > 0" class="row">
+            <div class="card">
+              <div class="card-body">
+                <table class="table">
+                  <tr>
+                    <th>Name</th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -54,7 +54,7 @@
           *ngIf="
             !loadingProjects &&
             projectService.projects &&
-            projectService.projects.length < 10 &&
+            projectService.allProjects.length < 3 &&
             projectService.projects.length > 0
           "
           type="button"

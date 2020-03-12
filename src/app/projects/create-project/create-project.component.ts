@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ProjectService, SLProject, SLCreateProjectResult } from 'src/app/services/project/project.service';
@@ -8,11 +8,31 @@ import { ProjectService, SLProject, SLCreateProjectResult } from 'src/app/servic
   templateUrl: './create-project.component.html',
   styleUrls: ['./create-project.component.sass']
 })
-export class CreateProjectComponent {
+export class CreateProjectComponent implements OnInit {
   name: string;
   description: string;
 
+  loadingProjects = true;
+
   constructor(private projectService: ProjectService, private router: Router) { }
+
+  ngOnInit() {
+    this.loadProjects();
+  }
+
+  async loadProjects() {
+    try {
+      await this.projectService.getProjects();
+
+      if (this.projectService.allProjects.length > 2) {
+        this.router.navigate(['projects']);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    this.loadingProjects = false;
+  }
 
   async onCreateProjectSubmit() {
     try {

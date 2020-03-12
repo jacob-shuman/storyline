@@ -11,6 +11,12 @@ import { CharactersComponent } from './projects/characters/characters.component'
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ArchiveComponent } from './archive/archive.component';
+import { ProjectOverviewComponent } from './projects/project-overview/project-overview.component';
+import { PlacesComponent } from './projects/places/places.component';
+import { ObjectsComponent } from './projects/objects/objects.component';
+import { GroupsComponent } from './projects/groups/groups.component';
+import { EventsComponent } from './projects/events/events.component';
+import { CreateCharacterComponent } from './projects/characters/create-character/create-character.component';
 
 
 const routes: Routes = [
@@ -52,8 +58,38 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    component: ProjectOverviewComponent,
+    path: 'project/:id',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: EventsComponent,
+    path: 'project/:id/events',
+    canActivate: [AuthGuard]
+  },
+  {
     component: CharactersComponent,
     path: 'project/:id/characters',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: CreateCharacterComponent,
+    path: 'project/:id/characters/create',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: PlacesComponent,
+    path: 'project/:id/places',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: ObjectsComponent,
+    path: 'project/:id/objects',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: GroupsComponent,
+    path: 'project/:id/groups',
     canActivate: [AuthGuard]
   },
   {

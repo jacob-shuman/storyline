@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
-// const mongoUrl = "mongodb://myvmlab.senecacollege.ca:6912/Storyline"; // Use this when running locally
-const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running on the VM
+const mongoUrl = "mongodb://myvmlab.senecacollege.ca:6912/Storyline"; // Use this when running locally
+// const mongoUrl = "mongodb://localhost:10016/Storyline"; // Use this when running on the VM
 const db = mongoose.connection;
 
 let User;
@@ -114,12 +114,72 @@ module.exports.registerUser = function(
   });
 };
 
-module.exports.getUser = async function(_id) {
+module.exports.updateNickname = async function(Email, Nickname) {
+  try {
+    const user = await User.findOne({ Email }).exec();
+
+    if (!user) {
+      throw "Invalid Email";
+    }
+
+    // if (await bcrypt.compare(password, user.Password)) {
+    user.Nickname = Nickname;
+
+    user.save(function(err, user) {
+      if (err) {
+        throw "Mongo Save Error: " + err;
+      } else {
+        return true;
+      }
+    });
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports.updatePassword = async function(_id, oldPassword, newPassword) {
   try {
     const user = await User.findOne({ _id }).exec();
 
+    if (await bcrypt.compare(password, user.Password)) {
+      let password = await bcrypt.hash(password, 10);
+
+      user.save(function(err, user) {
+        if (err) {
+          throw "Mongo Save Error: " + err;
+        } else {
+          return password;
+        }
+      });
+    } else {
+      throw "Passwords don't match";
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports.updateProject = async function(_id, Name, Description) {
+  try {
+    const project = await Project.findOne({ _id }).exec();
+
+    if (!project) throw "Invalid Project ID";
+
+    project.Name = Name;
+    project.Description = Description;
+
+    return await project.save();
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports.getUser = async function(_id, Password) {
+  try {
+    const user = await User.findOne({ _id, Password }).exec();
+
     if (!user) {
-      throw "Invalid ID";
+      throw "Invalid ID/Password";
     }
 
     return user;

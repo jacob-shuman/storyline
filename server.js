@@ -64,15 +64,61 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
+app.get("/api/user/:id", async (req, res) => {
+  try {
+    const user = await dbManager.getUser(req.params.id, req.query.password);
+    const success = Boolean(user);
+
+
+    res.json({ user, success });
+  } catch (err) {
+    console.log("Get User Error: ", err);
+    res.json({ success: false, error: err });
+  }
+});
+
+app.post("/api/update/nickname", async (req, res) => {
+  try {
+    const success = await dbManager.updateNickname(req.body.email, req.body.nickname);
+
+    res.json({ success });
+  } catch (err) {
+    console.log("Update Nickname Error: ", err);
+    res.json({ success: false, error: err });
+  }
+});
+
+app.post("/api/update/password", async (req, res) => {
+  try {
+    const password = await dbManager.updatePassword(req.body.id, req.body.oldPassword, req.body.newPassword);
+    let success = false;
+
+    if (password) success = true;
+
+    res.json({ password, success });
+  } catch (err) {
+    console.log("Update Password Error: ", err);
+    res.json({ success: false, error: err });
+  }
+});
+
+app.post("/api/update/project/:id", async (req, res) => {
+  try {
+    const project = await dbManager.updateProject(req.params.id, req.body.name, req.body.description);
+    let success = false;
+
+    if (project) success = true;
+
+    res.json({ project, success });
+  } catch (err) {
+    console.log("Update Project Error: ", err);
+    res.json({ success: false, error: err });
+  }
+});
+
 app.get("/api/projects/:id", async (req, res) => {
   try {
-    // TODO: check that this user is the same user signed in...
-    const user = await dbManager.getUser(req.params.id);
-
-    if (!user) {
-      throw `Couldn't find a user with an id of ${req.params.id}`;
-    }
-
+    const user = await dbManager.getUser(req.params.id, req.query.password);
     const projects = await dbManager.getProjectsByEmail(user.Email);
 
     res.json({ projects, success: Boolean(projects) });

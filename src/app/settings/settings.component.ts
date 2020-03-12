@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
-import { SECURITY_QUESTIONS } from '../constants';
-import { AuthService } from '../services/auth/auth.service';
 import Swal from 'ngx-angular8-sweetalert2';
+
+import { SECURITY_QUESTIONS, TOAST } from '../constants';
+import { AuthService, SLUser } from '../services/auth/auth.service';
+import { EmailService } from '../services/email.service';
 
 @Component({
   selector: 'app-settings',
@@ -10,22 +12,53 @@ import Swal from 'ngx-angular8-sweetalert2';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
+  user: SLUser;
+
   disableConfirmButton = true;
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
   securityQuestions = SECURITY_QUESTIONS;
+  feedback: string = undefined;
+  error = '';
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, public emailService: EmailService) {
+    this.user = { ...authService.user };
+  }
 
-  public submitFeedback() {
-    Swal.fire({
-      title: '🚧 Feature Under Construction! 🚧',
-      position: 'bottom-end',
-      icon: 'warning',
-      showConfirmButton: false,
-      showCloseButton: true,
-      timer: 3000,
-      timerProgressBar: true,
-      toast: true,
-    });
+  public async updateAccount() {
+    try {
+      if (this.authService.user.nickname !== this.user.nickname) {
+        await this.authService.updateNickname(this.user.email, this.user.nickname);
+
+        this.authService.user = this.user;
+        await this.authService.refreshCookie();
+        this.user = { ...this.authService.user };
+
+        Swal.fire(TOAST.SAVE_SUCCESS);
+      }
+    } catch (err) {
+      console.log('There was an error saving your changes: ', err);
+      Swal.fire(TOAST.SAVE_FAIL);
+    }
+  }
+
+  public async updatePassword() {
+    Swal.fire(TOAST.UNDER_CONSTRUCTION);
+  }
+
+  public updateSecurityQuestion() {
+    Swal.fire(TOAST.UNDER_CONSTRUCTION);
+  }
+
+  public async submitFeedback() {
+    try {
+      await this.emailService.sendFeedback(this.user.id, this.feedback);
+      Swal.fire(TOAST.FEEDBACK_SUCCESS);
+    } catch (err) {
+      console.log('There was an error submitting your feedback: ', err);
+      Swal.fire(TOAST.FEEDBACK_FAIL);
+    }
   }
 
 }

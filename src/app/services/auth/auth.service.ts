@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { API_ENDPOINT } from 'src/app/constants';
+import { API_ENDPOINT, SESSION_NAME, SESSION_EXPIRY_DAYS, SESSION_SECURE } from 'src/app/constants';
+import { CookieService } from 'ngx-cookie-service';
 
 export interface SLUser {
   id: string;
@@ -29,13 +30,24 @@ export interface SLMongoUser {
   Authenticated: string;
 }
 
+export interface SLGetUserResult {
+  success: boolean;
+  user?: SLMongoUser;
+  error?: any;
+}
+
 export interface SLLoginResult {
   success: boolean;
-  user: SLMongoUser;
+  user?: SLMongoUser;
   error?: any;
 }
 
 export interface SLRegisterResult {
+  success: boolean;
+  error?: any;
+}
+
+export interface SLUpdateNicknameResult {
   success: boolean;
   error?: any;
 }
@@ -46,7 +58,45 @@ export interface SLRegisterResult {
 export class AuthService {
   user?: SLUser; // The logged in user (if any)
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
+
+  /**
+   * Refreshes the secure cookie containing the user's data.
+   */
+  refreshCookie(): void {
+    this.cookieService.delete('user')
+    this.cookieService.set(SESSION_NAME, JSON.stringify(this.user), SESSION_EXPIRY_DAYS, undefined, undefined, SESSION_SECURE);
+  }
+
+  /**
+   * @param id User's id
+   * @param password User's password
+   * 
+   * @returns SLUser if successful
+   */
+  async getUser(id: string, password: string): Promise<SLUser> {
+    try {
+      const params = { password };
+      const result = await this.http.get(`${API_ENDPOINT}/user/${id}`, { params }).toPromise() as SLGetUserResult;
+
+      const user: SLUser = {
+        id: result.user._id,
+        email: result.user.Email,
+        password: result.user.Password,
+        nickname: result.user.Nickname,
+        securityQuestion: result.user.Security_Question,
+        securityAnswer: result.user.Security_Answer,
+        lastFailedLogin: result.user.Last_Failed_Login,
+        lastFeedback: result.user.Last_Feedback,
+        userSettings: result.user.User_Settings,
+        authenticated: result.user.Authenticated
+      };
+
+      return user;
+    } catch (err) {
+      throw err;
+    }
+  }
 
   /**
    * @param email User's email
@@ -58,7 +108,7 @@ export class AuthService {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { email, password, };
-      const result: SLLoginResult = await this.http.post(`${API_ENDPOINT}/login`, body, { headers }).toPromise() as SLLoginResult;
+      const result = await this.http.post(`${API_ENDPOINT}/login`, body, { headers }).toPromise() as SLLoginResult;
 
       return result;
     } catch (err) {
@@ -75,11 +125,35 @@ export class AuthService {
    * 
    * @returns Whether registration was successful
    */
-  async register(nickname: string, email: string, password: string, securityQuestion: string, securityAnswer: string): Promise<SLRegisterResult> {
+  async register(
+    nickname: string,
+    email: string,
+    password: string,
+    securityQuestion: string,
+    securityAnswer: string
+  ): Promise<SLRegisterResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { nickname, email, password, securityQuestion, securityAnswer };
-      const result: SLRegisterResult = await this.http.post(`${API_ENDPOINT}/register`, body, { headers }).toPromise() as SLRegisterResult;
+      const result = await this.http.post(`${API_ENDPOINT}/register`, body, { headers }).toPromise() as SLRegisterResult;
+
+      return result;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @param email The user's email
+   * @param nickname The updated nickname
+   * 
+   * @returns Whether the nickname update was successful
+   */
+  async updateNickname(email: string, nickname: string): Promise<SLUpdateNicknameResult> {
+    try {
+      const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+      const body = { email, nickname };
+      const result = await this.http.post(`${API_ENDPOINT}/update/nickname`, body, { headers }).toPromise() as SLUpdateNicknameResult;
 
       return result;
     } catch (err) {

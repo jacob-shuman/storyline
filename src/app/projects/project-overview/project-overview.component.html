@@ -12,10 +12,10 @@
     <div *ngIf="!loadingProject" class="row" style="text-align: start;">
       <div class="col-md-12 mb-5">
         <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
-          Create Character
+          Project Overview
         </h1>
 
-        <button class="btn circle btn-secondary m-1" [routerLink]="'/project/' + projectService.currentProject.id + '/characters'">
+        <button class="btn circle btn-secondary m-1" routerLink="/projects">
           <svg
             class="bi bi-arrow-left-short"
             width="2em"
@@ -36,6 +36,41 @@
             />
           </svg>
         </button>
+
+        <button
+          class="btn circle btn-warning m-1 align-middle"
+          (click)="archiveProject()"
+        >
+          <svg
+            class="bi bi-power text-light"
+            width="1.5em"
+            height="1.5em"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M14.643 17C15.979 17 17 15.845 17 14.5V7H3v7.5C3 15.845 4.021 17 5.357 17h9.286zM8 9a.5.5 0 000 1h4a.5.5 0 000-1H8zM3 3a1 1 0 00-1 1v1.5a1 1 0 001 1h14a1 1 0 001-1V4a1 1 0 00-1-1H3z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+
+        <button class="btn circle btn-danger m-1" (click)="deleteProject()">
+          <svg
+            class="bi bi-power text-light"
+            width="1.5em"
+            height="1.5em"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.5 3a1 1 0 00-1 1v1a1 1 0 001 1H5v9a2 2 0 002 2h6a2 2 0 002-2V6h.5a1 1 0 001-1V4a1 1 0 00-1-1H12a1 1 0 00-1-1H9a1 1 0 00-1 1H4.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM10 7a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 0110 7zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
       </div>
       <div class="col-md-6">
         <div class="card">
@@ -51,7 +86,7 @@
                 <input
                   type="text"
                   name="name"
-                  [(ngModel)]="character.name"
+                  [(ngModel)]="project.name"
                   class="form-control"
                 />
               </div>
@@ -63,7 +98,7 @@
                 <input
                   type="text"
                   name="description"
-                  [(ngModel)]="character.description"
+                  [(ngModel)]="project.description"
                   class="form-control"
                 />
               </div>
@@ -71,10 +106,19 @@
               <button
                 type="button"
                 class="shadow-sm rounded-pill btn btn-success px-3 py-2"
-                (click)="createCharacter()"
-                [disabled]="!validateFields()"
+                (click)="updateProject()"
+                [disabled]="
+                  ((project.name === projectService.currentProject.name ||
+                    project.name.trim() === '') &&
+                    (project.description ===
+                      projectService.currentProject.description ||
+                      project.description.trim() === '')) ||
+                  project.name.trim() === '' ||
+                  project.description.trim() === '' ||
+                  updatingProject
+                "
               >
-                <span style="font-size: 1rem;">Confirm</span>
+                <span style="font-size: 1rem;">Update</span>
               </button>
             </div>
           </div>
