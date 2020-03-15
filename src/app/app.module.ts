@@ -36,19 +36,19 @@ import { ArchiveCardComponent } from './archive/archive-card/archive-card.compon
     AppComponent,
     NavComponent,
     FooterComponent,
-    
+
     HomeComponent,
     SectionComponent,
-    
+
     LoginComponent,
     RegisterComponent,
     ResetPasswordComponent,
-    
+
     SettingsComponent,
-    
+
     NotFoundComponent,
     NoContentComponent,
-    
+
     ProjectsComponent,
     CreateProjectComponent,
     ProjectCardComponent,
@@ -60,9 +60,9 @@ import { ArchiveCardComponent } from './archive/archive-card/archive-card.compon
     CreateCharacterComponent,
 
     PlacesComponent,
-    
+
     GroupsComponent,
-    
+
     ObjectsComponent,
 
     ArchiveComponent,
