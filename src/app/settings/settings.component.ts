@@ -14,6 +14,7 @@ import { EmailService } from '../services/email.service';
 export class SettingsComponent {
   user: SLUser;
 
+  sendingFeedback = false;
   disableConfirmButton = true;
   currentPassword: string;
   newPassword: string;
@@ -52,13 +53,17 @@ export class SettingsComponent {
   }
 
   public async submitFeedback() {
+    this.sendingFeedback = true;
+
     try {
       await this.emailService.sendFeedback(this.user.id, this.feedback);
       Swal.fire(TOAST.FEEDBACK_SUCCESS);
     } catch (err) {
       console.log('There was an error submitting your feedback: ', err);
-      Swal.fire(TOAST.FEEDBACK_FAIL);
+      Swal.fire({ ...TOAST.FEEDBACK_FAIL, text: err });
     }
+
+    this.sendingFeedback = false;
   }
 
 }

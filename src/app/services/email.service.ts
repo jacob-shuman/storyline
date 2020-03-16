@@ -27,6 +27,10 @@ export class EmailService {
       const body = { id, feedback };
       const result = await this.http.post(`${API_ENDPOINT}/feedback`, body, { headers }).toPromise() as SLSendFeedbackResult;
 
+      if (!result.success || result.error) {
+        throw result.error;
+      }
+
       return result.success;
     } catch (err) {
       throw err;

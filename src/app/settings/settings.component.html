@@ -108,7 +108,7 @@
               <button
                 type="button"
                 class="shadow-sm rounded-pill btn btn-primary mt-2 px-3 py-2"
-                [disabled]="!feedback || feedback.length < 10"
+                [disabled]="!feedback || feedback.length < 10 || sendingFeedback"
                 (click)="submitFeedback()"
               >
                 <span style="font-size: 1rem;">Send</span>
