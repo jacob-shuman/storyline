@@ -1,53 +1,87 @@
 <div class="center">
-    <div class="container" style="text-align: center;">
-      <div
-        *ngIf="loadingGroups"
-        class="spinner-grow text-primary"
-        style="width: 5rem; height: 5rem;"
-        role="status"
+  <div class="container" style="text-align: center;">
+    <div
+      *ngIf="loadingGroups"
+      class="spinner-grow text-primary"
+      style="width: 5rem; height: 5rem;"
+      role="status"
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <app-no-content
+      *ngIf="
+        !loadingGroups &&
+        (!groupService.groups || groupService.groups.length < 1)
+      "
+      title="Groups"
+      style="text-align: start;"
+      subtitle="We can't find groups on this project."
+      createButtonText="Create Group"
+      [createButtonLink]="
+        '/project/' + projectService.currentProject.id + '/groups/create'
+      "
+      projectsButton="true"
+      altButtonText="Sign out"
+      altButtonLink="/logout"
+      imagePath="/assets/img/empty.svg"
+      imageTitle="empty"
+      imageAlt="empty"
+    ></app-no-content>
+
+    <div
+      *ngIf="
+        !loadingGroups && groupService.groups && groupService.groups.length > 0
+      "
+      class="row"
+      style="text-align: start;"
+    >
+      <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
+        All Groups
+      </h1>
+    </div>
+
+    <div
+      *ngIf="
+        !loadingGroups && groupService.groups && groupService.groups.length > 0
+      "
+      class="row"
+    >
+      <button
+        class="btn circle btn-primary m-1"
+        [disabled]="groupService.groups && groupService.groups.length >= 20"
+        [routerLink]="
+          '/project/' + projectService.currentProject.id + '/groups/create'
+        "
       >
-        <span class="sr-only">Loading...</span>
-      </div>
-  
-      <app-no-content
-        *ngIf="!loadingGroups && (!groups || groups.length < 1)"
-        title="Groups"
-        style="text-align: start;"
-        subtitle="We can't find groups on this project."
-        createButtonText="Create Group"
-        createButtonLink="/groups/create"
-        disableCreateButton="true"
-        projectsButton="true"
-        altButtonText="Sign out"
-        altButtonLink="/logout"
-        imagePath="/assets/img/empty.svg"
-        imageTitle="empty"
-        imageAlt="empty"
-      ></app-no-content>
-  
-      <div
-        *ngIf="!loadingGroups && groups && groups.length > 0"
-        class="row"
-        style="text-align: start;"
-      >
-        <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
-          All Groups
-        </h1>
-  
-        <div class="container">
-          <div *ngIf="groups && groups.length > 0" class="row">
-            <div class="card">
-              <div class="card-body">
-                <table class="table">
-                  <tr>
-                    <th>Name</th>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <svg
+          class="bi bi-plus"
+          width="2em"
+          height="2em"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 5.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H6a.5.5 0 010-1h3.5V6a.5.5 0 01.5-.5z"
+            clip-rule="evenodd"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M9.5 10a.5.5 0 01.5-.5h4a.5.5 0 010 1h-3.5V14a.5.5 0 01-1 0v-4z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div
+      class="row my-3"
+      style="text-align: start;"
+      *ngFor="let group of groupService.groups"
+    >
+      <app-group-card class="col-md-12" [group]="group"> </app-group-card>
     </div>
   </div>
-  
+</div>

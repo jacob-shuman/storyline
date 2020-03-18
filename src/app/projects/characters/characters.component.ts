@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-import { SLCharacter, ProjectService } from 'src/app/services/project/project.service';
 import { Router } from '@angular/router';
+
+import { ProjectService } from 'src/app/services/project/project.service';
+import { SLCharacter, CharacterService } from 'src/app/services/character/character.service';
 
 @Component({
   selector: 'app-characters',
@@ -9,13 +10,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./characters.component.css']
 })
 export class CharactersComponent implements OnInit {
-  characters: SLCharacter[];
   loadingCharacters = true;
 
-  constructor(private router: Router, public projectService: ProjectService) { }
+  constructor(private router: Router, public projectService: ProjectService, public characterService: CharacterService) { }
 
-  ngOnInit() {
-    this.loadProject();
+  async ngOnInit() {
+    await this.loadProject();
+
+    try {
+      await this.characterService.getCharacters(this.projectService.currentProject.id);
+    } catch (err) {
+      console.error(err);
+    }
+
+    this.loadingCharacters = false;
   }
 
   async loadProject() {
@@ -23,13 +31,10 @@ export class CharactersComponent implements OnInit {
       const projectId = this.router.parseUrl(this.router.url).root.children.primary.segments[1];
 
       try {
-        this.projectService.currentProject = await this.projectService.getProjectsById(projectId.path);
-      } catch(err) {
+        this.projectService.currentProject = await this.projectService.getProjectById(projectId.path);
+      } catch (err) {
         this.router.navigate(['projects']);
       }
     }
-
-    this.loadingCharacters = false;
   }
-
 }

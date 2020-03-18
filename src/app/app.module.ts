@@ -30,6 +30,13 @@ import { CreateCharacterComponent } from './projects/characters/create-character
 import { ProjectOverviewComponent } from './projects/project-overview/project-overview.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { ArchiveCardComponent } from './archive/archive-card/archive-card.component';
+import { CharacterCardComponent } from './projects/characters/character-card/character-card.component';
+import { PlaceCardComponent } from './projects/places/place-card/place-card.component';
+import { ObjectCardComponent } from './projects/objects/object-card/object-card.component';
+import { GroupCardComponent } from './projects/groups/group-card/group-card.component';
+import { CreateGroupComponent } from './projects/groups/create-group/create-group.component';
+import { CreatePlaceComponent } from './projects/places/create-place/create-place.component';
+import { CreateObjectComponent } from './projects/objects/create-object/create-object.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +73,14 @@ import { ArchiveCardComponent } from './archive/archive-card/archive-card.compon
     ObjectsComponent,
 
     ArchiveComponent,
-    ArchiveCardComponent
+    ArchiveCardComponent,
+    CharacterCardComponent,
+    PlaceCardComponent,
+    ObjectCardComponent,
+    GroupCardComponent,
+    CreateGroupComponent,
+    CreatePlaceComponent,
+    CreateObjectComponent
   ],
   imports: [
     BrowserModule,

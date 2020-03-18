@@ -22,7 +22,7 @@ export class EventsComponent implements OnInit {
       const projectId = this.router.parseUrl(this.router.url).root.children.primary.segments[1];
 
       try {
-        this.projectService.currentProject = await this.projectService.getProjectsById(projectId.path);
+        this.projectService.currentProject = await this.projectService.getProjectById(projectId.path);
       } catch(err) {
         this.router.navigate(['projects']);
       }

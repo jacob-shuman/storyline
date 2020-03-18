@@ -4,7 +4,7 @@ import Swal from 'ngx-angular8-sweetalert2';
 
 import { SECURITY_QUESTIONS, TOAST } from '../constants';
 import { AuthService, SLUser } from '../services/auth/auth.service';
-import { EmailService } from '../services/email.service';
+import { EmailService } from '../services/email/email.service';
 
 @Component({
   selector: 'app-settings',

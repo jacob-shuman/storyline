@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-body ">
+      <div class="row">
+        <div class="col-md-10">
+          <h1>{{ place.name }}</h1>
+          <h5 class="font-italic text-secondary">
+            {{ place.description }}
+          </h5>
+        </div>
+  
+        <div class="col-md-2 align-self-center">
+          <button class="btn circle btn-secondary m-1" (click)="selectPlace()">
+            <svg
+              class="bi bi-power text-light"
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M12.5 10a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+              <path
+                fill-rule="evenodd"
+                d="M2 10s3-5.5 8-5.5 8 5.5 8 5.5-3 5.5-8 5.5S2 10 2 10zm8 3.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+  
+          <button class="btn circle btn-danger m-1" (click)="deletePlace()">
+            <svg
+              class="bi bi-power text-light"
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.5 3a1 1 0 00-1 1v1a1 1 0 001 1H5v9a2 2 0 002 2h6a2 2 0 002-2V6h.5a1 1 0 001-1V4a1 1 0 00-1-1H12a1 1 0 00-1-1H9a1 1 0 00-1 1H4.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM10 7a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 0110 7zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

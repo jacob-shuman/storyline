@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 
 import Swal from 'ngx-angular8-sweetalert2';
 
-import { ProjectService, SLCharacter } from 'src/app/services/project/project.service';
 import { TOAST } from 'src/app/constants';
+import { SLCharacter, SLCreateCharacterResult, CharacterService } from 'src/app/services/character/character.service';
+import { ProjectService } from 'src/app/services/project/project.service';
 
 @Component({
   selector: 'app-create-character',
@@ -13,9 +14,10 @@ import { TOAST } from 'src/app/constants';
 })
 export class CreateCharacterComponent implements OnInit {
   loadingProject = true;
+  loadingCharacter = false;
   character: SLCharacter;
 
-  constructor(private router: Router, public projectService: ProjectService) { }
+  constructor(private router: Router, public projectService: ProjectService, public characterService: CharacterService) { }
 
   ngOnInit() {
     this.loadProject();
@@ -26,7 +28,7 @@ export class CreateCharacterComponent implements OnInit {
       const projectId = this.router.parseUrl(this.router.url).root.children.primary.segments[1];
 
       try {
-        this.projectService.currentProject = await this.projectService.getProjectsById(projectId.path);
+        this.projectService.currentProject = await this.projectService.getProjectById(projectId.path);
       } catch (err) {
         this.router.navigate(['projects']);
       }
@@ -54,8 +56,24 @@ export class CreateCharacterComponent implements OnInit {
     return true;
   }
 
-  public createCharacter(): void {
-    Swal.fire(TOAST.UNDER_CONSTRUCTION);
-  }
+  public async createCharacter(): Promise<void> {
+    this.loadingCharacter = true;
 
+    try {
+      const result: SLCreateCharacterResult = await this.characterService.createCharacter(this.character);
+
+      if (result.success) {
+        await this.characterService.getCharacters(this.projectService.currentProject.id, true);
+        this.router.navigate(['project', this.character.projectId, 'characters']);
+      } else if (result.error) {
+        throw result.error;
+      }
+      Swal.fire({ ...TOAST.SUCCESS, title: `"${this.character.name}" was created successfully!` });
+
+    } catch (error) {
+      Swal.fire({ ...TOAST.FAIL, title: `There was an error creating "${this.character.name}" :(`, text: error });
+    }
+
+    this.loadingCharacter = true;
+  }
 }

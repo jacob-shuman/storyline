@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SLGroup, ProjectService } from 'src/app/services/project/project.service';
 import { Router } from '@angular/router';
+
+import { ProjectService } from 'src/app/services/project/project.service';
+import { SLGroup, GroupService } from 'src/app/services/group/group.service';
 
 @Component({
   selector: 'app-groups',
@@ -8,13 +10,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./groups.component.css']
 })
 export class GroupsComponent implements OnInit {
-  groups: SLGroup[];
   loadingGroups = true;
 
-  constructor(private projectService: ProjectService, private router: Router) { }
+  constructor(private router: Router, public projectService: ProjectService, public groupService: GroupService) { }
 
-  ngOnInit() {
-    this.loadProject();
+
+  async ngOnInit() {
+    await this.loadProject();
+
+    try {
+      await this.groupService.getGroups(this.projectService.currentProject.id);
+    } catch (err) {
+      console.error(err);
+    }
+
+    this.loadingGroups = false;
   }
 
   async loadProject() {
@@ -22,13 +32,11 @@ export class GroupsComponent implements OnInit {
       const projectId = this.router.parseUrl(this.router.url).root.children.primary.segments[1];
 
       try {
-        this.projectService.currentProject = await this.projectService.getProjectsById(projectId.path);
-      } catch(err) {
+        this.projectService.currentProject = await this.projectService.getProjectById(projectId.path);
+      } catch (err) {
         this.router.navigate(['projects']);
       }
     }
-
-    this.loadingGroups = false;
   }
 
 }

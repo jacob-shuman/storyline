@@ -17,6 +17,9 @@ import { ObjectsComponent } from './projects/objects/objects.component';
 import { GroupsComponent } from './projects/groups/groups.component';
 import { EventsComponent } from './projects/events/events.component';
 import { CreateCharacterComponent } from './projects/characters/create-character/create-character.component';
+import { CreateGroupComponent } from './projects/groups/create-group/create-group.component';
+import { CreateObjectComponent } from './projects/objects/create-object/create-object.component';
+import { CreatePlaceComponent } from './projects/places/create-place/create-place.component';
 
 
 const routes: Routes = [
@@ -83,13 +86,28 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    component: CreatePlaceComponent,
+    path: 'project/:id/places/create',
+    canActivate: [AuthGuard]
+  },
+  {
     component: ObjectsComponent,
     path: 'project/:id/objects',
     canActivate: [AuthGuard]
   },
   {
+    component: CreateObjectComponent,
+    path: 'project/:id/objects/create',
+    canActivate: [AuthGuard]
+  },
+  {
     component: GroupsComponent,
     path: 'project/:id/groups',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: CreateGroupComponent,
+    path: 'project/:id/groups/create',
     canActivate: [AuthGuard]
   },
   {

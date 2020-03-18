@@ -29,7 +29,7 @@ export class ProjectOverviewComponent implements OnInit {
       const projectId = this.router.parseUrl(this.router.url).root.children.primary.segments[1];
 
       try {
-        this.projectService.currentProject = await this.projectService.getProjectsById(projectId.path);
+        this.projectService.currentProject = await this.projectService.getProjectById(projectId.path);
         this.project = { ...this.projectService.currentProject };
       } catch (err) {
         this.router.navigate(['projects']);
@@ -52,7 +52,10 @@ export class ProjectOverviewComponent implements OnInit {
   }
 
   async deleteProject() {
-    Swal.fire(TOAST.CONFIRM_DELETE_PROJECT).then(async (result) => {
+    Swal.fire({
+      ...TOAST.CONFIRM_DELETE,
+      confirmButtonText: 'BE GONE PROJECT!'
+    }).then(async (result) => {
       if (result.value) {
         await this.projectService.deleteProject(this.project.id);
         await this.projectService.getProjects(true);
@@ -65,12 +68,14 @@ export class ProjectOverviewComponent implements OnInit {
 
   async updateProject() {
     try {
-      if (this.projectService.currentProject.name !== this.project.name || this.projectService.currentProject.description !== this.project.description) {
+      if (this.projectService.currentProject.name !== this.project.name ||
+        this.projectService.currentProject.description !== this.project.description
+      ) {
         this.updatingProject = true;
-        
+
         this.project = await this.projectService.updateProject(this.project.id, this.project.name, this.project.description);
         this.projectService.currentProject = { ...this.project };
-        
+
         this.updatingProject = false;
 
         Swal.fire(TOAST.SAVE_SUCCESS);

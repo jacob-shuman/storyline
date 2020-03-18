@@ -10,12 +10,17 @@
     </div>
 
     <app-no-content
-      *ngIf="!loadingCharacters && (!characters || characters.length < 1)"
+      *ngIf="
+        !loadingCharacters &&
+        (!characterService.characters || characterService.characters.length < 1)
+      "
       title="Characters"
       style="text-align: start;"
       subtitle="We can't find characters on this project."
       createButtonText="Create Character"
-      [createButtonLink]="'/project/'+projectService.currentProject.id+'/characters/create'"
+      [createButtonLink]="
+        '/project/' + projectService.currentProject.id + '/characters/create'
+      "
       projectsButton="true"
       altButtonText="Sign out"
       altButtonLink="/logout"
@@ -25,27 +30,54 @@
     ></app-no-content>
 
     <div
-      *ngIf="!loadingCharacters && characters && characters.length > 0"
+      *ngIf="
+        !loadingCharacters &&
+        characterService.characters &&
+        characterService.characters.length > 0
+      "
       class="row"
       style="text-align: start;"
     >
       <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
         All Characters
       </h1>
-
-      <div class="container">
-        <div *ngIf="characters && characters.length > 0" class="row">
-          <div class="card">
-            <div class="card-body">
-              <table class="table">
-                <tr>
-                  <th>Name</th>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
+    <div *ngIf="!loadingCharacters && characterService.characters && characterService.characters.length > 0" class="row">
+      <button
+        [disabled]="characterService.characters && characterService.characters.length >= 20"
+        class="btn circle btn-primary m-1"
+        [routerLink]="
+          '/project/' + projectService.currentProject.id + '/characters/create'
+        "
+      >
+        <svg
+          class="bi bi-plus"
+          width="2em"
+          height="2em"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 5.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H6a.5.5 0 010-1h3.5V6a.5.5 0 01.5-.5z"
+            clip-rule="evenodd"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M9.5 10a.5.5 0 01.5-.5h4a.5.5 0 010 1h-3.5V14a.5.5 0 01-1 0v-4z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="row my-3"
+      style="text-align: start;"
+      *ngFor="let character of characterService.characters"
+    >
+      <app-character-card class="col-md-12" [character]="character">
+      </app-character-card>
     </div>
   </div>
 </div>

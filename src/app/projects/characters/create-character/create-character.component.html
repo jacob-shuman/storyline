@@ -15,7 +15,12 @@
           Create Character
         </h1>
 
-        <button class="btn circle btn-secondary m-1" [routerLink]="'/project/' + projectService.currentProject.id + '/characters'">
+        <button
+          class="btn circle btn-secondary m-1"
+          [routerLink]="
+            '/project/' + projectService.currentProject.id + '/characters'
+          "
+        >
           <svg
             class="bi bi-arrow-left-short"
             width="2em"
@@ -38,47 +43,49 @@
         </button>
       </div>
       <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="col-md-12">
-              <h3 class="text-dark" style="font-weight: bold;">
-                General
-              </h3>
-              <div class="input-group my-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Name</span>
+        <form (submit)="onCreateCharacterSubmit()">
+          <div class="card">
+            <div class="card-body">
+              <div class="col-md-12">
+                <h3 class="text-dark" style="font-weight: bold;">
+                  General
+                </h3>
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Name</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="name"
+                    [(ngModel)]="character.name"
+                    class="form-control"
+                  />
                 </div>
-                <input
-                  type="text"
-                  name="name"
-                  [(ngModel)]="character.name"
-                  class="form-control"
-                />
-              </div>
 
-              <div class="input-group my-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Description</span>
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Description</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="description"
+                    [(ngModel)]="character.description"
+                    class="form-control"
+                  />
                 </div>
-                <input
-                  type="text"
-                  name="description"
-                  [(ngModel)]="character.description"
-                  class="form-control"
-                />
-              </div>
 
-              <button
-                type="button"
-                class="shadow-sm rounded-pill btn btn-success px-3 py-2"
-                (click)="createCharacter()"
-                [disabled]="!validateFields()"
-              >
-                <span style="font-size: 1rem;">Confirm</span>
-              </button>
+                <button
+                  type="button"
+                  class="shadow-sm rounded-pill btn btn-success px-3 py-2"
+                  (click)="createCharacter()"
+                  [disabled]="!validateFields() || loadingCharacter"
+                >
+                  <span style="font-size: 1rem;">Confirm</span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

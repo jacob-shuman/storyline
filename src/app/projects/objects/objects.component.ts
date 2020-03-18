@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProjectService, SLObject } from 'src/app/services/project/project.service';
+
+import { ProjectService } from 'src/app/services/project/project.service';
+import { SLObject, ObjectService } from 'src/app/services/object/object.service';
 
 @Component({
   selector: 'app-objects',
@@ -8,13 +10,21 @@ import { ProjectService, SLObject } from 'src/app/services/project/project.servi
   styleUrls: ['./objects.component.css']
 })
 export class ObjectsComponent implements OnInit {
-  objects: SLObject[];
   loadingObjects = true;
 
-  constructor(private projectService: ProjectService, private router: Router) { }
+  constructor(private router: Router, public projectService: ProjectService, public objectService: ObjectService) { }
 
-  ngOnInit() {
-    this.loadProject();
+  
+  async ngOnInit() {
+    await this.loadProject();
+
+    try {
+      await this.objectService.getObjects(this.projectService.currentProject.id);
+    } catch (err) {
+      console.error(err);
+    }
+
+    this.loadingObjects = false;
   }
 
   async loadProject() {
@@ -22,13 +32,11 @@ export class ObjectsComponent implements OnInit {
       const projectId = this.router.parseUrl(this.router.url).root.children.primary.segments[1];
 
       try {
-        this.projectService.currentProject = await this.projectService.getProjectsById(projectId.path);
-      } catch(err) {
+        this.projectService.currentProject = await this.projectService.getProjectById(projectId.path);
+      } catch (err) {
         this.router.navigate(['projects']);
       }
     }
-
-    this.loadingObjects = false;
   }
 
 }

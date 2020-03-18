@@ -31,14 +31,14 @@ export const SECURITY_QUESTIONS = [
 
 // NOTE This is an override for all other constants!
 // Please make sure to always leave this value as true when pushing to git!
-export const PRODUCTION = true;
+export const PRODUCTION = false;
 
 // Cookies
 export const SESSION_NAME = 'user';
 export const SESSION_EXPIRY_DAYS = 7;
 export const SESSION_SECURE = PRODUCTION;
 
-export const LOCAL_API = false;
+export const LOCAL_API = true;
 
 export const API_HOST = PRODUCTION || (!PRODUCTION && !LOCAL_API) ? 'https://prj666.mystudentlab.ca' : 'http://localhost';
 export const API_PORT = PRODUCTION || (!PRODUCTION && !LOCAL_API) ? 6915 : 10040;
@@ -87,6 +87,24 @@ export const TOAST = {
         timerProgressBar: true,
         toast: true,
     },
+    SUCCESS: {
+        position: 'bottom-end',
+        icon: 'success',
+        showConfirmButton: false,
+        showCloseButton: true,
+        timer: 3000,
+        timerProgressBar: true,
+        toast: true,
+    },
+    FAIL: {
+        position: 'bottom-end',
+        icon: 'error',
+        showConfirmButton: false,
+        showCloseButton: true,
+        timer: 3000,
+        timerProgressBar: true,
+        toast: true,
+    },
     FEEDBACK_SUCCESS: {
         title: 'Your feedback was submitted successfully!',
         position: 'bottom-end',
@@ -107,14 +125,13 @@ export const TOAST = {
         timerProgressBar: true,
         toast: true,
     },
-    CONFIRM_DELETE_PROJECT: {
+    CONFIRM_DELETE: {
         title: 'Woah, are you sure about this?',
         text: 'You can\'t undo this!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'BE GONE PROJECT!'
     },
     PROJECT_DELETED: {
         title: 'Its Gone...',
@@ -136,5 +153,29 @@ export const TOAST = {
         text: 'Your project has been moved to the archive',
         icon: 'success',
         confirmButtonColor: '#3085d6',
-    }
+    },
+    CHARACTER_DELETED: {
+        title: 'Its Gone...',
+        text: 'Your character has been deleted :(',
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+    },
+    PLACE_DELETED: {
+        title: 'Its Gone...',
+        text: 'Your place has been deleted :(',
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+    },
+    OBJECT_DELETED: {
+        title: 'Its Gone...',
+        text: 'Your object has been deleted :(',
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+    },
+    GROUP_DELETED: {
+        title: 'Its Gone...',
+        text: 'Your group has been deleted :(',
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+    },
 };

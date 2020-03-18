@@ -28,7 +28,10 @@ export class ArchiveCardComponent {
   }
 
   async deleteProject() {
-    Swal.fire(TOAST.CONFIRM_DELETE_PROJECT).then(async (result) => {
+    Swal.fire({
+      ...TOAST.CONFIRM_DELETE,
+      confirmButtonText: 'BE GONE PROJECT!'
+    }).then(async (result) => {
       if (result.value) {
         await this.projectService.deleteProject(this.project.id);
         await this.projectService.getProjects(true);

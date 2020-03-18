@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-import { API_ENDPOINT } from '../constants';
+import { API_ENDPOINT } from '../../constants';
 
 export interface SLSendFeedbackResult {
   success: boolean;

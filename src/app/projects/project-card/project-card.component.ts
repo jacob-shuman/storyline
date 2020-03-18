@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 import Swal from 'ngx-angular8-sweetalert2';
 
-import { SLProject, ProjectService } from 'src/app/services/project/project.service';
 import { TOAST } from 'src/app/constants';
+import { SLProject, ProjectService } from 'src/app/services/project/project.service';
 
 @Component({
   selector: 'app-project-card',
@@ -32,7 +32,10 @@ export class ProjectCardComponent {
   }
 
   async deleteProject() {
-    Swal.fire(TOAST.CONFIRM_DELETE_PROJECT).then(async (result) => {
+    Swal.fire({
+      ...TOAST.CONFIRM_DELETE,
+      confirmButtonText: 'BE GONE PROJECT!'
+    }).then(async (result) => {
       if (result.value) {
         await this.projectService.deleteProject(this.project.id);
         await this.projectService.getProjects(true);

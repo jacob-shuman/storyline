@@ -24,12 +24,12 @@ export class AppComponent implements OnInit {
     if (this.cookieService.check('user')) {
       try {
         this.authService.user = JSON.parse(this.cookieService.get('user'));
-        
+
         this.authService.user = await this.authService.getUser(this.authService.user.id, this.authService.user.password);
-        
+
         this.cookieService.delete('user')
         this.cookieService.set(SESSION_NAME, JSON.stringify(this.authService.user), SESSION_EXPIRY_DAYS, undefined, undefined, SESSION_SECURE);
-      } catch(err) {
+      } catch (err) {
         console.log("Internal Error Occurred: ", err);
         this.cookieService.delete('user');
       }
