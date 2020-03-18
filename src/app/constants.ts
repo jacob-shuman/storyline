@@ -31,14 +31,14 @@ export const SECURITY_QUESTIONS = [
 
 // NOTE This is an override for all other constants!
 // Please make sure to always leave this value as true when pushing to git!
-export const PRODUCTION = false;
+export const PRODUCTION = true;
 
 // Cookies
 export const SESSION_NAME = 'user';
 export const SESSION_EXPIRY_DAYS = 7;
 export const SESSION_SECURE = PRODUCTION;
 
-export const LOCAL_API = true;
+export const LOCAL_API = false;
 
 export const API_HOST = PRODUCTION || (!PRODUCTION && !LOCAL_API) ? 'https://prj666.mystudentlab.ca' : 'http://localhost';
 export const API_PORT = PRODUCTION || (!PRODUCTION && !LOCAL_API) ? 6915 : 10040;
