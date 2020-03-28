@@ -18,8 +18,11 @@ export class CharacterCardComponent {
   constructor(private router: Router, private projectService: ProjectService, private characterService: CharacterService) { }
 
   async selectCharacter() {
-    await Swal.fire(TOAST.UNDER_CONSTRUCTION);
-    // this.router.navigate(['project', this.projectService.currentProject.id, 'characters', this.character.id]);
+    // await Swal.fire(TOAST.UNDER_CONSTRUCTION);
+    this.router.navigate(
+      ['project', this.projectService.currentProject.id, 'characters', this.character.id],
+      { state: { character: this.character } }
+    );
   }
 
   async deleteCharacter() {

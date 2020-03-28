@@ -31,7 +31,9 @@
 
     <div
       *ngIf="
-        !loadingObjects && objectService.objects && objectService.objects.length > 0
+        !loadingObjects &&
+        objectService.objects &&
+        objectService.objects.length > 0
       "
       class="row"
       style="text-align: start;"
@@ -43,7 +45,9 @@
 
     <div
       *ngIf="
-        !loadingObjects && objectService.objects && objectService.objects.length > 0
+        !loadingObjects &&
+        objectService.objects &&
+        objectService.objects.length > 0
       "
       class="row"
     >
@@ -76,12 +80,14 @@
       </button>
     </div>
 
-    <div
-      class="row my-3"
-      style="text-align: start;"
-      *ngFor="let object of objectService.objects"
-    >
-      <app-object-card class="col-md-12" [object]="object"> </app-object-card>
-    </div>
+    <ng-container *ngIf="!loadingObjects">
+      <div
+        class="row my-3"
+        style="text-align: start;"
+        *ngFor="let object of objectService.objects"
+      >
+        <app-object-card class="col-md-12" [object]="object"> </app-object-card>
+      </div>
+    </ng-container>
   </div>
 </div>

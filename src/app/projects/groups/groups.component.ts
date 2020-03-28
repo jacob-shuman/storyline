@@ -16,6 +16,8 @@ export class GroupsComponent implements OnInit {
 
 
   async ngOnInit() {
+    this.loadingGroups = true;
+
     await this.loadProject();
 
     try {

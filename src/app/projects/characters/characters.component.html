@@ -42,9 +42,19 @@
         All Characters
       </h1>
     </div>
-    <div *ngIf="!loadingCharacters && characterService.characters && characterService.characters.length > 0" class="row">
+    <div
+      *ngIf="
+        !loadingCharacters &&
+        characterService.characters &&
+        characterService.characters.length > 0
+      "
+      class="row"
+    >
       <button
-        [disabled]="characterService.characters && characterService.characters.length >= 20"
+        [disabled]="
+          characterService.characters &&
+          characterService.characters.length >= 20
+        "
         class="btn circle btn-primary m-1"
         [routerLink]="
           '/project/' + projectService.currentProject.id + '/characters/create'
@@ -71,13 +81,15 @@
         </svg>
       </button>
     </div>
-    <div
-      class="row my-3"
-      style="text-align: start;"
-      *ngFor="let character of characterService.characters"
-    >
-      <app-character-card class="col-md-12" [character]="character">
-      </app-character-card>
-    </div>
+    <ng-container *ngIf="!loadingCharacters">
+      <div
+        class="row my-3"
+        style="text-align: start;"
+        *ngFor="let character of characterService.characters"
+      >
+        <app-character-card class="col-md-12" [character]="character">
+        </app-character-card>
+      </div>
+    </ng-container>
   </div>
 </div>

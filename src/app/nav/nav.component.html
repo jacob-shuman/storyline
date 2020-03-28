@@ -7,10 +7,36 @@
       alt="Storline S logo"
     />
   </a>
+
+  <button
+    class="btn navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <svg
+      class="bi bi-list"
+      width="1.5em"
+      height="1.5em"
+      viewBox="0 0 16 16"
+      fill="var(--text)"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M2.5 11.5A.5.5 0 013 11h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 7h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 3h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  </button>
+
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul
       *ngIf="authService.user && !projectService.currentProject"
-      class="navbar-nav"
+      class="navbar-nav mr-auto"
     >
       <li [class]="(router.url == '/projects' ? 'active' : '') + ' nav-item'">
         <a class="nav-link" routerLink="/projects"
@@ -45,22 +71,18 @@
     >
       <li
         [class]="
-          (router.url ==
-          '/project/' + projectService.currentProject.id
+          (router.url == '/project/' + projectService.currentProject.id
             ? 'active'
             : '') + ' nav-item'
         "
       >
         <a
           class="nav-link"
-          [routerLink]="
-            '/project/' + projectService.currentProject.id
-          "
+          [routerLink]="'/project/' + projectService.currentProject.id"
           >Overview
           <span
             *ngIf="
-              router.url ===
-              '/project/' + projectService.currentProject.id
+              router.url === '/project/' + projectService.currentProject.id
             "
             class="sr-only"
           >
@@ -234,32 +256,23 @@
         </a>
       </li>
     </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li *ngIf="authService.user" class="nav-item">
+        <a class="nav-link" (click)="signout()" style="cursor: pointer;">
+          <span class="text-danger">Sign Out</span>
+        </a>
+      </li>
+      <li *ngIf="!authService.user" class="nav-item">
+        <a class="nav-link" (click)="register()" style="cursor: pointer;">
+          Register
+        </a>
+      </li>
+      <li *ngIf="!authService.user" class="nav-item">
+        <a class="nav-link" (click)="login()" style="cursor: pointer;">
+          Login
+        </a>
+      </li>
+    </ul>
   </div>
-
-  <button
-    *ngIf="!authService.user"
-    type="button"
-    class="shadow-sm rounded-pill btn btn-secondary px-3 py-2 mr-2"
-    routerLink="/register"
-  >
-    <span style="font-size: 1rem;">Register</span>
-  </button>
-
-  <button
-    *ngIf="!authService.user"
-    type="button"
-    class="shadow-sm rounded-pill btn btn-secondary px-3 py-2"
-    routerLink="/login"
-  >
-    <span style="font-size: 1rem;">Login</span>
-  </button>
-
-  <button
-    *ngIf="authService.user"
-    type="button"
-    class="shadow-sm rounded-pill btn btn-danger px-3 py-2"
-    (click)="signout()"
-  >
-    <span style="font-size: 1rem;">Sign Out</span>
-  </button>
 </nav>

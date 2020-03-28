@@ -6,29 +6,33 @@
           Settings
         </h1>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h5>Storyline Version 0.1.0</h5>
+        <button class="btn circle btn-secondary " (click)="viewPatchNotes()">
+          <svg
+            class="bi bi-question-fill"
+            width="2em"
+            height="2em"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.57 8.033H7.25C7.22 6.147 8.68 5.5 10.006 5.5c1.397 0 2.673.73 2.673 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.355H9.117l-.007-.463c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.901 0-1.358.603-1.358 1.384zm1.251 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="col-md-12">
-              <h3 class="text-dark" style="font-weight: bold;">
-                Account
-                <span>
-                  <svg
-                    class="bi bi-person-fill"
-                    width="1em"
-                    height="1em"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5 16s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H5zm5-6a3 3 0 100-6 3 3 0 000 6z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </span>
-              </h3>
+        <app-card>
+          <div class="col-md-12">
+            <app-card-section title="Account">
               <form>
                 <div class="input-group my-3">
                   <div class="input-group-prepend">
@@ -67,25 +71,10 @@
                   <span style="font-size: 1rem;">Save</span>
                 </button>
               </form>
-            </div>
-            <div class="col-md-12">
-              <h3 class="mt-5 text-dark" style="font-weight: bold;">
-                Send Feedback
-                <span>
-                  <svg
-                    class="bi bi-envelope-fill"
-                    width="1em"
-                    height="1em"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M2.05 5.555L10 10.414l7.95-4.859A2 2 0 0016 4H4a2 2 0 00-1.95 1.555zM18 6.697l-5.875 3.59L18 13.743V6.697zm-.168 8.108l-6.675-3.926-1.157.707-1.157-.707-6.675 3.926A2 2 0 004 16h12a2 2 0 001.832-1.195zM2 13.743l5.875-3.456L2 6.697v7.046z"
-                    />
-                  </svg>
-                </span>
-              </h3>
+            </app-card-section>
+          </div>
+          <div class="col-md-12 pt-5">
+            <app-card-section title="Send Feedback">
               <textarea
                 class="form-control"
                 [(ngModel)]="feedback"
@@ -108,39 +97,21 @@
               <button
                 type="button"
                 class="shadow-sm rounded-pill btn btn-primary mt-2 px-3 py-2"
-                [disabled]="!feedback || feedback.length < 10 || sendingFeedback"
+                [disabled]="
+                  !feedback || feedback.length < 10 || sendingFeedback
+                "
                 (click)="submitFeedback()"
               >
                 <span style="font-size: 1rem;">Send</span>
               </button>
-            </div>
+            </app-card-section>
           </div>
-        </div>
+        </app-card>
       </div>
       <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="col-md-12">
-              <h3 class="text-dark" style="font-weight: bold;">
-                Update Password
-                <span
-                  ><svg
-                    class="bi bi-lock-fill"
-                    width="1em"
-                    height="1em"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect width="11" height="9" x="4.5" y="8" rx="2" />
-                    <path
-                      fill-rule="evenodd"
-                      d="M6.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </span>
-              </h3>
+        <app-card>
+          <div class="col-md-12">
+            <app-card-section title="Update Password">
               <form>
                 <div class="input-group mt-3 mb-4">
                   <div class="input-group-prepend">
@@ -194,27 +165,10 @@
                   <span style="font-size: 1rem;">Confirm</span>
                 </button>
               </form>
-            </div>
-            <div class="col-md-12">
-              <h3 class="text-dark mt-5" style="font-weight: bold;">
-                Update Security Question
-                <span>
-                  <svg
-                    class="bi bi-question-fill"
-                    width="1em"
-                    height="1em"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.57 8.033H7.25C7.22 6.147 8.68 5.5 10.006 5.5c1.397 0 2.673.73 2.673 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.355H9.117l-.007-.463c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.901 0-1.358.603-1.358 1.384zm1.251 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </span>
-              </h3>
+            </app-card-section>
+          </div>
+          <div class="col-md-12 pt-5">
+            <app-card-section title="Update Security Question">
               <h5
                 *ngIf="error"
                 class="text-danger mt-1"
@@ -281,9 +235,9 @@
                   <span style="font-size: 1rem;">Confirm</span>
                 </button>
               </form>
-            </div>
+            </app-card-section>
           </div>
-        </div>
+        </app-card>
       </div>
     </div>
   </div>

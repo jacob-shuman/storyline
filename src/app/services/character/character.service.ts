@@ -14,9 +14,9 @@ export interface SLCharacter {
 
 export interface SLMongoCharacter {
   _id: string;
-  Name: string;
-  Description: string;
-  Project_ID: string;
+  name: string;
+  description: string;
+  projectId: string;
 }
 
 export interface SLCreateCharacterResult {
@@ -50,7 +50,9 @@ export interface SLDeleteCharacterResult {
   providedIn: 'root'
 })
 export class CharacterService {
+  projectId: string;
   characters: SLCharacter[];
+  currentCharacter?: SLCharacter;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -62,9 +64,9 @@ export class CharacterService {
   private parseMongoCharacter(character: SLMongoCharacter): SLCharacter {
     return {
       id: character._id,
-      name: character.Name,
-      description: character.Description,
-      projectId: character.Project_ID
+      name: character.name,
+      description: character.description,
+      projectId: character.projectId
     } as SLCharacter;
   }
 
@@ -111,13 +113,14 @@ export class CharacterService {
   }
 
   async getCharacters(projectId: string, forceUpdate: boolean = false): Promise<SLCharacter[]> {
-    if (!this.characters || forceUpdate) {
+    if (!this.characters || (this.characters && this.projectId !== projectId) || forceUpdate) {
       try {
         const params = { password: this.authService.user.password };
         const url = `${API_ENDPOINT}/project/${projectId}/characters`;
         const result = await this.http.get(url, { params }).toPromise() as SLGetAllCharactersResult;
 
         this.characters = result.characters.map(this.parseMongoCharacter);
+        this.projectId = projectId;
       } catch (err) {
         throw err;
       }
@@ -126,7 +129,7 @@ export class CharacterService {
     return this.characters;
   }
 
-  async updateCharacter(character: SLCharacter): Promise<SLCharacter> {
+  async updateCharacter(character: SLCharacter): Promise<SLUpdateCharacterResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { character };
@@ -134,7 +137,7 @@ export class CharacterService {
 
       const result = await this.http.post(url, body, { headers }).toPromise() as SLUpdateCharacterResult;
 
-      return this.parseMongoCharacter(result.character);
+      return result;
     } catch (err) {
       throw err;
     }

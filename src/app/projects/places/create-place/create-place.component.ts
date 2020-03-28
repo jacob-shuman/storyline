@@ -68,10 +68,10 @@ export class CreatePlaceComponent implements OnInit {
       } else if (result.error) {
         throw result.error;
       }
-      Swal.fire({ ...TOAST.SUCCESS, title: `"${this.place.name}" was created successfully!` });
+      Swal.fire({ ...TOAST.SUCCESS, title: `<span style="color: var(--text)">"${this.place.name}" was created successfully!</span>` });
 
     } catch (error) {
-      Swal.fire({ ...TOAST.FAIL, title: `There was an error creating "${this.place.name}" :(`, text: error });
+      Swal.fire({ ...TOAST.FAIL, title: `<span style="color: var(--text)">There was an error creating "${this.place.name}" :(</span>`, text: error });
     }
 
     this.loadingPlace = true;

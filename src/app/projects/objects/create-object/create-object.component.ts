@@ -68,10 +68,10 @@ export class CreateObjectComponent implements OnInit {
       } else if (result.error) {
         throw result.error;
       }
-      Swal.fire({ ...TOAST.SUCCESS, title: `"${this.object.name}" was created successfully!` });
+      Swal.fire({ ...TOAST.SUCCESS, title: `<span style="color: var(--text)">"${this.object.name}" was created successfully!</span>` });
 
     } catch (error) {
-      Swal.fire({ ...TOAST.FAIL, title: `There was an error creating "${this.object.name}" :(`, text: error });
+      Swal.fire({ ...TOAST.FAIL, title: `<span style="color: var(--text)">There was an error creating "${this.object.name}" :(</span>`, text: error });
     }
 
     this.loadingObject = true;

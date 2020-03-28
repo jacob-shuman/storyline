@@ -51,6 +51,7 @@ export interface SLDeleteObjectResult {
 })
 export class ObjectService {
   objects: SLObject[];
+  projectId: string;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -108,13 +109,14 @@ export class ObjectService {
   }
 
   async getObjects(projectId: string, forceUpdate: boolean = false): Promise<SLObject[]> {
-    if (!this.objects || forceUpdate) {
+    if (!this.objects || (this.objects && this.projectId !== projectId) || forceUpdate) {
       try {
         const params = { password: this.authService.user.password };
         const url = `${API_ENDPOINT}/project/${projectId}/objects`;
         const result = await this.http.get(url, { params }).toPromise() as SLGetAllObjectsResult;
 
         this.objects = result.objects.map(this.parseMongoObject);
+        this.projectId = projectId;
       } catch (err) {
         throw err;
       }

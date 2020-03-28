@@ -37,6 +37,10 @@ import { GroupCardComponent } from './projects/groups/group-card/group-card.comp
 import { CreateGroupComponent } from './projects/groups/create-group/create-group.component';
 import { CreatePlaceComponent } from './projects/places/create-place/create-place.component';
 import { CreateObjectComponent } from './projects/objects/create-object/create-object.component';
+import { CharacterComponent } from './projects/characters/character/character.component';
+import { ElementCardComponent } from './projects/element-card/element-card.component';
+import { CardComponent } from './card/card.component';
+import { CardSectionComponent } from './card/card-section/card-section.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,15 @@ import { CreateObjectComponent } from './projects/objects/create-object/create-o
     GroupCardComponent,
     CreateGroupComponent,
     CreatePlaceComponent,
-    CreateObjectComponent
+    CreateObjectComponent,
+
+    CharacterComponent,
+
+    ElementCardComponent,
+
+    CardComponent,
+
+    CardSectionComponent
   ],
   imports: [
     BrowserModule,

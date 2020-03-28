@@ -1,40 +1,38 @@
 <div class="container">
   <div class="row" style="align-items: center; height: 100vh; display: flex;">
     <div class="col-md-12">
-      <h1 class="text-secondary" style="font-size: 4rem; font-weight: bold;">
+      <h1 style="font-size: 4rem; font-weight: bold;">
         Login
       </h1>
-      <div class="card">
-        <div class="card-body">
-          <form class="signin" (submit)="onLoginSubmit()">
-            <p *ngIf="errors.all" class="errorTextLarge">{{ errors.all }}</p>
+      <app-card>
+        <form class="signin" (submit)="onLoginSubmit()">
+          <p *ngIf="errors.all" class="errorTextLarge">{{ errors.all }}</p>
 
-            <input
-              type="email"
-              [(ngModel)]="email"
-              name="email"
-              class="form-control"
-              id="email"
-              placeholder="Email address"
-            />
-            <p class="errorText">{{ errors.email }}</p>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            class="form-control"
+            id="email"
+            placeholder="Email address"
+          />
+          <p class="errorText">{{ errors.email }}</p>
 
-            <input
-              type="password"
-              [(ngModel)]="password"
-              name="password"
-              class="form-control"
-              id="password"
-              placeholder="Password"
-            />
-            <p class="errorText">{{ errors.password }}</p>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+          <p class="errorText">{{ errors.password }}</p>
 
-            <button class="btn btn-lg btn-primary btn-block">Login</button>
+          <button class="btn btn-lg btn-primary btn-block">Login</button>
 
-            <a class="nav-link" [routerLink]="['/reset']">Reset Password</a>
-          </form>
-        </div>
-      </div>
+          <a class="nav-link" [routerLink]="['/reset']">Reset Password</a>
+        </form>
+      </app-card>
     </div>
   </div>
 </div>

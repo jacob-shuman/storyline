@@ -1,6 +1,4 @@
-<div
-  style="align-items: center;height: 95vh; display: flex;"
->
+<div style="align-items: center;height: 95vh; display: flex;">
   <div class="container" *ngIf="loadingProjects" style="text-align: center;">
     <div
       class="spinner-grow text-primary"
@@ -23,35 +21,33 @@
     <div class="row">
       <div class="col-md-5">
         <form class="signin" (submit)="onCreateProjectSubmit()">
-          <div class="card shadow-sm my-5">
-            <div class="card-body">
-              <div class="input-group my-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">Name</span>
-                </div>
-                <input
-                  type="text"
-                  name="name"
-                  [(ngModel)]="name"
-                  class="form-control"
-                  placeholder="Project Name"
-                />
+          <app-card containerClass="shadow-sm my-5">
+            <div class="input-group my-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Name</span>
               </div>
-
-              <div class="input-group my-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Description</span>
-                </div>
-                <textarea
-                  name="description"
-                  [(ngModel)]="description"
-                  class="form-control"
-                  placeholder="Project Description"
-                  aria-label="With textarea"
-                ></textarea>
-              </div>
+              <input
+                type="text"
+                name="name"
+                [(ngModel)]="name"
+                class="form-control"
+                placeholder="Project Name"
+              />
             </div>
-          </div>
+
+            <div class="input-group my-2">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Description</span>
+              </div>
+              <textarea
+                name="description"
+                [(ngModel)]="description"
+                class="form-control"
+                placeholder="Project Description"
+                aria-label="With textarea"
+              ></textarea>
+            </div>
+          </app-card>
 
           <button
             type="submit"

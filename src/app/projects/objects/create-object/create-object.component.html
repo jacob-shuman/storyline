@@ -1,93 +1,89 @@
 <div class="vcenter">
-    <div class="container" style="text-align: center;">
-      <div
-        *ngIf="loadingProject"
-        class="spinner-grow text-primary"
-        style="width: 5rem; height: 5rem;"
-        role="status"
-      >
-        <span class="sr-only">Loading...</span>
-      </div>
-  
-      <div *ngIf="!loadingProject" class="row" style="text-align: start;">
-        <div class="col-md-12 mb-5">
-          <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
-            Create Object
-          </h1>
-  
-          <button
-            class="btn circle btn-secondary m-1"
-            [routerLink]="
-              '/project/' + projectService.currentProject.id + '/objects'
-            "
+  <div class="container" style="text-align: center;">
+    <div
+      *ngIf="loadingProject"
+      class="spinner-grow text-primary"
+      style="width: 5rem; height: 5rem;"
+      role="status"
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div *ngIf="!loadingProject" class="row" style="text-align: start;">
+      <div class="col-md-12 mb-5">
+        <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
+          Create Object
+        </h1>
+
+        <button
+          class="btn circle btn-secondary m-1"
+          [routerLink]="
+            '/project/' + projectService.currentProject.id + '/objects'
+          "
+        >
+          <svg
+            class="bi bi-arrow-left-short"
+            width="2em"
+            height="2em"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              class="bi bi-arrow-left-short"
-              width="2em"
-              height="2em"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M9.854 6.646a.5.5 0 010 .708L7.207 10l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z"
-                clip-rule="evenodd"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M6.5 10a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H7a.5.5 0 01-.5-.5z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-        <div class="col-md-6">
-          <form>
-            <div class="card">
-              <div class="card-body">
-                <div class="col-md-12">
-                  <h3 class="text-dark" style="font-weight: bold;">
-                    General
-                  </h3>
-                  <div class="input-group my-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Name</span>
-                    </div>
-                    <input
-                      type="text"
-                      name="name"
-                      [(ngModel)]="object.name"
-                      class="form-control"
-                    />
+            <path
+              fill-rule="evenodd"
+              d="M9.854 6.646a.5.5 0 010 .708L7.207 10l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z"
+              clip-rule="evenodd"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M6.5 10a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H7a.5.5 0 01-.5-.5z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+      <div class="col-md-6">
+        <form>
+          <app-card>
+            <div class="col-md-12">
+              <app-card-section title="General"
+                ><div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Name</span>
                   </div>
-  
-                  <div class="input-group my-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Description</span>
-                    </div>
-                    <input
-                      type="text"
-                      name="description"
-                      [(ngModel)]="object.description"
-                      class="form-control"
-                    />
-                  </div>
-  
-                  <button
-                    type="button"
-                    class="shadow-sm rounded-pill btn btn-success px-3 py-2"
-                    (click)="createObject()"
-                    [disabled]="!validateFields() || loadingObject"
-                  >
-                    <span style="font-size: 1rem;">Confirm</span>
-                  </button>
+                  <input
+                    type="text"
+                    name="name"
+                    [(ngModel)]="object.name"
+                    class="form-control"
+                  />
                 </div>
-              </div>
+
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Description</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="description"
+                    [(ngModel)]="object.description"
+                    class="form-control"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  class="shadow-sm rounded-pill btn btn-success px-3 py-2"
+                  (click)="createObject()"
+                  [disabled]="!validateFields() || loadingObject"
+                >
+                  <span style="font-size: 1rem;">Confirm</span>
+                </button>
+              </app-card-section>
             </div>
-          </form>
-        </div>
+          </app-card>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>

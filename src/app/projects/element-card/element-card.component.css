@@ -1,0 +1,19 @@
+.container {
+    max-width: 90%;
+    padding: 5%;
+}
+
+.vcenter {
+  display: flex;
+  align-items: center;
+  min-height: 95%;
+  min-height: 95vh;
+}
+
+.circle {
+    text-align: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    padding: 0;
+}

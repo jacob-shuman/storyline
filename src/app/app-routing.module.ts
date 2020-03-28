@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -20,6 +18,7 @@ import { CreateCharacterComponent } from './projects/characters/create-character
 import { CreateGroupComponent } from './projects/groups/create-group/create-group.component';
 import { CreateObjectComponent } from './projects/objects/create-object/create-object.component';
 import { CreatePlaceComponent } from './projects/places/create-place/create-place.component';
+import { CharacterComponent } from './projects/characters/character/character.component';
 
 
 const routes: Routes = [
@@ -31,14 +30,6 @@ const routes: Routes = [
   {
     component: ResetPasswordComponent,
     path: 'reset'
-  },
-  {
-    component: LoginComponent,
-    path: 'login'
-  },
-  {
-    component: RegisterComponent,
-    path: 'register'
   },
   {
     component: ProjectsComponent,
@@ -78,6 +69,11 @@ const routes: Routes = [
   {
     component: CreateCharacterComponent,
     path: 'project/:id/characters/create',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: CharacterComponent,
+    path: 'project/:projectId/characters/:characterId',
     canActivate: [AuthGuard]
   },
   {

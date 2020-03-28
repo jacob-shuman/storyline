@@ -16,6 +16,8 @@ export class PlacesComponent implements OnInit {
 
   
   async ngOnInit() {
+    this.loadingPlaces = true;
+
     await this.loadProject();
 
     try {

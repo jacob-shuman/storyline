@@ -75,13 +75,14 @@
         </svg>
       </button>
     </div>
-
-    <div
-      class="row my-3"
-      style="text-align: start;"
-      *ngFor="let place of placeService.places"
-    >
-      <app-place-card class="col-md-12" [place]="place"> </app-place-card>
-    </div>
+    <ng-container *ngIf="!loadingPlaces">
+      <div
+        class="row my-3"
+        style="text-align: start;"
+        *ngFor="let place of placeService.places"
+      >
+        <app-place-card class="col-md-12" [place]="place"> </app-place-card>
+      </div>
+    </ng-container>
   </div>
 </div>

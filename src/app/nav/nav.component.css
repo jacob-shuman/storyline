@@ -11,5 +11,13 @@
 }
 
 .navbar {
-  background-color: rgba(255, 255, 255, 0.97);
+  background-color: rgba(var(--background-rgb), .95);
+}
+
+.nav-link {
+  color: var(--text-secondary) !important;
+}
+
+.active .nav-link {
+  color: var(--text) !important;
 }

@@ -16,6 +16,8 @@ export class ObjectsComponent implements OnInit {
 
   
   async ngOnInit() {
+    this.loadingObjects = true;
+
     await this.loadProject();
 
     try {

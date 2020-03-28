@@ -76,12 +76,14 @@
       </button>
     </div>
 
-    <div
-      class="row my-3"
-      style="text-align: start;"
-      *ngFor="let group of groupService.groups"
-    >
-      <app-group-card class="col-md-12" [group]="group"> </app-group-card>
-    </div>
+    <ng-container *ngIf="!loadingGroups">
+      <div
+        class="row my-3"
+        style="text-align: start;"
+        *ngFor="let group of groupService.groups"
+      >
+        <app-group-card class="col-md-12" [group]="group"> </app-group-card>
+      </div>
+    </ng-container>
   </div>
 </div>

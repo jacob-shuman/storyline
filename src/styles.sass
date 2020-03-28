@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+:root
+    --primary: #2cabff
+    --text-primary: var(--primary)
+    --text-primary: var(--primary)
+    --text-light: #000000
+    --text-light-secondary: #6C757D
+    --text-dark: #ffffff
+    --text-dark-secondary: #6C757D
+    --background-light: #ffffff
+    --background-light-rgb: 255, 255, 255
+    --background-dark: #2c3033
+    --background-dark-rgb: 44, 48, 51
+
+@media (prefers-color-scheme: dark)
+    :root
+        --text: var(--text-dark)
+        --text-secondary: var(--text-dark-secondary)
+        --background: var(--background-dark)
+        --background-rgb: var(--background-dark-rgb)
+
+@media (prefers-color-scheme: light)
+    :root
+        --text: var(--text-light)
+        --text-secondary: var(--text-light-secondary)
+        --background: var(--background-light)
+        --background-rgb: var(--background-light-rgb)
+
+body
+    color: var(--text)
+    background-color: var(--background)

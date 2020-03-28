@@ -51,6 +51,7 @@ export interface SLDeletePlaceResult {
 })
 export class PlaceService {
   places: SLPlace[];
+  projectId: string;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -108,13 +109,14 @@ export class PlaceService {
   }
 
   async getPlaces(projectId: string, forceUpdate: boolean = false): Promise<SLPlace[]> {
-    if (!this.places || forceUpdate) {
+    if (!this.places || (this.places && this.projectId !== projectId) || forceUpdate) {
       try {
         const params = { password: this.authService.user.password };
         const url = `${API_ENDPOINT}/project/${projectId}/places`;
         const result = await this.http.get(url, { params }).toPromise() as SLGetAllPlacesResult;
 
         this.places = result.places.map(this.parseMongoPlace);
+        this.projectId = projectId;
       } catch (err) {
         throw err;
       }

@@ -15,6 +15,8 @@ export class CharactersComponent implements OnInit {
   constructor(private router: Router, public projectService: ProjectService, public characterService: CharacterService) { }
 
   async ngOnInit() {
+    this.loadingCharacters = true;
+
     await this.loadProject();
 
     try {

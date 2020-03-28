@@ -27,6 +27,24 @@ export class SettingsComponent {
     this.user = { ...authService.user };
   }
 
+  async viewPatchNotes() {
+    await Swal.fire({
+      ...TOAST.BASE,
+      title: '<span style="color: var(--text)">Patch Notes - 0.1.0</span>',
+      html: `
+      <span style="color: var(--text-secondary)">
+        - This handy patch notes popup</br>
+        - Dark Mode</br>
+        - New Login/Registration Popups</br>
+        - Various UI/UX improvements</br>
+        - Various bugs squashed</br>
+      </span>
+      `,
+      showConfirmButton: false,
+      cancelButtonText: 'Close'
+    });
+  }
+
   public async updateAccount() {
     try {
       if (this.authService.user.nickname !== this.user.nickname) {

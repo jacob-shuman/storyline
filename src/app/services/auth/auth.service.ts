@@ -135,6 +135,9 @@ export class AuthService {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { nickname, email, password, securityQuestion, securityAnswer };
+
+      console.log("BODY: ", body);
+
       const result = await this.http.post(`${API_ENDPOINT}/register`, body, { headers }).toPromise() as SLRegisterResult;
 
       return result;

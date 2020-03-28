@@ -51,6 +51,7 @@ export interface SLDeleteGroupResult {
 })
 export class GroupService {
   groups: SLGroup[];
+  projectId: string;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -107,13 +108,14 @@ export class GroupService {
   }
 
   async getGroups(projectId: string, forceUpdate: boolean = false): Promise<SLGroup[]> {
-    if (!this.groups || forceUpdate) {
+    if (!this.groups || (this.groups && this.projectId !== projectId) || forceUpdate) {
       try {
         const params = { password: this.authService.user.password };
         const url = `${API_ENDPOINT}/project/${projectId}/groups`;
         const result = await this.http.get(url, { params }).toPromise() as SLGetAllGroupsResult;
 
         this.groups = result.groups.map(this.parseMongoGroup);
+        this.projectId = projectId;
       } catch (err) {
         throw err;
       }

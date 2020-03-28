@@ -38,7 +38,7 @@ export const SESSION_NAME = 'user';
 export const SESSION_EXPIRY_DAYS = 7;
 export const SESSION_SECURE = PRODUCTION;
 
-export const LOCAL_API = false;
+export const LOCAL_API = true;
 
 export const API_HOST = PRODUCTION || (!PRODUCTION && !LOCAL_API) ? 'https://prj666.mystudentlab.ca' : 'http://localhost';
 export const API_PORT = PRODUCTION || (!PRODUCTION && !LOCAL_API) ? 6915 : 10040;
@@ -47,10 +47,17 @@ export const API_ENDPOINT = `${API_HOST}:${API_PORT}/api`;
 
 // Swal Toasts
 export const TOAST = {
+    BASE: {
+        background: 'var(--background)',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+    },
     LOGIN_SUCCESS: {
         icon: 'success',
-        title: 'Login Successful!',
+        title: '<span style="color: var(--text)">Login Successful!</span>',
         position: 'bottom-end',
+        background: 'var(--background)',
         showConfirmButton: false,
         showCloseButton: true,
         timer: 3000,
@@ -58,9 +65,10 @@ export const TOAST = {
         toast: true,
     },
     UNDER_CONSTRUCTION: {
-        title: '🚧 Feature Under Construction! 🚧',
+        title: '<span style="color: var(--text)">🚧 Feature Under Construction! 🚧</span>',
         position: 'bottom-end',
         icon: 'warning',
+        background: 'var(--background)',
         showConfirmButton: false,
         showCloseButton: true,
         timer: 3000,
@@ -68,9 +76,10 @@ export const TOAST = {
         toast: true,
     },
     SAVE_SUCCESS: {
-        title: 'Your changes were saved successfully!',
+        title: '<span style="color: var(--text)">Your changes were saved successfully!</span>',
         position: 'bottom-end',
         icon: 'success',
+        background: 'var(--background)',
         showConfirmButton: false,
         showCloseButton: true,
         timer: 3000,
@@ -78,9 +87,10 @@ export const TOAST = {
         toast: true,
     },
     SAVE_FAIL: {
-        title: 'There was an error saving your changes :(',
+        title: '<span style="color: var(--text)">There was an error saving your changes :(</span>',
         position: 'bottom-end',
         icon: 'error',
+        background: 'var(--background)',
         showConfirmButton: false,
         showCloseButton: true,
         timer: 3000,
@@ -90,6 +100,7 @@ export const TOAST = {
     SUCCESS: {
         position: 'bottom-end',
         icon: 'success',
+        background: 'var(--background)',
         showConfirmButton: false,
         showCloseButton: true,
         timer: 3000,
@@ -99,6 +110,7 @@ export const TOAST = {
     FAIL: {
         position: 'bottom-end',
         icon: 'error',
+        background: 'var(--background)',
         showConfirmButton: false,
         showCloseButton: true,
         timer: 3000,
@@ -106,9 +118,10 @@ export const TOAST = {
         toast: true,
     },
     FEEDBACK_SUCCESS: {
-        title: 'Your feedback was submitted successfully!',
+        title: '<span style="color: var(--text)">Your feedback was submitted successfully!</span>',
         position: 'bottom-end',
         icon: 'success',
+        background: 'var(--background)',
         showConfirmButton: false,
         showCloseButton: true,
         timer: 3000,
@@ -116,9 +129,10 @@ export const TOAST = {
         toast: true,
     },
     FEEDBACK_FAIL: {
-        title: 'There was an error submitting your feedback :(',
+        title: '<span style="color: var(--text)">There was an error submitting your feedback :(</span>',
         position: 'bottom-end',
         icon: 'error',
+        background: 'var(--background)',
         showConfirmButton: false,
         showCloseButton: true,
         timer: 3000,
@@ -126,56 +140,64 @@ export const TOAST = {
         toast: true,
     },
     CONFIRM_DELETE: {
-        title: 'Woah, are you sure about this?',
-        text: 'You can\'t undo this!',
+        title: '<span style="color: var(--text)">Woah, are you sure about this?</span>',
+        html: '<span style="color: var(--text-secondary)">You can\'t undo this!</span>',
         icon: 'warning',
+        background: 'var(--background)',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
     },
     PROJECT_DELETED: {
-        title: 'Its Gone...',
-        text: 'Your project has been deleted :(',
+        title: '<span style="color: var(--text)">Its Gone...</span>',
+        html: '<span style="color: var(--text-secondary)">Your project has been deleted :(</span>',
         icon: 'success',
+        background: 'var(--background)',
         confirmButtonColor: '#3085d6',
     },
     CONFIRM_ARCHIVE_PROJECT: {
-        title: 'Woah, are you sure about this?',
-        text: 'This can be reversed in the project archive!',
+        title: '<span style="color: var(--text)">Woah, are you sure about this?</span>',
+        html: '<span style="color: var(--text-secondary)">This can be reversed in the project archive!</span>',
         icon: 'warning',
+        background: 'var(--background)',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yea, Skedaddle!'
     },
     PROJECT_ARCHIVED: {
-        title: 'See Ya',
-        text: 'Your project has been moved to the archive',
+        title: '<span style="color: var(--text)">See Ya</span>',
+        html: '<span style="color: var(--text-secondary)">Your project has been moved to the archive</span>',
         icon: 'success',
+        background: 'var(--background)',
         confirmButtonColor: '#3085d6',
     },
     CHARACTER_DELETED: {
-        title: 'Its Gone...',
-        text: 'Your character has been deleted :(',
+        title: '<span style="color: var(--text)">Its Gone...</span>',
+        html: '<span style="color: var(--text-secondary)">Your character has been deleted :(</span>',
         icon: 'success',
+        background: 'var(--background)',
         confirmButtonColor: '#3085d6',
     },
     PLACE_DELETED: {
-        title: 'Its Gone...',
-        text: 'Your place has been deleted :(',
+        title: '<span style="color: var(--text)">Its Gone...</span>',
+        html: '<span style="color: var(--text-secondary)">Your place has been deleted :(</span>',
         icon: 'success',
+        background: 'var(--background)',
         confirmButtonColor: '#3085d6',
     },
     OBJECT_DELETED: {
-        title: 'Its Gone...',
-        text: 'Your object has been deleted :(',
+        title: '<span style="color: var(--text)">Its Gone...</span>',
+        html: '<span style="color: var(--text-secondary)">Your object has been deleted :(</span>',
         icon: 'success',
+        background: 'var(--background)',
         confirmButtonColor: '#3085d6',
     },
     GROUP_DELETED: {
-        title: 'Its Gone...',
-        text: 'Your group has been deleted :(',
+        title: '<span style="color: var(--text)">Its Gone...</span>',
+        html: '<span style="color: var(--text-secondary)">Your group has been deleted :(</span>',
         icon: 'success',
+        background: 'var(--background)',
         confirmButtonColor: '#3085d6',
     },
 };
