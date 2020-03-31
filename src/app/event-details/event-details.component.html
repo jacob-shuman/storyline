@@ -1,0 +1,18 @@
+
+<br>
+<br>
+<br>
+
+<!--
+  id: String;
+  name: String;
+  timeIndex: number;
+  description: String;
+  project_ID: String;-->
+<p>you selected the event of year {{event.timeIndex}}</p>
+<p>you selected the event with name {{event.name}}</p>
+<p>you selected the event with description {{event.description}}</p>
+<p>you selected the event of project {{event.project_ID}}</p>
+<p>you selected the event with id {{event.id}}</p>
+
+<button routerLink="/event/{{event.id}}">Edit Event</button>

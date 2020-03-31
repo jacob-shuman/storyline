@@ -41,6 +41,9 @@ import { CharacterComponent } from './projects/characters/character/character.co
 import { ElementCardComponent } from './projects/element-card/element-card.component';
 import { CardComponent } from './card/card.component';
 import { CardSectionComponent } from './card/card-section/card-section.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -92,13 +95,18 @@ import { CardSectionComponent } from './card/card-section/card-section.component
 
     CardComponent,
 
-    CardSectionComponent
+    CardSectionComponent,
+
+    TimelineComponent,
+
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [ValidateService, CookieService],
   bootstrap: [AppComponent]

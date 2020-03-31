@@ -1,0 +1,72 @@
+<br>
+<br>
+<br>
+<br>
+
+<h2>Result</h2>
+<h2>{{value}}</h2>
+<h2></h2>
+<mat-slider
+    class="example-margin"
+    [disabled]="disabled"
+    [invert]="invert"
+    [max]="max"
+    [min]="min"
+    [step]="step"
+    [thumbLabel]="thumbLabel"
+    [tickInterval]="getSliderTickInterval()"
+    [(ngModel)]="value"
+    [vertical]="vertical"
+    (input)="onInputChange($event)">
+</mat-slider>
+<br>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Current Year</span>
+    </div>
+    <input class="form-control" id="filter" matInput type="number" [(ngModel)]="value">
+</div>
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Max Year</span>
+    </div>
+    <input class="form-control" id="maxYear" matInput type="number" [(ngModel)]="max">
+</div>
+
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">Range</span>
+    </div>
+    <input class="form-control" id="range" type="number" [(ngModel)]="range">
+</div>
+
+
+<mat-checkbox class="example-margin" [(ngModel)]="showTicks">Show Ticks</mat-checkbox>
+
+
+<!--
+  id: String;
+  name: String;
+  timeIndex: number;
+  description: String;
+  project_ID: String;-->
+<div>
+    <div class="eventList">
+    <div *ngFor="let event of eventService.events">
+        <div *ngIf="event.timeIndex >= (value - range) && event.timeIndex <= value"class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Event title</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{event.name}}</h5>
+
+                        <p class="card-text">{{event.timeIndex}}</p>
+                        <p class="card-text">{{event.description}}</p>
+                        <a (click)="onEventClick(event)" routerLink="/eventDetails" class="btn btn-primary">View Event</a>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+ 

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+<!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top">
   <a class="navbar-brand text-primary font-weight-bold" routerLink="/">
     <img
       src="/assets/img/storyline-logo.svg"
@@ -117,7 +117,7 @@
         </a>
       </li> -->
 
-      <!-- <li
+<!-- <li
         [class]="
           (router.url ===
           '/project/' + projectService.currentProject.id + '/events'
@@ -143,136 +143,110 @@
         </a>
       </li> -->
 
-      <li
-        [class]="
+<li [class]="
           (router.url ===
           '/project/' + projectService.currentProject.id + '/characters'
             ? 'active'
             : '') + ' nav-item'
-        "
-      >
-        <a
-          class="nav-link"
-          [routerLink]="
+        ">
+  <a class="nav-link" [routerLink]="
             '/project/' + projectService.currentProject.id + '/characters'
-          "
-          >Characters
-          <span
-            *ngIf="
+          ">Characters
+    <span *ngIf="
               router.url ==
               '/project/' + projectService.currentProject.id + '/characters'
-            "
-            class="sr-only"
-          >
-            (current)
-          </span>
-        </a>
-      </li>
+            " class="sr-only">
+      (current)
+    </span>
+  </a>
+</li>
 
-      <li
-        [class]="
+<li [class]="
           (router.url ===
           '/project/' + projectService.currentProject.id + '/places'
             ? 'active'
             : '') + ' nav-item'
-        "
-      >
-        <a
-          class="nav-link"
-          [routerLink]="
+        ">
+  <a class="nav-link" [routerLink]="
             '/project/' + projectService.currentProject.id + '/places'
-          "
-          >Places
-          <span
-            *ngIf="
+          ">Places
+    <span *ngIf="
               router.url ==
               '/project/' + projectService.currentProject.id + '/places'
-            "
-            class="sr-only"
-          >
-            (current)
-          </span>
-        </a>
-      </li>
+            " class="sr-only">
+      (current)
+    </span>
+  </a>
+</li>
 
-      <li
-        [class]="
+<li [class]="
           (router.url ===
           '/project/' + projectService.currentProject.id + '/objects'
             ? 'active'
             : '') + ' nav-item'
-        "
-      >
-        <a
-          class="nav-link"
-          [routerLink]="
+        ">
+  <a class="nav-link" [routerLink]="
             '/project/' + projectService.currentProject.id + '/objects'
-          "
-          >Objects
-          <span
-            *ngIf="
+          ">Objects
+    <span *ngIf="
               router.url ==
               '/project/' + projectService.currentProject.id + '/objects'
-            "
-            class="sr-only"
-          >
-            (current)
-          </span>
-        </a>
-      </li>
+            " class="sr-only">
+      (current)
+    </span>
+  </a>
+</li>
 
-      <li
-        [class]="
+<li [class]="
           (router.url ===
           '/project/' + projectService.currentProject.id + '/groups'
             ? 'active'
             : '') + ' nav-item'
-        "
-      >
-        <a
-          class="nav-link"
-          [routerLink]="
+        ">
+  <a class="nav-link" [routerLink]="
             '/project/' + projectService.currentProject.id + '/groups'
-          "
-          >Groups
-          <span
-            *ngIf="
+          ">Groups
+    <span *ngIf="
               router.url ==
               '/project/' + projectService.currentProject.id + '/groups'
-            "
-            class="sr-only"
-          >
-            (current)
-          </span>
-        </a>
-      </li>
+            " class="sr-only">
+      (current)
+    </span>
+  </a>
+</li>
 
-      <li [class]="(router.url == '/settings' ? 'active' : '') + ' nav-item'">
-        <a class="nav-link" routerLink="/settings"
-          >Settings
-          <span *ngIf="router.url == '/settings'" class="sr-only">
-            (current)
-          </span>
-        </a>
-      </li>
-    </ul>
+<li [class]="(router.url == '/settings' ? 'active' : '') + ' nav-item'">
+  <a class="nav-link" routerLink="/settings">Settings
+    <span *ngIf="router.url == '/settings'" class="sr-only">
+      (current)
+    </span>
+  </a>
+</li>
+</ul>
 
-    <ul class="navbar-nav ml-auto">
-      <li *ngIf="authService.user" class="nav-item">
-        <a class="nav-link" (click)="signout()" style="cursor: pointer;">
-          <span class="text-danger">Sign Out</span>
-        </a>
-      </li>
-      <li *ngIf="!authService.user" class="nav-item">
-        <a class="nav-link" (click)="register()" style="cursor: pointer;">
-          Register
-        </a>
-      </li>
-      <li *ngIf="!authService.user" class="nav-item">
-        <a class="nav-link" (click)="login()" style="cursor: pointer;">
-          Login
-        </a>
-      </li>
-    </ul>
-  </div>
+<ul class="navbar-nav ml-auto">
+  <li *ngIf="authService.user" class="nav-item">
+    <a class="nav-link" (click)="signout()" style="cursor: pointer;">
+      <span class="text-danger">Sign Out</span>
+    </a>
+  </li>
+  <li *ngIf="!authService.user" class="nav-item">
+    <a class="nav-link" (click)="register()" style="cursor: pointer;">
+      Register
+    </a>
+  </li>
+  <li *ngIf="!authService.user" class="nav-item">
+    <a class="nav-link" (click)="login()" style="cursor: pointer;">
+      Login
+    </a>
+  </li>
+  <li>
+    <!-- TIME LINE TESTING IF I FORGET TO TAKE IT OFF TAKE IT OFF -->
+    <button type="button" class="shadow-sm rounded-pill btn btn-secondary px-3 py-2" routerLink="/timeline"
+      routerLinkActive="active">
+      <span style="font-size: 1rem;">Timeline</span>
+    </button>
+  </li>
+</ul>
+</div>
 </nav>

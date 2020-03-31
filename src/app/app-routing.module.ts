@@ -19,6 +19,9 @@ import { CreateGroupComponent } from './projects/groups/create-group/create-grou
 import { CreateObjectComponent } from './projects/objects/create-object/create-object.component';
 import { CreatePlaceComponent } from './projects/places/create-place/create-place.component';
 import { CharacterComponent } from './projects/characters/character/character.component';
+// charlie stuff 
+import { TimelineComponent } from './timeline/timeline.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 
 const routes: Routes = [
@@ -105,6 +108,14 @@ const routes: Routes = [
     component: CreateGroupComponent,
     path: 'project/:id/groups/create',
     canActivate: [AuthGuard]
+  },
+  {
+    component: TimelineComponent,
+    path: 'timeline'
+  },
+  {
+    component: EventDetailsComponent,
+    path: 'eventDetails'
   },
   {
     path: '**',
