@@ -156,4 +156,10 @@ export class CharacterService {
       throw err;
     }
   }
+
+  clearCharacters(): void {
+    this.projectId = undefined;
+    this.characters = undefined;
+    this.currentCharacter = undefined;
+  }
 }

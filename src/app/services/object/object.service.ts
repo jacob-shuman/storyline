@@ -14,9 +14,9 @@ export interface SLObject {
 
 export interface SLMongoObject {
   _id: string;
-  Name: string;
-  Description: string;
-  Project_ID: string;
+  name: string;
+  description: string;
+  projectId: string;
 }
 
 export interface SLCreateObjectResult {
@@ -50,8 +50,9 @@ export interface SLDeleteObjectResult {
   providedIn: 'root'
 })
 export class ObjectService {
-  objects: SLObject[];
   projectId: string;
+  objects: SLObject[];
+  currentObject: SLObject;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -63,9 +64,9 @@ export class ObjectService {
   private parseMongoObject(object: SLMongoObject): SLObject {
     return {
       id: object._id,
-      name: object.Name,
-      description: object.Description,
-      projectId: object.Project_ID
+      name: object.name,
+      description: object.description,
+      projectId: object.projectId
     } as SLObject;
   }
 
@@ -125,7 +126,7 @@ export class ObjectService {
     return this.objects;
   }
 
-  async updateObject(object: SLObject): Promise<SLObject> {
+  async updateObject(object: SLObject): Promise<SLUpdateObjectResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { object };
@@ -133,7 +134,7 @@ export class ObjectService {
 
       const result = await this.http.post(url, body, { headers }).toPromise() as SLUpdateObjectResult;
 
-      return this.parseMongoObject(result.object);
+      return result;
     } catch (err) {
       throw err;
     }
@@ -151,5 +152,11 @@ export class ObjectService {
     } catch (err) {
       throw err;
     }
+  }
+
+  clearObjects(): void {
+    this.projectId = undefined;
+    this.objects = undefined;
+    this.currentObject = undefined;
   }
 }

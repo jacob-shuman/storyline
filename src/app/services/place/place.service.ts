@@ -14,9 +14,9 @@ export interface SLPlace {
 
 export interface SLMongoPlace {
   _id: string;
-  Name: string;
-  Description: string;
-  Project_ID: string;
+  name: string;
+  description: string;
+  projectId: string;
 }
 
 export interface SLCreatePlaceResult {
@@ -50,8 +50,9 @@ export interface SLDeletePlaceResult {
   providedIn: 'root'
 })
 export class PlaceService {
-  places: SLPlace[];
   projectId: string;
+  places: SLPlace[];
+  currentPlace: SLPlace;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -63,9 +64,9 @@ export class PlaceService {
   private parseMongoPlace(place: SLMongoPlace): SLPlace {
     return {
       id: place._id,
-      name: place.Name,
-      description: place.Description,
-      projectId: place.Project_ID
+      name: place.name,
+      description: place.description,
+      projectId: place.projectId
     } as SLPlace;
   }
 
@@ -125,7 +126,7 @@ export class PlaceService {
     return this.places;
   }
 
-  async updatePlace(place: SLPlace): Promise<SLPlace> {
+  async updatePlace(place: SLPlace): Promise<SLUpdatePlaceResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { place };
@@ -133,7 +134,7 @@ export class PlaceService {
 
       const result = await this.http.post(url, body, { headers }).toPromise() as SLUpdatePlaceResult;
 
-      return this.parseMongoPlace(result.place);
+      return result;
     } catch (err) {
       throw err;
     }
@@ -151,5 +152,11 @@ export class PlaceService {
     } catch (err) {
       throw err;
     }
+  }
+
+  clearPlaces(): void {
+    this.projectId = undefined;
+    this.places = undefined;
+    this.currentPlace = undefined;
   }
 }

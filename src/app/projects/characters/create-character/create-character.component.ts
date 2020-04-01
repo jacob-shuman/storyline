@@ -8,6 +8,7 @@ import { SLCharacter, SLCreateCharacterResult, CharacterService } from 'src/app/
 import { ProjectService } from 'src/app/services/project/project.service';
 import { ObjectService } from 'src/app/services/object/object.service';
 import { GroupService } from 'src/app/services/group/group.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 export type SLCreateCharacterSelectionType = 'group' | 'object' | 'place' | 'event' | 'none';
 
@@ -32,6 +33,7 @@ export class CreateCharacterComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private alertService: AlertService,
     public projectService: ProjectService,
     public characterService: CharacterService,
     public objectService: ObjectService,
@@ -137,9 +139,13 @@ export class CreateCharacterComponent implements OnInit {
       Swal.fire({ ...TOAST.SUCCESS, title: `<span style="color: var(--text)"> "${this.character.name}" was created successfully!</span` });
 
     } catch (error) {
-      Swal.fire({ ...TOAST.FAIL, title: `<span style="color: var(--text)">There was an error creating "${this.character.name}" :(</span>`, text: error });
+      Swal.fire({ ...TOAST.FAIL, title: `<span style="color: var(--text)">There was an error creating "${this.character.name}"</span>`, text: error });
     }
 
     this.loadingCharacter = true;
+  }
+
+  async addAttribute() {
+    await this.alertService.addAttribute();
   }
 }

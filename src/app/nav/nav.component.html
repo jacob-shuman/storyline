@@ -264,12 +264,12 @@
         </a>
       </li>
       <li *ngIf="!authService.user" class="nav-item">
-        <a class="nav-link" (click)="register()" style="cursor: pointer;">
+        <a class="nav-link" (click)="alertService.register()" style="cursor: pointer;">
           Register
         </a>
       </li>
       <li *ngIf="!authService.user" class="nav-item">
-        <a class="nav-link" (click)="login()" style="cursor: pointer;">
+        <a class="nav-link" (click)="alertService.login()" style="cursor: pointer;">
           Login
         </a>
       </li>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import Swal from 'ngx-angular8-sweetalert2';
 
-import { SECURITY_QUESTIONS, TOAST } from '../constants';
+import { SECURITY_QUESTIONS, TOAST, VERSION, PATCH_NOTES } from '../constants';
 import { AuthService, SLUser } from '../services/auth/auth.service';
 import { EmailService } from '../services/email/email.service';
 
@@ -12,6 +12,7 @@ import { EmailService } from '../services/email/email.service';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
+  version = VERSION;
   user: SLUser;
 
   sendingFeedback = false;
@@ -30,16 +31,8 @@ export class SettingsComponent {
   async viewPatchNotes() {
     await Swal.fire({
       ...TOAST.BASE,
-      title: '<span style="color: var(--text)">Patch Notes - 0.1.0</span>',
-      html: `
-      <span style="color: var(--text-secondary)">
-        - This handy patch notes popup</br>
-        - Dark Mode</br>
-        - New Login/Registration Popups</br>
-        - Various UI/UX improvements</br>
-        - Various bugs squashed</br>
-      </span>
-      `,
+      title: '<span style="color: var(--text)">Patch Notes - ' + VERSION + '</span>',
+      html: '<span style="color: var(--text-secondary)">' + PATCH_NOTES + '</span>',
       showConfirmButton: false,
       cancelButtonText: 'Close'
     });

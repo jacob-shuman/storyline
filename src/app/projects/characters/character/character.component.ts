@@ -78,12 +78,12 @@ export class CharacterComponent implements OnInit {
       } else if (result.error) {
         throw result.error;
       }
-      Swal.fire({ ...TOAST.SUCCESS, title: `<span style="color: var(--text)"> "${this.character.name}" was created successfully!</span` });
+      Swal.fire({ ...TOAST.SUCCESS, title: `<span style="color: var(--text)"> "${this.character.name}" was updated successfully!</span` });
 
     } catch (error) {
-      Swal.fire({ ...TOAST.FAIL, title: `<span style="color: var(--text)">There was an error updating "${this.character.name}" :(</span>`, text: error });
+      Swal.fire({ ...TOAST.FAIL, title: `<span style="color: var(--text)">There was an error updating "${this.character.name}"</span>`, text: error });
     }
 
-    this.loadingCharacter = true;
+    this.loadingCharacter = false;
   }
 }

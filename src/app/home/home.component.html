@@ -8,21 +8,28 @@
   </div>
   <div class="row">
     <div class="col-md-5">
-      
       <h1 id="typewriter" style="font-size: 3rem; font-weight: bold;"></h1>
       <hr />
 
-      <h5 class="font-italic mb-5" style="font-size: 2rem; color: var(--text-secondary);">
+      <h5
+        class="font-italic mb-5"
+        style="font-size: 2rem; color: var(--text-secondary);"
+      >
         A web app to structure complex narratives in a digestible layout.
       </h5>
 
       <button
         type="button"
         class="shadow-sm rounded-pill btn btn-lg btn-primary pl-5 pr-5 pt-3 pb-3 "
-        [routerLink]="authService.user ? '/projects' : '/register'"
+        [routerLink]="authService.user ? '/projects' : ''"
+        (click)="!authService.user ? alertService.register() : undefined"
       >
-        <span *ngIf="!authService.user" style="font-size: 1.5rem;">Get Started</span>
-        <span *ngIf="authService.user" style="font-size: 1.5rem;">Go to Projects</span>
+        <span *ngIf="!authService.user" style="font-size: 1.5rem;"
+          >Get Started</span
+        >
+        <span *ngIf="authService.user" style="font-size: 1.5rem;"
+          >Go to Projects</span
+        >
       </button>
     </div>
 
@@ -39,35 +46,4 @@
   </div>
 
   <div class="row pt-5 pb-5"></div>
-
-  <!-- <div class="row mt-5 mb-5">
-    <div class="col-md-12">
-      <app-home-section></app-home-section>
-    </div>
-  </div>
-
-  <div class="row mt-5 mb-5">
-    <div class="col-md-12">
-      <app-home-section [imgSideRight]="true"></app-home-section>
-    </div>
-  </div>
-
-  <div class="row mt-5 mb-5">
-    <div class="col-md-12">
-      <app-home-section></app-home-section>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body">
-      <img
-        src="/assets/icons/icons/pencil.svg"
-        alt=""
-        width="32"
-        height="32"
-        title="pencil"
-      />
-      This is some text within a card body.
-    </div>
-  </div> -->
 </div>

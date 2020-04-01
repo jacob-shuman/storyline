@@ -71,7 +71,7 @@ export class CreateGroupComponent implements OnInit {
       Swal.fire({ ...TOAST.SUCCESS, title: `<span style="color: var(--text)">"${this.group.name}" was created successfully!</span>` });
 
     } catch (error) {
-      Swal.fire({ ...TOAST.FAIL, title: `<span style="color: var(--text)">There was an error creating "${this.group.name}" :(</span>`, text: error });
+      Swal.fire({ ...TOAST.FAIL, title: `<span style="color: var(--text)">There was an error creating "${this.group.name}"</span>`, text: error });
     }
 
     this.loadingGroup = true;

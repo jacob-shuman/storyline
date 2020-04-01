@@ -1,0 +1,74 @@
+<div class="vcenter">
+  <div class="container" style="text-align: center;">
+    <div
+      *ngIf="loadingGroup"
+      class="spinner-grow text-primary"
+      style="width: 5rem; height: 5rem;"
+      role="status"
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div *ngIf="!loadingGroup" class="row" style="text-align: start;">
+      <div class="col-md-12 mb-5">
+        <h1
+          class="text-primary text-wrap"
+          style="font-size: 5rem; font-weight: bold;"
+        >
+          {{ group.name }}
+        </h1>
+
+        <app-circle-button
+          tooltip="Back"
+          icon="back"
+          containerClass="btn-secondary m-1"
+          [btnLink]="'/project/' + projectService.currentProject.id + '/groups'"
+        ></app-circle-button>
+      </div>
+      <div class="col-md-6">
+        <form>
+          <app-card>
+            <div class="col-md-12">
+              <app-card-section title="General">
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Name</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="name"
+                    maxlength="50"
+                    [(ngModel)]="group.name"
+                    class="form-control"
+                  />
+                </div>
+
+                <div class="input-group my-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Description</span>
+                  </div>
+                  <input
+                    type="text"
+                    name="description"
+                    maxlength="500"
+                    [(ngModel)]="group.description"
+                    class="form-control"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  class="shadow-sm rounded-pill btn btn-success px-3 py-2"
+                  (click)="updateGroup()"
+                  [disabled]="!validateFields() || loadingGroup"
+                >
+                  <span style="font-size: 1rem;">Confirm</span>
+                </button>
+              </app-card-section>
+            </div>
+          </app-card>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

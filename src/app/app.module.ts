@@ -41,6 +41,10 @@ import { CharacterComponent } from './projects/characters/character/character.co
 import { ElementCardComponent } from './projects/element-card/element-card.component';
 import { CardComponent } from './card/card.component';
 import { CardSectionComponent } from './card/card-section/card-section.component';
+import { CircleButtonComponent } from './circle-button/circle-button.component';
+import { PlaceComponent } from './projects/places/place/place.component';
+import { GroupComponent } from './projects/groups/group/group.component';
+import { ObjectComponent } from './projects/objects/object/object.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +96,15 @@ import { CardSectionComponent } from './card/card-section/card-section.component
 
     CardComponent,
 
-    CardSectionComponent
+    CardSectionComponent,
+
+    CircleButtonComponent,
+
+    PlaceComponent,
+
+    GroupComponent,
+
+    ObjectComponent
   ],
   imports: [
     BrowserModule,

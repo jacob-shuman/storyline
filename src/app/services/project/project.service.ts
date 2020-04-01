@@ -78,6 +78,8 @@ export class ProjectService {
   archivedProjects: SLProject[];
   currentProject?: SLProject;
 
+  lastId: string;
+
   constructor(private authService: AuthService, private http: HttpClient) { }
 
   /**
@@ -131,13 +133,14 @@ export class ProjectService {
   }
 
   async getProjects(forceUpdate: boolean = false): Promise<SLProject[]> {
-    if (!this.projects || forceUpdate) {
+    if (!this.projects || (this.lastId && this.authService.user.id !== this.lastId) || forceUpdate) {
       try {
         const params = { password: this.authService.user.password };
         const url = `${API_ENDPOINT}/projects/${this.authService.user.id}`;
 
         const result = await this.http.get(url, { params }).toPromise() as SLGetAllProjectsResult;
 
+        this.lastId = this.authService.user.id;
         this.allProjects = result.projects.map(this.parseMongoProject);
         this.projects = this.allProjects.filter((project) => !project.archived);
         this.archivedProjects = this.allProjects.filter((project) => project.archived);
@@ -200,5 +203,12 @@ export class ProjectService {
     } catch (err) {
       throw err;
     }
+  }
+
+  clearProjects(): void {
+    this.allProjects = undefined;
+    this.projects = undefined;
+    this.archivedProjects = undefined;
+    this.currentProject = undefined;
   }
 }

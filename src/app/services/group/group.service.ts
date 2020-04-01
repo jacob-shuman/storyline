@@ -14,9 +14,9 @@ export interface SLGroup {
 
 export interface SLMongoGroup {
   _id: string;
-  Name: string;
-  Description: string;
-  Project_ID: string;
+  name: string;
+  description: string;
+  projectId: string;
 }
 
 export interface SLCreateGroupResult {
@@ -50,8 +50,9 @@ export interface SLDeleteGroupResult {
   providedIn: 'root'
 })
 export class GroupService {
-  groups: SLGroup[];
   projectId: string;
+  groups: SLGroup[];
+  currentGroup: SLGroup;
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
@@ -63,9 +64,9 @@ export class GroupService {
   private parseMongoGroup(group: SLMongoGroup): SLGroup {
     return {
       id: group._id,
-      name: group.Name,
-      description: group.Description,
-      projectId: group.Project_ID
+      name: group.name,
+      description: group.description,
+      projectId: group.projectId
     } as SLGroup;
   }
 
@@ -124,7 +125,7 @@ export class GroupService {
     return this.groups;
   }
 
-  async updateGroup(group: SLGroup): Promise<SLGroup> {
+  async updateGroup(group: SLGroup): Promise<SLUpdateGroupResult> {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { group };
@@ -132,7 +133,7 @@ export class GroupService {
 
       const result = await this.http.post(url, body, { headers }).toPromise() as SLUpdateGroupResult;
 
-      return this.parseMongoGroup(result.group);
+      return result;
     } catch (err) {
       throw err;
     }
@@ -150,5 +151,11 @@ export class GroupService {
     } catch (err) {
       throw err;
     }
+  }
+
+  clearGroups(): void {
+    this.projectId = undefined;
+    this.groups = undefined;
+    this.currentGroup = undefined;
   }
 }

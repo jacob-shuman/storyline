@@ -12,20 +12,22 @@ import { ProjectService } from 'src/app/services/project/project.service';
   templateUrl: './place-card.component.html',
   styleUrls: ['./place-card.component.css']
 })
-export class PlaceCardComponent{
+export class PlaceCardComponent {
   @Input() place: SLPlace;
 
   constructor(private router: Router, private projectService: ProjectService, private placeService: PlaceService) { }
 
   async selectPlace() {
-    await Swal.fire(TOAST.UNDER_CONSTRUCTION);
-    // this.router.navigate(['project', this.projectService.currentProject.id, 'places', this.place.id]);
+    this.router.navigate(
+      ['project', this.projectService.currentProject.id, 'places', this.place.id],
+      { state: { place: this.place } }
+    );
   }
 
   async deletePlace() {
     const result = await Swal.fire({
       ...TOAST.CONFIRM_DELETE,
-      confirmButtonText: 'BE GONE PLACE!'
+      confirmButtonText: 'Delete'
     });
 
     if (result.value) {

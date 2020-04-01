@@ -13,7 +13,10 @@
         <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
           Select Associated Objects
         </h1>
-        <button class="btn circle btn-secondary m-1" (click)="resetSelection()">
+        <app-circle-button
+          containerClass="btn-secondary"
+          (click)="resetSelection()"
+        >
           <svg
             class="bi bi-arrow-left-short"
             width="2em"
@@ -33,7 +36,7 @@
               clip-rule="evenodd"
             />
           </svg>
-        </button>
+        </app-circle-button>
       </div>
       <div class="col-md-12">
         <ng-container class="col-md-2" *ngFor="let element of elements">
@@ -119,32 +122,14 @@
           Create Character
         </h1>
 
-        <button
-          class="btn circle btn-secondary m-1"
-          [routerLink]="
+        <app-circle-button
+          tooltip="Back"
+          icon="back"
+          containerClass="btn-secondary m-1"
+          [btnLink]="
             '/project/' + projectService.currentProject.id + '/characters'
           "
-        >
-          <svg
-            class="bi bi-arrow-left-short"
-            width="2em"
-            height="2em"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M9.854 6.646a.5.5 0 010 .708L7.207 10l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z"
-              clip-rule="evenodd"
-            />
-            <path
-              fill-rule="evenodd"
-              d="M6.5 10a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H7a.5.5 0 01-.5-.5z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+        ></app-circle-button>
       </div>
       <div class="col-md-6">
         <form>
@@ -158,6 +143,7 @@
                   <input
                     type="text"
                     name="name"
+                    maxlength="50"
                     [(ngModel)]="character.name"
                     class="form-control"
                   />
@@ -170,6 +156,7 @@
                   <input
                     type="text"
                     name="description"
+                    maxlength="500"
                     [(ngModel)]="character.description"
                     class="form-control"
                   />
@@ -187,6 +174,20 @@
             </div>
           </app-card>
         </form>
+      </div>
+
+      <div class="col-md-6">
+        <app-card>
+          <app-card-section title="Attributes">
+            <app-circle-button
+              tooltip="Add Attribute"
+              containerClass="btn-primary"
+              icon="add"
+              (click)="addAttribute()"
+            >
+            </app-circle-button>
+          </app-card-section>
+        </app-card>
       </div>
 
       <!-- <div class="col-md-6">

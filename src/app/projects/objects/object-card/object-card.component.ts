@@ -18,14 +18,16 @@ export class ObjectCardComponent {
   constructor(private router: Router, private projectService: ProjectService, private objectService: ObjectService) { }
 
   async selectObject() {
-    await Swal.fire(TOAST.UNDER_CONSTRUCTION);
-    // this.router.navigate(['project', this.projectService.currentProject.id, 'objects', this.object.id]);
+    this.router.navigate(
+      ['project', this.projectService.currentProject.id, 'objects', this.object.id],
+      { state: { object: this.object } }
+    );
   }
 
   async deleteObject() {
     const result = await Swal.fire({
       ...TOAST.CONFIRM_DELETE,
-      confirmButtonText: 'BE GONE OBJECT!'
+      confirmButtonText: 'Delete'
     });
 
     if (result.value) {

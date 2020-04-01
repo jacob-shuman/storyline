@@ -21,20 +21,27 @@ export class AppComponent implements OnInit {
   }
 
   async updateUser() {
-    if (this.cookieService.check('user')) {
+    if (this.cookieService.check(SESSION_NAME)) {
       try {
-        this.authService.user = JSON.parse(this.cookieService.get('user'));
+        this.authService.user = JSON.parse(this.cookieService.get(SESSION_NAME));
 
         this.authService.user = await this.authService.getUser(this.authService.user.id, this.authService.user.password);
 
-        this.cookieService.delete('user')
-        this.cookieService.set(SESSION_NAME, JSON.stringify(this.authService.user), SESSION_EXPIRY_DAYS, undefined, undefined, SESSION_SECURE);
+        this.cookieService.delete(SESSION_NAME);
+        this.cookieService.set(
+          SESSION_NAME,
+          JSON.stringify(this.authService.user),
+          SESSION_EXPIRY_DAYS,
+          undefined,
+          undefined,
+          SESSION_SECURE
+        );
       } catch (err) {
         console.log("Internal Error Occurred: ", err);
-        this.cookieService.delete('user');
+        this.cookieService.delete(SESSION_NAME);
       }
     } else {
-      this.cookieService.delete('user');
+      this.cookieService.delete(SESSION_NAME);
     }
   }
 }

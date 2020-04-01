@@ -12,20 +12,22 @@ import { ProjectService } from 'src/app/services/project/project.service';
   templateUrl: './group-card.component.html',
   styleUrls: ['./group-card.component.css']
 })
-export class GroupCardComponent{
+export class GroupCardComponent {
   @Input() group: SLGroup;
 
   constructor(private router: Router, private projectService: ProjectService, private groupService: GroupService) { }
 
   async selectGroup() {
-    await Swal.fire(TOAST.UNDER_CONSTRUCTION);
-    // this.router.navigate(['project', this.projectService.currentProject.id, 'groups', this.group.id]);
+    this.router.navigate(
+      ['project', this.projectService.currentProject.id, 'groups', this.group.id],
+      { state: { group: this.group } }
+    );
   }
 
   async deleteGroup() {
     const result = await Swal.fire({
       ...TOAST.CONFIRM_DELETE,
-      confirmButtonText: 'BE GONE GROUP!'
+      confirmButtonText: 'Delete'
     });
 
     if (result.value) {

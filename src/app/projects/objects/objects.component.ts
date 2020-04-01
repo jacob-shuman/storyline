@@ -14,7 +14,6 @@ export class ObjectsComponent implements OnInit {
 
   constructor(private router: Router, public projectService: ProjectService, public objectService: ObjectService) { }
 
-  
   async ngOnInit() {
     this.loadingObjects = true;
 

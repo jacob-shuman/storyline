@@ -64,7 +64,7 @@ export class AuthService {
    * Refreshes the secure cookie containing the user's data.
    */
   refreshCookie(): void {
-    this.cookieService.delete('user')
+    this.cookieService.delete(SESSION_NAME);
     this.cookieService.set(SESSION_NAME, JSON.stringify(this.user), SESSION_EXPIRY_DAYS, undefined, undefined, SESSION_SECURE);
   }
 
@@ -135,8 +135,6 @@ export class AuthService {
     try {
       const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
       const body = { nickname, email, password, securityQuestion, securityAnswer };
-
-      console.log("BODY: ", body);
 
       const result = await this.http.post(`${API_ENDPOINT}/register`, body, { headers }).toPromise() as SLRegisterResult;
 

@@ -70,6 +70,7 @@ export class LoginComponent {
             authenticated: result.user.Authenticated
           };
 
+          this.cookieService.delete(SESSION_NAME);
           this.cookieService.set(SESSION_NAME, JSON.stringify(this.authService.user), SESSION_EXPIRY_DAYS, undefined, undefined, SESSION_SECURE);
 
           Swal.fire(TOAST.LOGIN_SUCCESS);

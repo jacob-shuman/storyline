@@ -1,0 +1,129 @@
+<button
+  [title]="tooltip || ''"
+  [class]="(containerClass || '') + ' btn circle'"
+  [disabled]="disabled"
+  [routerLink]="btnLink"
+>
+  <svg
+    *ngIf="icon === 'add'"
+    class="bi bi-plus"
+    width="2em"
+    height="2em"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M10 5.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H6a.5.5 0 010-1h3.5V6a.5.5 0 01.5-.5z"
+      clip-rule="evenodd"
+    />
+    <path
+      fill-rule="evenodd"
+      d="M9.5 10a.5.5 0 01.5-.5h4a.5.5 0 010 1h-3.5V14a.5.5 0 01-1 0v-4z"
+      clip-rule="evenodd"
+    />
+  </svg>
+
+  <svg
+    *ngIf="icon === 'back'"
+    class="bi bi-arrow-left-short"
+    width="2em"
+    height="2em"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M9.854 6.646a.5.5 0 010 .708L7.207 10l2.647 2.646a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 01.708 0z"
+      clip-rule="evenodd"
+    />
+    <path
+      fill-rule="evenodd"
+      d="M6.5 10a.5.5 0 01.5-.5h6.5a.5.5 0 010 1H7a.5.5 0 01-.5-.5z"
+      clip-rule="evenodd"
+    />
+  </svg>
+
+  <svg
+    *ngIf="icon === 'view'"
+    class="bi bi-power text-light"
+    width="1.5em"
+    height="1.5em"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path d="M12.5 10a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+    <path
+      fill-rule="evenodd"
+      d="M2 10s3-5.5 8-5.5 8 5.5 8 5.5-3 5.5-8 5.5S2 10 2 10zm8 3.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z"
+      clip-rule="evenodd"
+    />
+  </svg>
+
+  <svg
+    *ngIf="icon === 'archive'"
+    class="bi bi-power text-light"
+    width="1.5em"
+    height="1.5em"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M14.643 17C15.979 17 17 15.845 17 14.5V7H3v7.5C3 15.845 4.021 17 5.357 17h9.286zM8 9a.5.5 0 000 1h4a.5.5 0 000-1H8zM3 3a1 1 0 00-1 1v1.5a1 1 0 001 1h14a1 1 0 001-1V4a1 1 0 00-1-1H3z"
+      clip-rule="evenodd"
+    />
+  </svg>
+
+  <svg
+    *ngIf="icon === 'delete'"
+    class="bi bi-power text-light"
+    width="1.5em"
+    height="1.5em"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M4.5 3a1 1 0 00-1 1v1a1 1 0 001 1H5v9a2 2 0 002 2h6a2 2 0 002-2V6h.5a1 1 0 001-1V4a1 1 0 00-1-1H12a1 1 0 00-1-1H9a1 1 0 00-1 1H4.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM10 7a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 0110 7zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z"
+      clip-rule="evenodd"
+    />
+  </svg>
+
+  <svg
+    *ngIf="icon === 'info'"
+    class="bi bi-question-fill"
+    width="2em"
+    height="2em"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.57 8.033H7.25C7.22 6.147 8.68 5.5 10.006 5.5c1.397 0 2.673.73 2.673 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.355H9.117l-.007-.463c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.901 0-1.358.603-1.358 1.384zm1.251 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927z"
+      clip-rule="evenodd"
+    />
+  </svg>
+  <svg
+  *ngIf="icon === 'undo'"
+    class="bi bi-power text-light"
+    width="1.5em"
+    height="1.5em"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M10 4.5A5.5 5.5 0 114.5 10a.5.5 0 00-1 0 6.5 6.5 0 103.25-5.63l.5.865A5.472 5.472 0 0110 4.5z"
+      clip-rule="evenodd"
+    />
+    <path
+      fill-rule="evenodd"
+      d="M9.354 1.646a.5.5 0 00-.708 0l-2.5 2.5a.5.5 0 000 .708l2.5 2.5a.5.5 0 10.708-.708L7.207 4.5l2.147-2.146a.5.5 0 000-.708z"
+      clip-rule="evenodd"
+    />
+  </svg>
+</button>
