@@ -39,12 +39,12 @@
       </h1>
     </div>
 
-    <div
-      class="row my-3"
-      style="text-align: start;"
-      *ngFor="let project of projectService.projects"
-    >
-      <app-project-card class="col-md-12" [project]="project">
+    <div class="row my-3" style="text-align: start;">
+      <app-project-card
+        *ngFor="let project of projectService.projects"
+        class="col-md-6"
+        [project]="project"
+      >
       </app-project-card>
     </div>
 
@@ -58,7 +58,7 @@
             projectService.projects.length > 0
           "
           type="button"
-          class="shadow-sm rounded-pill btn btn-primary mx-2 "
+          class="shadow-sm rounded-pill btn btn-primary mx-2"
           routerLink="/projects/create"
         >
           <span style="font-size: 1;">New Project +</span>

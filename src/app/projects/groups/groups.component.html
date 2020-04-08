@@ -58,12 +58,13 @@
     </div>
 
     <ng-container *ngIf="!loadingGroups">
-      <div
-        class="row my-3"
-        style="text-align: start;"
-        *ngFor="let group of groupService.groups"
-      >
-        <app-group-card class="col-md-12" [group]="group"> </app-group-card>
+      <div class="row my-3" style="text-align: start;">
+        <app-group-card
+          *ngFor="let group of groupService.groups"
+          class="col-md-4"
+          [group]="group"
+        >
+        </app-group-card>
       </div>
     </ng-container>
   </div>

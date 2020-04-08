@@ -62,12 +62,13 @@
     </div>
 
     <ng-container *ngIf="!loadingObjects">
-      <div
-        class="row my-3"
-        style="text-align: start;"
-        *ngFor="let object of objectService.objects"
-      >
-        <app-object-card class="col-md-12" [object]="object"> </app-object-card>
+      <div class="row my-3" style="text-align: start;">
+        <app-object-card
+          *ngFor="let object of objectService.objects"
+          class="col-md-4"
+          [object]="object"
+        >
+        </app-object-card>
       </div>
     </ng-container>
   </div>

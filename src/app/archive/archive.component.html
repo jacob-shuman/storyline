@@ -12,7 +12,8 @@
     <app-no-content
       *ngIf="
         !loadingArchive &&
-        (!projectService.archivedProjects || projectService.archivedProjects.length < 1)
+        (!projectService.archivedProjects ||
+          projectService.archivedProjects.length < 1)
       "
       title="Project Archive"
       style="text-align: start;"
@@ -37,12 +38,12 @@
       </h1>
     </div>
 
-    <div
-      class="row my-3"
-      style="text-align: start;"
-      *ngFor="let project of projectService.archivedProjects"
-    >
-      <app-archive-card class="col-md-12" [project]="project">
+    <div class="row my-3" style="text-align: start;">
+      <app-archive-card
+        *ngFor="let project of projectService.archivedProjects"
+        class="col-md-6"
+        [project]="project"
+      >
       </app-archive-card>
     </div>
   </div>

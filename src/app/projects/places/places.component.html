@@ -57,12 +57,13 @@
       ></app-circle-button>
     </div>
     <ng-container *ngIf="!loadingPlaces">
-      <div
-        class="row my-3"
-        style="text-align: start;"
-        *ngFor="let place of placeService.places"
-      >
-        <app-place-card class="col-md-12" [place]="place"> </app-place-card>
+      <div class="row my-3" style="text-align: start;">
+        <app-place-card
+          class="col-md-4"
+          *ngFor="let place of placeService.places"
+          [place]="place"
+        >
+        </app-place-card>
       </div>
     </ng-container>
   </div>

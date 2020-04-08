@@ -52,7 +52,7 @@ export const SECURITY_QUESTIONS = [
 
 // NOTE This is an override for all other constants!
 // Please make sure to always leave this value as true when pushing to git!
-export const PRODUCTION = true;
+export const PRODUCTION = false;
 
 // Cookies
 export const SESSION_NAME = 'user';

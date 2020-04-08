@@ -64,12 +64,12 @@
       </app-circle-button>
     </div>
     <ng-container *ngIf="!loadingCharacters">
-      <div
-        class="row my-3"
-        style="text-align: start;"
-        *ngFor="let character of characterService.characters"
-      >
-        <app-character-card class="col-md-12" [character]="character">
+      <div class="row my-3" style="text-align: start;">
+        <app-character-card
+          class="col-md-4"
+          *ngFor="let character of characterService.characters"
+          [character]="character"
+        >
         </app-character-card>
       </div>
     </ng-container>
