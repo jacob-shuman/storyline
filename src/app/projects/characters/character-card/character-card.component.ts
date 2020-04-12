@@ -41,5 +41,4 @@ export class CharacterCardComponent {
       await this.characterService.getCharacters(this.projectService.currentProject.id, true);
     }
   }
-
 }

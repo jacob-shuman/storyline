@@ -24,14 +24,6 @@ export interface SLMongoProject {
   User_email: string;
 }
 
-export interface SLEvent {
-  id: string;
-  name: string;
-  timeIndex: number;
-  description?: string;
-  projectId: string;
-}
-
 export interface SLCreateProjectResult {
   success: boolean;
   error?: any;

@@ -1,0 +1,685 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>storyline documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">storyline documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>CreateProjectComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/projects/create-project/create-project.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-create-project</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./create-project.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./create-project.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#description">description</a>
+                            </li>
+                            <li>
+                                <a href="#loadingProjects">loadingProjects</a>
+                            </li>
+                            <li>
+                                <a href="#name">name</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#loadProjects">loadProjects</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onCreateProjectSubmit">onCreateProjectSubmit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(projectService: <a href="../injectables/ProjectService.html">ProjectService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/projects/create-project/create-project.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>projectService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ProjectService.html" target="_self" >ProjectService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadProjects"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            loadProjects
+                        </b>
+                        <a href="#loadProjects"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadProjects()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/app/projects/create-project/create-project.component.ts:23</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/app/projects/create-project/create-project.component.ts:19</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCreateProjectSubmit"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            onCreateProjectSubmit
+                        </b>
+                        <a href="#onCreateProjectSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onCreateProjectSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/projects/create-project/create-project.component.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="description"></a>
+                        <span class="name">
+                            <b>
+                            description</b>
+                            <a href="#description"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/projects/create-project/create-project.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loadingProjects"></a>
+                        <span class="name">
+                            <b>
+                            loadingProjects</b>
+                            <a href="#loadingProjects"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/projects/create-project/create-project.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="name"></a>
+                        <span class="name">
+                            <b>
+                            name</b>
+                            <a href="#name"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/projects/create-project/create-project.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+import { ProjectService, SLProject, SLCreateProjectResult } from &#x27;src/app/services/project/project.service&#x27;;
+
+@Component({
+  selector: &#x27;app-create-project&#x27;,
+  templateUrl: &#x27;./create-project.component.html&#x27;,
+  styleUrls: [&#x27;./create-project.component.sass&#x27;]
+})
+export class CreateProjectComponent implements OnInit {
+  name: string;
+  description: string;
+
+  loadingProjects &#x3D; true;
+
+  constructor(private projectService: ProjectService, private router: Router) { }
+
+  ngOnInit() {
+    this.loadProjects();
+  }
+
+  async loadProjects() {
+    try {
+      await this.projectService.getProjects();
+
+      if (this.projectService.allProjects.length &gt; 2) {
+        this.router.navigate([&#x27;projects&#x27;]);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    this.loadingProjects &#x3D; false;
+  }
+
+  async onCreateProjectSubmit() {
+    try {
+      const result: SLCreateProjectResult &#x3D; await this.projectService.createProject(this.name, this.description);
+
+      if (result.success) {
+        await this.projectService.getProjects(true);
+        this.router.navigate([&#x27;projects&#x27;]);
+      } else if (result.error) {
+        throw result.error;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;align-items: center;height: 95vh; display: flex;&quot;&gt;
+  &lt;div class&#x3D;&quot;container&quot; *ngIf&#x3D;&quot;loadingProjects&quot; style&#x3D;&quot;text-align: center;&quot;&gt;
+    &lt;div
+      class&#x3D;&quot;spinner-grow text-primary&quot;
+      style&#x3D;&quot;width: 5rem; height: 5rem;&quot;
+      role&#x3D;&quot;status&quot;
+    &gt;
+      &lt;span class&#x3D;&quot;sr-only&quot;&gt;Loading...&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div *ngIf&#x3D;&quot;!loadingProjects&quot; class&#x3D;&quot;container&quot;&gt;
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+      &lt;div class&#x3D;&quot;col-md-12&quot;&gt;
+        &lt;h1 class&#x3D;&quot;text-primary&quot; style&#x3D;&quot;font-size: 5rem; font-weight: bold;&quot;&gt;
+          Create Project
+        &lt;/h1&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+      &lt;div class&#x3D;&quot;col-md-5&quot;&gt;
+        &lt;form class&#x3D;&quot;signin&quot; (submit)&#x3D;&quot;onCreateProjectSubmit()&quot;&gt;
+          &lt;app-card containerClass&#x3D;&quot;shadow-sm my-5&quot;&gt;
+            &lt;div class&#x3D;&quot;input-group my-2&quot;&gt;
+              &lt;div class&#x3D;&quot;input-group-prepend&quot;&gt;
+                &lt;span class&#x3D;&quot;input-group-text&quot; id&#x3D;&quot;basic-addon1&quot;&gt;Name&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;input
+                type&#x3D;&quot;text&quot;
+                name&#x3D;&quot;name&quot;
+                maxlength&#x3D;&quot;50&quot;
+                [(ngModel)]&#x3D;&quot;name&quot;
+                class&#x3D;&quot;form-control&quot;
+                placeholder&#x3D;&quot;Project Name&quot;
+              /&gt;
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;input-group my-2&quot;&gt;
+              &lt;div class&#x3D;&quot;input-group-prepend&quot;&gt;
+                &lt;span class&#x3D;&quot;input-group-text&quot;&gt;Description&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;textarea
+                name&#x3D;&quot;description&quot;
+                maxlength&#x3D;&quot;500&quot;
+                [(ngModel)]&#x3D;&quot;description&quot;
+                class&#x3D;&quot;form-control&quot;
+                placeholder&#x3D;&quot;Project Description&quot;
+                aria-label&#x3D;&quot;With textarea&quot;
+              &gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+          &lt;/app-card&gt;
+
+          &lt;button
+            type&#x3D;&quot;submit&quot;
+            class&#x3D;&quot;shadow-sm rounded-pill btn btn-lg btn-success px-3 py-2&quot;
+            [disabled]&#x3D;&quot;!name || name.length &lt; 5&quot;
+          &gt;
+            &lt;span style&#x3D;&quot;font-size: 1rem;&quot;&gt;Complete&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./create-project.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div style="align-items: center;height: 95vh; display: flex;">  <div class="container" *ngIf="loadingProjects" style="text-align: center;">    <div      class="spinner-grow text-primary"      style="width: 5rem; height: 5rem;"      role="status"    >      <span class="sr-only">Loading...</span>    </div>  </div>  <div *ngIf="!loadingProjects" class="container">    <div class="row">      <div class="col-md-12">        <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">          Create Project        </h1>      </div>    </div>    <div class="row">      <div class="col-md-5">        <form class="signin" (submit)="onCreateProjectSubmit()">          <app-card containerClass="shadow-sm my-5">            <div class="input-group my-2">              <div class="input-group-prepend">                <span class="input-group-text" id="basic-addon1">Name</span>              </div>              <input                type="text"                name="name"                maxlength="50"                [(ngModel)]="name"                class="form-control"                placeholder="Project Name"              />            </div>            <div class="input-group my-2">              <div class="input-group-prepend">                <span class="input-group-text">Description</span>              </div>              <textarea                name="description"                maxlength="500"                [(ngModel)]="description"                class="form-control"                placeholder="Project Description"                aria-label="With textarea"              ></textarea>            </div>          </app-card>          <button            type="submit"            class="shadow-sm rounded-pill btn btn-lg btn-success px-3 py-2"            [disabled]="!name || name.length < 5"          >            <span style="font-size: 1rem;">Complete</span>          </button>        </form>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchiveCardComponent', 'selector': 'app-archive-card'},{'name': 'ArchiveComponent', 'selector': 'app-archive'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CardSectionComponent', 'selector': 'app-card-section'},{'name': 'CharacterCardComponent', 'selector': 'app-character-card'},{'name': 'CharacterComponent', 'selector': 'app-character'},{'name': 'CharactersComponent', 'selector': 'app-characters'},{'name': 'CircleButtonComponent', 'selector': 'app-circle-button'},{'name': 'CreateCharacterComponent', 'selector': 'app-create-character'},{'name': 'CreateEventComponent', 'selector': 'app-create-event'},{'name': 'CreateGroupComponent', 'selector': 'app-create-group'},{'name': 'CreateObjectComponent', 'selector': 'app-create-object'},{'name': 'CreatePlaceComponent', 'selector': 'app-create-place'},{'name': 'CreateProjectComponent', 'selector': 'app-create-project'},{'name': 'ElementCardComponent', 'selector': 'app-element-card'},{'name': 'EventComponent', 'selector': 'app-event'},{'name': 'EventsComponent', 'selector': 'app-events'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GroupCardComponent', 'selector': 'app-group-card'},{'name': 'GroupComponent', 'selector': 'app-group'},{'name': 'GroupsComponent', 'selector': 'app-groups'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NavComponent', 'selector': 'app-nav'},{'name': 'NoContentComponent', 'selector': 'app-no-content'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'ObjectCardComponent', 'selector': 'app-object-card'},{'name': 'ObjectComponent', 'selector': 'app-object'},{'name': 'ObjectsComponent', 'selector': 'app-objects'},{'name': 'PlaceCardComponent', 'selector': 'app-place-card'},{'name': 'PlaceComponent', 'selector': 'app-place'},{'name': 'PlacesComponent', 'selector': 'app-places'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectOverviewComponent', 'selector': 'app-project-overview'},{'name': 'ProjectsComponent', 'selector': 'app-projects'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ResetPasswordComponent', 'selector': 'app-reset-password'},{'name': 'SectionComponent', 'selector': 'app-home-section'},{'name': 'SettingsComponent', 'selector': 'app-settings'},{'name': 'TimelineCardComponent', 'selector': 'app-timeline-card'},{'name': 'TimelineComponent', 'selector': 'app-timeline'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CreateProjectComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CreateProjectComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

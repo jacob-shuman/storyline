@@ -91,7 +91,7 @@
         </a>
       </li>
 
-      <!-- <li
+      <li
         [class]="
           (router.url ===
           '/project/' + projectService.currentProject.id + '/timeline'
@@ -115,7 +115,7 @@
             (current)
           </span>
         </a>
-      </li> -->
+      </li>
 
       <!-- <li
         [class]="
@@ -264,12 +264,20 @@
         </a>
       </li>
       <li *ngIf="!authService.user" class="nav-item">
-        <a class="nav-link" (click)="alertService.register()" style="cursor: pointer;">
+        <a
+          class="nav-link"
+          (click)="alertService.register()"
+          style="cursor: pointer;"
+        >
           Register
         </a>
       </li>
       <li *ngIf="!authService.user" class="nav-item">
-        <a class="nav-link" (click)="alertService.login()" style="cursor: pointer;">
+        <a
+          class="nav-link"
+          (click)="alertService.login()"
+          style="cursor: pointer;"
+        >
           Login
         </a>
       </li>

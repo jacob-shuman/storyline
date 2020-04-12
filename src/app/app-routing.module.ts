@@ -22,6 +22,9 @@ import { CharacterComponent } from './projects/characters/character/character.co
 import { PlaceComponent } from './projects/places/place/place.component';
 import { ObjectComponent } from './projects/objects/object/object.component';
 import { GroupComponent } from './projects/groups/group/group.component';
+import { TimelineComponent } from './projects/timeline/timeline.component';
+import { CreateEventComponent } from './projects/timeline/create-event/create-event.component';
+import { EventComponent } from './projects/timeline/event/event.component';
 
 
 const routes: Routes = [
@@ -62,6 +65,21 @@ const routes: Routes = [
   {
     component: EventsComponent,
     path: 'project/:id/events',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: TimelineComponent,
+    path: 'project/:id/timeline',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: CreateEventComponent,
+    path: 'project/:id/timeline/create',
+    canActivate: [AuthGuard]
+  },
+  {
+    component: EventComponent,
+    path: 'project/:projectId/timeline/:eventId',
     canActivate: [AuthGuard]
   },
   {

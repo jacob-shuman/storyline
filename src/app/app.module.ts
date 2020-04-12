@@ -45,6 +45,10 @@ import { CircleButtonComponent } from './circle-button/circle-button.component';
 import { PlaceComponent } from './projects/places/place/place.component';
 import { GroupComponent } from './projects/groups/group/group.component';
 import { ObjectComponent } from './projects/objects/object/object.component';
+import { TimelineComponent } from './projects/timeline/timeline.component';
+import { TimelineCardComponent } from './projects/timeline/timeline-card/timeline-card.component';
+import { CreateEventComponent } from './projects/timeline/create-event/create-event.component';
+import { EventComponent } from './projects/timeline/event/event.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +108,15 @@ import { ObjectComponent } from './projects/objects/object/object.component';
 
     GroupComponent,
 
-    ObjectComponent
+    ObjectComponent,
+
+    TimelineComponent,
+
+    TimelineCardComponent,
+
+    CreateEventComponent,
+
+    EventComponent
   ],
   imports: [
     BrowserModule,

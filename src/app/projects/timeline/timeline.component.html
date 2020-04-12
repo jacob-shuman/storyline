@@ -1,0 +1,128 @@
+<div class="center">
+  <div class="container" style="text-align: start;">
+    <app-no-content
+      *ngIf="
+        !loadingTimeline &&
+        (!eventService.events || eventService.events.length < 1)
+      "
+      title="Timeline"
+      style="text-align: start;"
+      subtitle="We can't find any events on this project."
+      createButtonText="Create Event"
+      [createButtonLink]="
+        '/project/' + projectService.currentProject.id + '/events/create'
+      "
+      projectsButton="true"
+      altButtonText="Sign out"
+      altButtonLink="/logout"
+      imagePath="/assets/img/empty.svg"
+      imageTitle="empty"
+      imageAlt="empty"
+    ></app-no-content>
+
+    <div
+      *ngIf="
+        !loadingTimeline &&
+        eventService.events &&
+        eventService.events.length > 0
+      "
+      class="row align-items-center justify-content-start"
+      style="text-align: start;"
+    >
+      <div class="col-md-12">
+        <h1 class="text-primary" style="font-size: 5rem; font-weight: bold;">
+          Timeline
+
+          <app-circle-button
+            [disabled]="eventService.events && eventService.events.length >= 20"
+            icon="add"
+            containerClass="btn circle btn-primary m-1"
+            [btnLink]="
+              '/project/' +
+              projectService.currentProject.id +
+              '/timeline/create'
+            "
+          >
+          </app-circle-button>
+        </h1>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col">
+        <div class="progress">
+          <!-- [style.width.%]="(100 / dates.length) * (getDateIndex() + 1)"
+          [attr.aria-valuenow]="(100 / dates.length) * (getDateIndex() + 1)" -->
+          <div
+            class="progress-bar"
+            role="progressbar"
+            [style.width.%]="
+              getDateIndex() === 0
+                ? 0
+                : (100 / (dates.length - 1)) * getDateIndex()
+            "
+            [attr.aria-valuenow]="
+              getDateIndex() === 0
+                ? 0
+                : (100 / (dates.length - 1)) * getDateIndex()
+            "
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="row align-items-center justify-content-center"
+      style="text-align: center;"
+    >
+      <div class="col-lg" style="vertical-align: middle;">
+        <h3 style="text-align: center;">
+          <app-circle-button
+            [disabled]="date === dates[0]"
+            icon="back"
+            containerClass="btn circle btn-secondary m-1"
+            (click)="shiftBackwards()"
+          >
+          </app-circle-button>
+
+          {{ date | date: "MMM yyyy" }}
+
+          <app-circle-button
+            [disabled]="date === dates[dates.length - 1]"
+            icon="forward"
+            containerClass="btn circle btn-secondary m-1"
+            (click)="shiftForward()"
+          >
+          </app-circle-button>
+        </h3>
+      </div>
+    </div>
+
+    <div
+      *ngIf="
+        !loadingTimeline &&
+        eventService.events &&
+        eventService.events.length > 0
+      "
+      class="row"
+    ></div>
+    <ng-container
+      *ngIf="
+        !loadingTimeline &&
+        eventService.events &&
+        eventService.events.length > 0
+      "
+    >
+      <div class="row my-3" style="text-align: start;">
+        <app-timeline-card
+          class="col-md-4"
+          *ngFor="let event of currentEvents"
+          [event]="event"
+        >
+        </app-timeline-card>
+      </div>
+    </ng-container>
+  </div>
+</div>

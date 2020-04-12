@@ -1,0 +1,54 @@
+<app-card>
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-wrap">{{ event.name }}</h1>
+      <h4 class="text-primary text-wrap">
+        {{ event.date | date }}
+      </h4>
+      <h5 class="font-italic text-secondary text-wrap">
+        {{ event.description }}
+      </h5>
+
+      <!-- <div class="container-fluid mb-5">
+        <div class="row justify-content-start">
+          <div class="col-sm no-gutters">
+            <div class="badge badge-pill badge-primary">
+              0 Characters
+            </div>
+          </div>
+          <div class="col-sm no-gutters">
+            <div class="badge badge-pill badge-secondary">
+              0 Places
+            </div>
+          </div>
+          <div class="col-sm no-gutters">
+            <div class="badge badge-pill badge-success">
+              0 Objects
+            </div>
+          </div>
+          <div class="col-sm no-gutters">
+            <div class="badge badge-pill badge-danger">
+              0 Groups
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <app-circle-button
+        icon="edit"
+        tooltip="Edit Event"
+        containerClass="btn-secondary m-1"
+        (click)="editEvent()"
+      >
+      </app-circle-button>
+
+      <app-circle-button
+        icon="delete"
+        tooltip="Delete Event"
+        containerClass="btn-danger m-1"
+        (click)="deleteEvent()"
+      >
+      </app-circle-button>
+    </div>
+  </div>
+</app-card>

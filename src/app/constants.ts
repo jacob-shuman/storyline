@@ -52,7 +52,7 @@ export const SECURITY_QUESTIONS = [
 
 // NOTE This is an override for all other constants!
 // Please make sure to always leave this value as true when pushing to git!
-export const PRODUCTION = false;
+export const PRODUCTION = true;
 
 // Cookies
 export const SESSION_NAME = 'user';
@@ -189,6 +189,13 @@ export const TOAST = {
     PROJECT_ARCHIVED: {
         title: '<span style="color: var(--text)">See Ya</span>',
         html: '<span style="color: var(--text-secondary)">Your project has been moved to the archive</span>',
+        icon: 'success',
+        background: 'var(--background)',
+        confirmButtonColor: '#3085d6',
+    },
+    EVENT_DELETED: {
+        title: '<span style="color: var(--text)">Its Gone...</span>',
+        html: '<span style="color: var(--text-secondary)">Your event has been deleted</span>',
         icon: 'success',
         background: 'var(--background)',
         confirmButtonColor: '#3085d6',

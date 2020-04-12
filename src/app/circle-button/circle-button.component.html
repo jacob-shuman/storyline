@@ -26,6 +26,27 @@
   </svg>
 
   <svg
+    *ngIf="icon === 'forward'"
+    class="bi bi-arrow-right-short"
+    width="2em"
+    height="2em"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M10.146 6.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 10l-2.647-2.646a.5.5 0 010-.708z"
+      clip-rule="evenodd"
+    />
+    <path
+      fill-rule="evenodd"
+      d="M6 10a.5.5 0 01.5-.5H13a.5.5 0 010 1H6.5A.5.5 0 016 10z"
+      clip-rule="evenodd"
+    />
+  </svg>
+
+  <svg
     *ngIf="icon === 'back'"
     class="bi bi-arrow-left-short"
     width="2em"
@@ -58,6 +79,21 @@
     <path
       fill-rule="evenodd"
       d="M2 10s3-5.5 8-5.5 8 5.5 8 5.5-3 5.5-8 5.5S2 10 2 10zm8 3.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z"
+      clip-rule="evenodd"
+    />
+  </svg>
+
+  <svg
+    *ngIf="icon === 'edit'"
+    class="bi bi-wrench text-light"
+    width="1.5em"
+    height="1.5em"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M2.102 4.223A3.004 3.004 0 005 8c.27 0 .532-.036.78-.103l6.342 6.252A3.003 3.003 0 0015 18a3 3 0 10-.851-5.878L7.897 5.781A3.004 3.004 0 004.223 2.1l2.141 2.142L6 6l-1.757.364-2.141-2.141zm13.37 9.019L15 13l-.471.242-.529.026-.287.445-.445.287-.026.529L13 15l.242.471.026.529.445.287.287.445.529.026L15 17l.471-.242.529-.026.287-.445.445-.287.026-.529L17 15l-.242-.471-.026-.529-.445-.287-.287-.445-.529-.026z"
       clip-rule="evenodd"
     />
   </svg>
@@ -108,7 +144,7 @@
     />
   </svg>
   <svg
-  *ngIf="icon === 'undo'"
+    *ngIf="icon === 'undo'"
     class="bi bi-power text-light"
     width="1.5em"
     height="1.5em"
